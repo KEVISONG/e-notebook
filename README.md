@@ -1,3 +1,3 @@
-# e-notebook
+# e-notebooks
 
 ## Git & GitHub
