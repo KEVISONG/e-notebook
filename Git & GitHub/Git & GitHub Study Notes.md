@@ -30,7 +30,6 @@
     - [04-05 删除文件](#04-05-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6)
         - [误删恢复](#%E8%AF%AF%E5%88%A0%E6%81%A2%E5%A4%8D)
 - [05 Git 远程仓库](#05-git-%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93)
-- [05 Git 远程仓库](#05-git-%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93-1)
     - [05-01 添加远程库](#05-01-%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8B%E5%BA%93)
         - [SSH警告](#ssh%E8%AD%A6%E5%91%8A)
     - [05-02 与远程仓库连接操作](#05-02-%E4%B8%8E%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%93%8D%E4%BD%9C)
@@ -580,39 +579,6 @@ $ git commit -m "remove test.txt"
 $ git checkout -- test.txt
 ```
 git checkout 本质：用版本库里的版本替换工作区的版本
-
-# 05 Git 远程仓库
-
-**早期：**
-
-- 一台电脑充当服务器，7 x 24 开机
-- 别的机器可以克隆原始版本库
-
-**现在：** GitHub（Git仓库托管服务）
-
-本地Git仓库和GitHub仓库之间的传输是通过SSH加密：
-
-1. 创建SSH Key
-    - 用户主目录下有没有 **.ssh** 目录
-        - **.ssh** 目录下有没有 **id_rsa** 和 **id_rsa.pub** 这两个密钥对。如果有直接去步骤 2
-        - **id_rsa**：私钥
-        - **id_rsa.pub** ：公钥
-    - 用户主目录下没有 **.ssh** 目录
-        - 打开 Git Bash 创建SSH Key
-```
-$ ssh-keygen -t rsa -C "youremail@example.com"
-```
-
-2. 登陆Github - Settings - SSH and GPG Keys
-    - New SSH key
-        - Key文本框里粘贴 **id_rsa.pub** 文件内容
-
-SSH加密：GitHub 用SSH公钥识别是用户自己推送的
-
-GitHub默认公有仓库，创建私有仓库方法
-
-- 方法一：GitHub付费7刀一个月
-- 方法二：搭建自己的Git服务器
 
 # 05 Git 远程仓库
 
