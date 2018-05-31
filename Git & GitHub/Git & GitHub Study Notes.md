@@ -1,4 +1,4 @@
-# Git & GitHub
+# Git & GitHub Study Notes
 > By Kevin Song
 <!-- MarkdownTOC autolink='true' -->
 
