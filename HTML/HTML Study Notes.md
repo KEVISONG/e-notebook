@@ -4,38 +4,38 @@
 
 <!-- MarkdownTOC autolink='true' -->
 
-- [01-01 HTML概述](#01-01-html%E6%A6%82%E8%BF%B0)
-	- [基础概念](#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5)
-	- [基础标签](#%E5%9F%BA%E7%A1%80%E6%A0%87%E7%AD%BE)
-		- [字体font](#%E5%AD%97%E4%BD%93font)
-		- [标题h1h6](#%E6%A0%87%E9%A2%98h1h6)
-		- [转义字符&;](#%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6)
+- [01 HTML概述](#01-html%E6%A6%82%E8%BF%B0)
+	- [01-01 基础概念](#01-01-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5)
+	- [01-02 基础标签](#01-02-%E5%9F%BA%E7%A1%80%E6%A0%87%E7%AD%BE)
+		- [字体 font](#%E5%AD%97%E4%BD%93-font)
+		- [标题 h1toh6](#%E6%A0%87%E9%A2%98-h1toh6)
+		- [转义字符 &;](#%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6-)
 		- [注释](#%E6%B3%A8%E9%87%8A)
-	- [列表dl](#%E5%88%97%E8%A1%A8dl)
-		- [有序列表ol](#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8ol)
-		- [无序列表ul](#%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8ul)
-	- [图像标签img](#%E5%9B%BE%E5%83%8F%E6%A0%87%E7%AD%BEimg)
-	- [表格标签table](#%E8%A1%A8%E6%A0%BC%E6%A0%87%E7%AD%BEtable)
+	- [01-03 列表 dl](#01-03-%E5%88%97%E8%A1%A8-dl)
+		- [有序列表 ol](#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8-ol)
+		- [无序列表 ul](#%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8-ul)
+	- [01-03 图像标签 img](#01-03-%E5%9B%BE%E5%83%8F%E6%A0%87%E7%AD%BE-img)
+	- [01-04 表格标签 table](#01-04-%E8%A1%A8%E6%A0%BC%E6%A0%87%E7%AD%BE-table)
 		- [表格基础标签](#%E8%A1%A8%E6%A0%BC%E5%9F%BA%E7%A1%80%E6%A0%87%E7%AD%BE)
 		- [合并单元格](#%E5%90%88%E5%B9%B6%E5%8D%95%E5%85%83%E6%A0%BC)
-	- [超链接a](#%E8%B6%85%E9%93%BE%E6%8E%A5a)
-	- [框架frameset](#%E6%A1%86%E6%9E%B6frameset)
-- [01-02 HTML表单标签form](#01-02-html%E8%A1%A8%E5%8D%95%E6%A0%87%E7%AD%BEform)
-	- [input标签](#input%E6%A0%87%E7%AD%BE)
-	- [下拉菜单select](#%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95select)
-	- [表单格式化](#%E8%A1%A8%E5%8D%95%E6%A0%BC%E5%BC%8F%E5%8C%96)
-- [01-03 服务器通信](#01-03-%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%80%9A%E4%BF%A1)
-- [01-04 其他标签](#01-04-%E5%85%B6%E4%BB%96%E6%A0%87%E7%AD%BE)
-	- [头标签](#%E5%A4%B4%E6%A0%87%E7%AD%BE)
-	- [其他标签](#%E5%85%B6%E4%BB%96%E6%A0%87%E7%AD%BE)
-	- [XHTML和XML](#xhtml%E5%92%8Cxml)
-	- [标签的分类](#%E6%A0%87%E7%AD%BE%E7%9A%84%E5%88%86%E7%B1%BB)
+	- [01-05 超链接 a](#01-05-%E8%B6%85%E9%93%BE%E6%8E%A5-a)
+	- [01-06 框架 frameset](#01-06-%E6%A1%86%E6%9E%B6-frameset)
+- [02 HTML表单标签 form](#02-html%E8%A1%A8%E5%8D%95%E6%A0%87%E7%AD%BE-form)
+	- [02-01 input标签](#02-01-input%E6%A0%87%E7%AD%BE)
+	- [02-02 下拉菜单 select](#02-02-%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95-select)
+	- [02-03 表单格式化](#02-03-%E8%A1%A8%E5%8D%95%E6%A0%BC%E5%BC%8F%E5%8C%96)
+- [03 服务器通信](#03-%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%80%9A%E4%BF%A1)
+- [04 其他标签](#04-%E5%85%B6%E4%BB%96%E6%A0%87%E7%AD%BE)
+	- [04-01 头标签](#04-01-%E5%A4%B4%E6%A0%87%E7%AD%BE)
+	- [04-02 其他标签](#04-02-%E5%85%B6%E4%BB%96%E6%A0%87%E7%AD%BE)
+	- [04-03 XHTML和XML](#04-03-xhtml%E5%92%8Cxml)
+	- [04-04 标签的分类](#04-04-%E6%A0%87%E7%AD%BE%E7%9A%84%E5%88%86%E7%B1%BB)
 
 <!-- /MarkdownTOC -->
 
 
-## 01-01 HTML概述
-### 基础概念
+# 01 HTML概述
+## 01-01 基础概念
 **HTML(Hyper Text Markup Language) 超文本标记语言**
 **特点**
 - 最基础的网页语言
@@ -79,8 +79,8 @@
 ```
 **标签操作思想**：标签相当于一个容器，对数据进行封装，通过操作标签的属性来进行对数据的操作
 
-### 基础标签
-#### 字体font
+## 01-02 基础标签
+### 字体 font
 ```
 <font color="#FF0000" size="+6">HelloWorld</ font>
 ```
@@ -91,7 +91,7 @@ color | #XXXXXX<br>rgb(x,x,x)<br>colorname | 规定文本的颜色<font color='r
 face | font_family | 规定文本的字体<font color='red'>（推荐CSS替代）</font>
 size | number | 规定文本的大小<font color='red'>（推荐CSS替代）</font>
 
-#### 标题h1h6
+### 标题 h1toh6
 ```
 <h1>一级标题</h1>
 <h2>二级标题</h2>
@@ -106,7 +106,7 @@ size | number | 规定文本的大小<font color='red'>（推荐CSS替代）</fo
 align | left<br>center<br>right<br>justify | 规定标题文本排列<font color='red'>（推荐CSS替代）</font>
 
 
-#### 转义字符&;
+### 转义字符 &;
 ```
 &lt;        <
 &gt;        >
@@ -114,11 +114,11 @@ align | left<br>center<br>right<br>justify | 规定标题文本排列<font color
 &times;     ×
 ```
 
-#### 注释
+### 注释
 ```
 <!--注释内容-->
 ```
-### 列表dl  
+## 01-03 列表 dl
 - 列表标签：\<dl>\</dl>
 - 上层项目：\<dt>\</dt>
 - 下层项目：\<dd>\</dd>
@@ -148,7 +148,7 @@ align | left<br>center<br>right<br>justify | 规定标题文本排列<font color
 ```
 
 
-#### 有序列表ol
+### 有序列表 ol
 ```
 <ol>
     <li>内容</li>
@@ -162,7 +162,7 @@ reversed<font color="red">（HTML5） | reversed | 规定列表顺序为降序
 start | number | 规定有序列表起始值
 type | 1<br>A<br>a<br>I<br>i | 规定再列表中使用的标记类型
 
-#### 无序列表ul
+### 无序列表 ul
 ```
 <ul type="circle">
     <li>内容</li>
@@ -175,7 +175,7 @@ type | 1<br>A<br>a<br>I<br>i | 规定再列表中使用的标记类型
 compact | compact | 规定效果更小巧<font color='red'>（推荐CSS替代）</font>
 type | disc<br>square<br>circle | 规定列表的符号类型<font color='red'>（推荐CSS替代）</font>
 
-### 图像标签img
+## 01-03 图像标签 img
 ```
 <img src="c:\1.jpg" height=920 width=1080 align="middle" border="3" alt="Helloworld" />
 ```
@@ -202,8 +202,8 @@ hspace | pixels | 定义图像左侧和右侧的空白<font color='red'>（推�
         <area shape="circle" coords="118,203,40" href="1.html" />
     </map>
 ```
-### 表格标签table
-#### 表格基础标签
+## 01-04 表格标签 table
+### 表格基础标签
 组成
 - \<table> 表格
 - \<caption> 标题
@@ -248,7 +248,7 @@ hspace | pixels | 定义图像左侧和右侧的空白<font color='red'>（推�
 
 
 
-#### 合并单元格
+### 合并单元格
 **横向合并：colspan属性**
 <table border=1 bordercolor="#0000FF" cellpadding=10 cellspacing=0 width>
     <tbody>
@@ -305,7 +305,7 @@ hspace | pixels | 定义图像左侧和右侧的空白<font color='red'>（推�
     </tbody>
 </table>
 ```
-### 超链接a
+## 01-05 超链接 a
 作用：链接资源
 
 **超链接一**  
@@ -370,7 +370,7 @@ hspace | pixels | 定义图像左侧和右侧的空白<font color='red'>（推�
     </body>
 </html>
 ```
-### 框架frameset
+## 01-06 框架 frameset
 框架定义在head和body之间
 
 ```
@@ -403,7 +403,7 @@ hspace | pixels | 定义图像左侧和右侧的空白<font color='red'>（推�
     </body>
 </html>
 ```
-## 01-02 HTML表单标签form
+# 02 HTML表单标签 form
 <form>      
 </form>     
 表单是最常用的标签，用于与服务器端的交互
@@ -412,7 +412,7 @@ hspace | pixels | 定义图像左侧和右侧的空白<font color='red'>（推�
 - action
 - method
 
-### input标签
+## 02-01 input标签
 
 <input type="属性值" />：输入标签，接受用户输入信息  
 type属性的10个值
@@ -457,9 +457,8 @@ type属性的10个值
     </body>
 </html>
 ```
-### 下拉菜单select
+## 02-02 下拉菜单 select
 下拉菜单
-
 ```
 <select>
     <option value="none">--选择国家--</option>
@@ -473,7 +472,7 @@ type属性的10个值
 ```
 <textarea name="text"></textarea>
 ```
-### 表单格式化
+## 02-03 表单格式化
 
 ```
 <html>
@@ -535,7 +534,7 @@ type属性的10个值
     </body>
 </html>
 ```
-## 01-03 服务器通信
+# 03 服务器通信
 前端代码
 ```
 <html>
@@ -679,8 +678,8 @@ user=hahah&psw=8989&repsw=8989&sex=nv&tech=html&tech=css&country=usa
 原因：  
 增加用户上网体验，每次都在服务端校验增加了等待时间，并且增加了服务端的压力
 
-## 01-04 其他标签
-### 头标签
+# 04 其他标签
+## 04-01 头标签
 放在<head></head>之间的标签
 - <title>
     - 显示标题
@@ -696,7 +695,7 @@ user=hahah&psw=8989&repsw=8989&sex=nv&tech=html&tech=css&country=usa
     - media 属性 指定目标文档在哪些设备上有用
     - 例：<link rel="stylesheet" type="text/css" media="screen,print" />
 
-### 其他标签
+## 04-02 其他标签
 - <marquee> 让内容动起来
     - direction 属性：left right down up
     - behavior 属性：scroll alternate slide
@@ -733,7 +732,7 @@ user=hahah&psw=8989&repsw=8989&sex=nv&tech=html&tech=css&country=usa
 
 ```
 
-### XHTML和XML
+## 04-03 XHTML和XML
 XHTML 可扩展超文本标记语言（Extensible Hypertext Markup Language）
 - 本来替代HTML，没成功，因为HTML已经被广为使用。结构更严谨
 - 是基于XML的一种应用
@@ -744,7 +743,7 @@ XML 可扩展标记语言（Extensible Markup Language）
 - XML规范可以被更多的app所解释，成为一种通用的数据交换语言
 - 各个服务器和框架都将XML作为配置文件
 
-### 标签的分类
+## 04-04 标签的分类
 没有意义的标签，只有封装作用
 ```
 <!--div自动换行-->
