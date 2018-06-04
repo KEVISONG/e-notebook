@@ -390,6 +390,7 @@ ssh KEVISONG
 **用户、权限、组**
 
 每一个用户对不同的文件或目录有不同的读写权限
+
 权限 | 英文 | 缩写 | 数字代号
 ---|---|---|---
 读 | read | r | 4
@@ -403,12 +404,13 @@ ssh KEVISONG
 d<font color="red">rwx</font><font color="blue">rwx</font>r-x 2 <font color="red">python</font> <font color="blue">python</font> 4096 7 30 2016 dbs  
 -<font color="red">rw-</font><font color="blue">r--</font>r-- 1 <font color="red">python</font> <font color="blue">python</font> 8980 5 16 2016 examples.desktop
 </font>  
-
 权限 硬链接数 所有者  组名     大小 创建修改时间 文件名
+
 标记|<font color='red'>用户权限</font>|<font color='blue'>组权限|其他用户权限
 ---|---|---|---
 d|<font color='red'>r w x</font>|<font color='blue'>r w x</font>|r - x
 -|<font color='red'>r w -</font>|<font color='blue'>r - -</font>|r - -
+
 第一位字母作为标记
 
 字母 | 标记文件
