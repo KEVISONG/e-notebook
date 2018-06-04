@@ -124,7 +124,8 @@ drwxrwxr-x 2 python python 4.0K 7 30 2016 dbs
 -rw-r--r-- 1 python python 8.8K 5 16 2016 examples.desktop
 ```
 ls配合通配符的使用
-通配符|含义
+
+通配符 | 含义
 ---|---
 * | 任意个数字符
 ? | 任意一个字符，至少1个
