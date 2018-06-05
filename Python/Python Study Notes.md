@@ -5,253 +5,100 @@
 
 - [01 Python 简介](#01-python-%E7%AE%80%E4%BB%8B)
 	- [01-01 Python 简介](#01-01-python-%E7%AE%80%E4%BB%8B)
-	- [01-02 Python 解释器](#01-02-python-%E8%A7%A3%E9%87%8A%E5%99%A8)
-		- [CPython](#cpython)
-		- [IPython](#ipython)
-		- [PyPy](#pypy)
-		- [Jython](#jython)
-		- [IronPython](#ironpython)
+	- [01-02 Python 解释器\(CPython, IPython, PyPy, Jython, IronPython\)](#01-02-python-%E8%A7%A3%E9%87%8A%E5%99%A8cpython-ipython-pypy-jython-ironpython)
 	- [01-03 第一个Python程序](#01-03-%E7%AC%AC%E4%B8%80%E4%B8%AApython%E7%A8%8B%E5%BA%8F)
-		- [交互式环境](#%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%8E%AF%E5%A2%83)
-		- [文本编辑器](#%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8)
 	- [01-04 输入和输出](#01-04-%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA)
-		- [输出](#%E8%BE%93%E5%87%BA)
-		- [输入](#%E8%BE%93%E5%85%A5)
 - [02 Python 基础](#02-python-%E5%9F%BA%E7%A1%80)
-	- [02-01 数据类型和变量](#02-01-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%8F%98%E9%87%8F)
-		- [数据类型（整数、浮点数、字符串、布尔值和空值）](#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%88%E6%95%B4%E6%95%B0%E3%80%81%E6%B5%AE%E7%82%B9%E6%95%B0%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%B8%83%E5%B0%94%E5%80%BC%E5%92%8C%E7%A9%BA%E5%80%BC%EF%BC%89)
-		- [变量](#%E5%8F%98%E9%87%8F)
-	- [02-02 字符串和编码](#02-02-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E7%BC%96%E7%A0%81)
-		- [bytes类型](#bytes%E7%B1%BB%E5%9E%8B)
-			- [encode\(\)](#encode)
-			- [decode\(\)](#decode)
-			- [len\(\)](#len)
-		- [格式化](#%E6%A0%BC%E5%BC%8F%E5%8C%96)
+	- [02-01 数据类型和变量\(整数, 浮点数, 字符串, 布尔值, 空值\)](#02-01-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%8F%98%E9%87%8F%E6%95%B4%E6%95%B0-%E6%B5%AE%E7%82%B9%E6%95%B0-%E5%AD%97%E7%AC%A6%E4%B8%B2-%E5%B8%83%E5%B0%94%E5%80%BC-%E7%A9%BA%E5%80%BC)
+	- [02-02 字符串转换\(ord(\), chr\(\))和编码\(encode(\), decode\(\), len\(\))](#02-02-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2ord-chr%E5%92%8C%E7%BC%96%E7%A0%81encode-decode-len)
 	- [02-03 list和tuple](#02-03-list%E5%92%8Ctuple)
-		- [list](#list)
-		- [tuple](#tuple)
-	- [02-04 判断语句](#02-04-%E5%88%A4%E6%96%AD%E8%AF%AD%E5%8F%A5)
-			- [if 语句](#if-%E8%AF%AD%E5%8F%A5)
-			- [if else 语句](#if-else-%E8%AF%AD%E5%8F%A5)
-			- [elif 语句](#elif-%E8%AF%AD%E5%8F%A5)
-	- [02-05 循环语句](#02-05-%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5)
-		- [for in 循环](#for-in-%E5%BE%AA%E7%8E%AF)
-		- [while 循环](#while-%E5%BE%AA%E7%8E%AF)
+	- [02-04 判断语句\(if, if else, elif\)](#02-04-%E5%88%A4%E6%96%AD%E8%AF%AD%E5%8F%A5if-if-else-elif)
+	- [02-05 循环语句\(for, while\)](#02-05-%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5for-while)
 	- [02-06 dict和set](#02-06-dict%E5%92%8Cset)
-		- [dict](#dict)
-		- [set](#set)
-		- [不可变对象](#%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1)
 - [03 Python 函数](#03-python-%E5%87%BD%E6%95%B0)
-	- [03-01 调用函数](#03-01-%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0)
-		- [内置函数](#%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0)
-		- [数据类型转换](#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2)
-	- [03-02 定义函数](#03-02-%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0)
-		- [空函数](#%E7%A9%BA%E5%87%BD%E6%95%B0)
-		- [多返回值](#%E5%A4%9A%E8%BF%94%E5%9B%9E%E5%80%BC)
-	- [03-03 函数的参数](#03-03-%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0)
-		- [位置参数](#%E4%BD%8D%E7%BD%AE%E5%8F%82%E6%95%B0)
-		- [默认参数](#%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0)
-		- [可变参数](#%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0)
-		- [关键字参数](#%E5%85%B3%E9%94%AE%E5%AD%97%E5%8F%82%E6%95%B0)
-		- [参数组合](#%E5%8F%82%E6%95%B0%E7%BB%84%E5%90%88)
+	- [03-01 调用函数\(内置函数, 数据类型转换\)](#03-01-%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2)
+	- [03-02 定义函数\(空函数, 多返回值\)](#03-02-%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E7%A9%BA%E5%87%BD%E6%95%B0-%E5%A4%9A%E8%BF%94%E5%9B%9E%E5%80%BC)
+	- [03-03 函数的参数\(位置参数, 默认参数, 可变参数, 关键字参数\)](#03-03-%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0%E4%BD%8D%E7%BD%AE%E5%8F%82%E6%95%B0-%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0-%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0-%E5%85%B3%E9%94%AE%E5%AD%97%E5%8F%82%E6%95%B0)
 	- [03-04 递归函数](#03-04-%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0)
-- [04 Python 高级特性（切片、迭代、生成器、迭代器）](#04-python-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%EF%BC%88%E5%88%87%E7%89%87%E3%80%81%E8%BF%AD%E4%BB%A3%E3%80%81%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%89)
+- [04 Python 高级特性\(切片, 迭代, 生成器, 迭代器\)](#04-python-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%88%87%E7%89%87-%E8%BF%AD%E4%BB%A3-%E7%94%9F%E6%88%90%E5%99%A8-%E8%BF%AD%E4%BB%A3%E5%99%A8)
 	- [04-01 切片](#04-01-%E5%88%87%E7%89%87)
-		- [切片](#%E5%88%87%E7%89%87)
-		- [示例：](#%E7%A4%BA%E4%BE%8B%EF%BC%9A)
 	- [04-02 迭代](#04-02-%E8%BF%AD%E4%BB%A3)
-		- [迭代list和tuple](#%E8%BF%AD%E4%BB%A3list%E5%92%8Ctuple)
-		- [迭代dict](#%E8%BF%AD%E4%BB%A3dict)
-			- [迭代key](#%E8%BF%AD%E4%BB%A3key)
-			- [迭代value](#%E8%BF%AD%E4%BB%A3value)
-			- [同时迭代key和value](#%E5%90%8C%E6%97%B6%E8%BF%AD%E4%BB%A3key%E5%92%8Cvalue)
-		- [迭代str](#%E8%BF%AD%E4%BB%A3str)
-		- [判断是可迭代对象](#%E5%88%A4%E6%96%AD%E6%98%AF%E5%8F%AF%E8%BF%AD%E4%BB%A3%E5%AF%B9%E8%B1%A1)
-	- [04-03 列表生成式（List Comprehensions）](#04-03-%E5%88%97%E8%A1%A8%E7%94%9F%E6%88%90%E5%BC%8F%EF%BC%88list-comprehensions%EF%BC%89)
-	- [04-04 生成器（generator）](#04-04-%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88generator%EF%BC%89)
-		- [\( \)实现生成器](#-%E5%AE%9E%E7%8E%B0%E7%94%9F%E6%88%90%E5%99%A8)
-		- [函数实现生成器](#%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0%E7%94%9F%E6%88%90%E5%99%A8)
+	- [04-03 列表生成式\(List Comprehensions\)](#04-03-%E5%88%97%E8%A1%A8%E7%94%9F%E6%88%90%E5%BC%8Flist-comprehensions)
+	- [04-04 生成器\((\)实现, 函数实现)](#04-04-%E7%94%9F%E6%88%90%E5%99%A8%E5%AE%9E%E7%8E%B0-%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0)
 	- [04-05 迭代器](#04-05-%E8%BF%AD%E4%BB%A3%E5%99%A8)
 - [05 Python 函数式编程](#05-python-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B)
-	- [05-01 高阶函数（Higher-order function）](#05-01-%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0%EF%BC%88higher-order-function%EF%BC%89)
-		- [高阶函数基础](#%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0%E5%9F%BA%E7%A1%80)
-			- [高阶函数定义](#%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89)
-		- [05-01-01 map/reduce](#05-01-01-mapreduce)
-			- [map\(\) 函数](#map-%E5%87%BD%E6%95%B0)
-			- [reduce\(\) 函数](#reduce-%E5%87%BD%E6%95%B0)
-			- [map\(\)和reduce\(\)组合](#map%E5%92%8Creduce%E7%BB%84%E5%90%88)
-		- [05-01-02 filter](#05-01-02-filter)
-		- [05-01-03 sorted](#05-01-03-sorted)
+	- [05-01 高阶函数\(map(\), reduce\(\), filter\(\), sorted\(\))](#05-01-%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0map-reduce-filter-sorted)
 	- [05-02 返回函数](#05-02-%E8%BF%94%E5%9B%9E%E5%87%BD%E6%95%B0)
-		- [函数作为返回值](#%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E8%BF%94%E5%9B%9E%E5%80%BC)
 	- [05-03 匿名函数](#05-03-%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0)
-	- [05-04 装饰器（Decorator）](#05-04-%E8%A3%85%E9%A5%B0%E5%99%A8%EF%BC%88decorator%EF%BC%89)
-		- [示例：在函数调用前打印函数名](#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E5%9C%A8%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E5%89%8D%E6%89%93%E5%8D%B0%E5%87%BD%E6%95%B0%E5%90%8D)
-	- [05-05 偏函数（Partial function）](#05-05-%E5%81%8F%E5%87%BD%E6%95%B0%EF%BC%88partial-function%EF%BC%89)
+	- [05-04 装饰器\(Decorator\)](#05-04-%E8%A3%85%E9%A5%B0%E5%99%A8decorator)
+	- [05-05 偏函数\(Partial function\)](#05-05-%E5%81%8F%E5%87%BD%E6%95%B0partial-function)
 - [06 Python 模块](#06-python-%E6%A8%A1%E5%9D%97)
 	- [06-01 使用模块](#06-01-%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9D%97)
-		- [权限](#%E6%9D%83%E9%99%90)
 	- [06-02 安装第三方模块](#06-02-%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97)
-		- [模块搜索路径](#%E6%A8%A1%E5%9D%97%E6%90%9C%E7%B4%A2%E8%B7%AF%E5%BE%84)
 - [07 Python OOP](#07-python-oop)
-	- [07-01 类（Class）和实例（Instance）](#07-01-%E7%B1%BB%EF%BC%88class%EF%BC%89%E5%92%8C%E5%AE%9E%E4%BE%8B%EF%BC%88instance%EF%BC%89)
-		- [数据封装](#%E6%95%B0%E6%8D%AE%E5%B0%81%E8%A3%85)
+	- [07-01 类\(Class\)和实例\(Instance\)](#07-01-%E7%B1%BBclass%E5%92%8C%E5%AE%9E%E4%BE%8Binstance)
 	- [07-02 访问限制](#07-02-%E8%AE%BF%E9%97%AE%E9%99%90%E5%88%B6)
 	- [07-03 继承和多态](#07-03-%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81)
-		- [静态语言 vs 动态语言](#%E9%9D%99%E6%80%81%E8%AF%AD%E8%A8%80-vs-%E5%8A%A8%E6%80%81%E8%AF%AD%E8%A8%80)
-	- [07-04 获取对象信息](#07-04-%E8%8E%B7%E5%8F%96%E5%AF%B9%E8%B1%A1%E4%BF%A1%E6%81%AF)
-		- [使用type\(\)](#%E4%BD%BF%E7%94%A8type)
-		- [使用isinstance\(\)](#%E4%BD%BF%E7%94%A8isinstance)
-		- [使用dir\(\)](#%E4%BD%BF%E7%94%A8dir)
-		- [直接操作对象状态](#%E7%9B%B4%E6%8E%A5%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1%E7%8A%B6%E6%80%81)
+	- [07-04 获取对象信息\(type(\), isinstance\(\), dir\(\))](#07-04-%E8%8E%B7%E5%8F%96%E5%AF%B9%E8%B1%A1%E4%BF%A1%E6%81%AFtype-isinstance-dir)
 	- [07-05 实例属性和类属性](#07-05-%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7%E5%92%8C%E7%B1%BB%E5%B1%9E%E6%80%A7)
-- [08 Python 面向对象高级编程（OOP Advanced Features）](#08-python-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%EF%BC%88oop-advanced-features%EF%BC%89)
+- [08 Python 面向对象高级编程\(OOP Advanced Features\)](#08-python-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8Boop-advanced-features)
 	- [08-01 \_\_slots__](#08-01-slots__)
-		- [给对象绑定属性和方法](#%E7%BB%99%E5%AF%B9%E8%B1%A1%E7%BB%91%E5%AE%9A%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95)
-		- [限制给对象绑定属性和方法](#%E9%99%90%E5%88%B6%E7%BB%99%E5%AF%B9%E8%B1%A1%E7%BB%91%E5%AE%9A%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95)
 	- [08-02 @property](#08-02-property)
 	- [08-03 多重继承](#08-03-%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF)
-		- [MixIn](#mixin)
-	- [08-04 定制类](#08-04-%E5%AE%9A%E5%88%B6%E7%B1%BB)
-		- [输出自定义信息：\_\_str__ 和 \_\_repr__\(\)](#%E8%BE%93%E5%87%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BF%A1%E6%81%AF%EF%BC%9Astr__-%E5%92%8C-repr__)
-			- [打印自定义信息：\_\_str__](#%E6%89%93%E5%8D%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BF%A1%E6%81%AF%EF%BC%9Astr__)
-			- [直接显示变量自定义信息：\_\_repr__\(\)](#%E7%9B%B4%E6%8E%A5%E6%98%BE%E7%A4%BA%E5%8F%98%E9%87%8F%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BF%A1%E6%81%AF%EF%BC%9Arepr__)
-		- [\_\_iter__](#iter__)
-		- [\_\_getattr__](#getattr__)
-		- [\_\_call__](#call__)
+	- [08-04 定制类\(str, repr, iter, getattr, call\)](#08-04-%E5%AE%9A%E5%88%B6%E7%B1%BBstr-repr-iter-getattr-call)
 	- [08-05 枚举类](#08-05-%E6%9E%9A%E4%B8%BE%E7%B1%BB)
 	- [08-06 元类](#08-06-%E5%85%83%E7%B1%BB)
-		- [type\(\)](#type)
-		- [元类（metaclass）](#%E5%85%83%E7%B1%BB%EF%BC%88metaclass%EF%BC%89)
 - [09 Python 错误调试测试](#09-python-%E9%94%99%E8%AF%AF%E8%B0%83%E8%AF%95%E6%B5%8B%E8%AF%95)
-	- [09-01 错误处理](#09-01-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86)
-		- [多种类型的错误](#%E5%A4%9A%E7%A7%8D%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%94%99%E8%AF%AF)
-		- [调用堆栈](#%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88)
-		- [记录错误](#%E8%AE%B0%E5%BD%95%E9%94%99%E8%AF%AF)
-		- [抛出错误](#%E6%8A%9B%E5%87%BA%E9%94%99%E8%AF%AF)
-	- [09-02 调试](#09-02-%E8%B0%83%E8%AF%95)
+	- [09-01 错误处理\(不同类型错误, 调用堆栈, 记录错误, 抛出错误\)](#09-01-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E9%94%99%E8%AF%AF-%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88-%E8%AE%B0%E5%BD%95%E9%94%99%E8%AF%AF-%E6%8A%9B%E5%87%BA%E9%94%99%E8%AF%AF)
+	- [09-02 调试\(直接打印, 断言assert, logging, pdb, \)](#09-02-%E8%B0%83%E8%AF%95%E7%9B%B4%E6%8E%A5%E6%89%93%E5%8D%B0-%E6%96%AD%E8%A8%80assert-logging-pdb-)
 	- [09-03 单元测试](#09-03-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95)
-		- [运行单元测试](#%E8%BF%90%E8%A1%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95)
-		- [setUp与tearDown](#setup%E4%B8%8Eteardown)
 	- [09-04 文档测试](#09-04-%E6%96%87%E6%A1%A3%E6%B5%8B%E8%AF%95)
 - [10 Python IO](#10-python-io)
 	- [10-01 文件读写](#10-01-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99)
-		- [读文件](#%E8%AF%BB%E6%96%87%E4%BB%B6)
-		- [file-like Object](#file-like-object)
-		- [写文件](#%E5%86%99%E6%96%87%E4%BB%B6)
 	- [10-02 StringIO和BytesIO](#10-02-stringio%E5%92%8Cbytesio)
-		- [StringIO](#stringio)
-		- [BytesIO](#bytesio)
 	- [10-03 操作文件和目录](#10-03-%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95)
-		- [操作文件和目录](#%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95)
-			- [操作目录](#%E6%93%8D%E4%BD%9C%E7%9B%AE%E5%BD%95)
-			- [操作文件](#%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6)
-		- [过滤文件](#%E8%BF%87%E6%BB%A4%E6%96%87%E4%BB%B6)
-	- [10-04 序列化（pickling）](#10-04-%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%88pickling%EF%BC%89)
-		- [JSON](#json)
-		- [JSON进阶](#json%E8%BF%9B%E9%98%B6)
+	- [10-04 序列化\(pickling\)和JSON](#10-04-%E5%BA%8F%E5%88%97%E5%8C%96pickling%E5%92%8Cjson)
 - [11 Python 进程和线程](#11-python-%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B)
-	- [11-01 多进程（Multiprocessing）](#11-01-%E5%A4%9A%E8%BF%9B%E7%A8%8B%EF%BC%88multiprocessing%EF%BC%89)
-		- [Unix/Linux](#unixlinux)
-		- [Windows](#windows)
-			- [Pool：批量创建子进程](#pool%EF%BC%9A%E6%89%B9%E9%87%8F%E5%88%9B%E5%BB%BA%E5%AD%90%E8%BF%9B%E7%A8%8B)
-		- [子进程](#%E5%AD%90%E8%BF%9B%E7%A8%8B)
-		- [进程间通信](#%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1)
+	- [11-01 多进程\(Multiprocessing\)](#11-01-%E5%A4%9A%E8%BF%9B%E7%A8%8Bmultiprocessing)
 	- [11-02 多线程](#11-02-%E5%A4%9A%E7%BA%BF%E7%A8%8B)
-		- [Lock](#lock)
-		- [多核CPU](#%E5%A4%9A%E6%A0%B8cpu)
 	- [11-03 ThreadLocal](#11-03-threadlocal)
 	- [11-04 进程vs线程](#11-04-%E8%BF%9B%E7%A8%8Bvs%E7%BA%BF%E7%A8%8B)
-		- [线程切换](#%E7%BA%BF%E7%A8%8B%E5%88%87%E6%8D%A2)
-		- [计算密集型 vs. IO密集型](#%E8%AE%A1%E7%AE%97%E5%AF%86%E9%9B%86%E5%9E%8B-vs-io%E5%AF%86%E9%9B%86%E5%9E%8B)
-		- [异步IO](#%E5%BC%82%E6%AD%A5io)
 	- [11-05 分布式进程](#11-05-%E5%88%86%E5%B8%83%E5%BC%8F%E8%BF%9B%E7%A8%8B)
 - [12 Python 正则表达式](#12-python-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F)
 	- [12-01 正则基础](#12-01-%E6%AD%A3%E5%88%99%E5%9F%BA%E7%A1%80)
 	- [12-02 re模块](#12-02-re%E6%A8%A1%E5%9D%97)
-	- [12-03 正则进阶](#12-03-%E6%AD%A3%E5%88%99%E8%BF%9B%E9%98%B6)
-		- [切分字符串](#%E5%88%87%E5%88%86%E5%AD%97%E7%AC%A6%E4%B8%B2)
-		- [分组（Group）](#%E5%88%86%E7%BB%84%EF%BC%88group%EF%BC%89)
-		- [贪婪匹配](#%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D)
-		- [编译](#%E7%BC%96%E8%AF%91)
+	- [12-03 正则进阶\(切分字符串, 分组, 贪婪匹配, 编译\)](#12-03-%E6%AD%A3%E5%88%99%E8%BF%9B%E9%98%B6%E5%88%87%E5%88%86%E5%AD%97%E7%AC%A6%E4%B8%B2-%E5%88%86%E7%BB%84-%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D-%E7%BC%96%E8%AF%91)
 - [13 Python 常用内建模块](#13-python-%E5%B8%B8%E7%94%A8%E5%86%85%E5%BB%BA%E6%A8%A1%E5%9D%97)
-	- [13-01 datetime](#13-01-datetime)
-		- [datetime & timestamp](#datetime--timestamp)
-			- [datetime转换为timestamp](#datetime%E8%BD%AC%E6%8D%A2%E4%B8%BAtimestamp)
-			- [timestamp转换为datetime](#timestamp%E8%BD%AC%E6%8D%A2%E4%B8%BAdatetime)
-		- [datetime & str](#datetime--str)
-			- [str转换为datetime](#str%E8%BD%AC%E6%8D%A2%E4%B8%BAdatetime)
-			- [datetime转换为str](#datetime%E8%BD%AC%E6%8D%A2%E4%B8%BAstr)
-		- [datetime加减](#datetime%E5%8A%A0%E5%87%8F)
-		- [时区转换](#%E6%97%B6%E5%8C%BA%E8%BD%AC%E6%8D%A2)
-	- [13-02 collections](#13-02-collections)
-		- [namedtuple](#namedtuple)
-		- [deque](#deque)
-		- [defaultdict](#defaultdict)
-		- [OrderedDict](#ordereddict)
-		- [Counter](#counter)
+	- [13-01 datetime\(timestamp转换, str转换, datetime加减, 时区转换\)](#13-01-datetimetimestamp%E8%BD%AC%E6%8D%A2-str%E8%BD%AC%E6%8D%A2-datetime%E5%8A%A0%E5%87%8F-%E6%97%B6%E5%8C%BA%E8%BD%AC%E6%8D%A2)
+	- [13-02 collections\(namedtuple, deque, defaultdict, OrderedDict, Counter\)](#13-02-collectionsnamedtuple-deque-defaultdict-ordereddict-counter)
 	- [13-03 base64](#13-03-base64)
 	- [13-04 struct](#13-04-struct)
-	- [13-05 hashlib](#13-05-hashlib)
-		- [MD5](#md5)
-		- [SHA1](#sha1)
-		- [摘要算法应用](#%E6%91%98%E8%A6%81%E7%AE%97%E6%B3%95%E5%BA%94%E7%94%A8)
-	- [13-06 itertools](#13-06-itertools)
-		- [count\(\)](#count)
-		- [cycle\(\)](#cycle)
-		- [repeat\(\)](#repeat)
-		- [chain\(\)](#chain)
-		- [groupby\(\)](#groupby)
-	- [13-07 contextlib](#13-07-contextlib)
-		- [contextlib](#contextlib)
-			- [@contextmanager](#contextmanager)
-			- [@closing](#closing)
+	- [13-05 hashlib\(MD5, SHA1, 摘要算法\)](#13-05-hashlibmd5-sha1-%E6%91%98%E8%A6%81%E7%AE%97%E6%B3%95)
+	- [13-06 itertools\(count(\), cycle\(\), repeat\(\), chain\(\), groupby\(\))](#13-06-itertoolscount-cycle-repeat-chain-groupby)
+	- [13-07 contextlib\(@contextmanager, @closing\)](#13-07-contextlibcontextmanager-closing)
 	- [13-08 XML](#13-08-xml)
 	- [13-09 HTMLParser](#13-09-htmlparser)
-	- [13-10 urllib](#13-10-urllib)
-		- [Get](#get)
-		- [Post](#post)
-		- [Handler](#handler)
+	- [13-10 urllib\(Get, Post, Handler\)](#13-10-urllibget-post-handler)
 - [14 Python GUI](#14-python-gui)
 - [15 Python 网络](#15-python-%E7%BD%91%E7%BB%9C)
 	- [15-01 TCP/IP](#15-01-tcpip)
-	- [15-02 TCP 编程](#15-02-tcp-%E7%BC%96%E7%A8%8B)
-		- [客户端](#%E5%AE%A2%E6%88%B7%E7%AB%AF)
-		- [服务器](#%E6%9C%8D%E5%8A%A1%E5%99%A8)
-	- [15-03 UDP 编程](#15-03-udp-%E7%BC%96%E7%A8%8B)
-		- [服务端](#%E6%9C%8D%E5%8A%A1%E7%AB%AF)
-		- [客户端](#%E5%AE%A2%E6%88%B7%E7%AB%AF-1)
-	- [15-04 电子邮件](#15-04-%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6)
-		- [SMTP发送邮件](#smtp%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6)
-			- [纯文本邮件：](#%E7%BA%AF%E6%96%87%E6%9C%AC%E9%82%AE%E4%BB%B6%EF%BC%9A)
-			- [HTML邮件](#html%E9%82%AE%E4%BB%B6)
-			- [发送附件](#%E5%8F%91%E9%80%81%E9%99%84%E4%BB%B6)
-			- [加密SMTP](#%E5%8A%A0%E5%AF%86smtp)
-		- [POP3收取邮件](#pop3%E6%94%B6%E5%8F%96%E9%82%AE%E4%BB%B6)
-			- [解析邮件](#%E8%A7%A3%E6%9E%90%E9%82%AE%E4%BB%B6)
+	- [15-02 TCP 编程\(客户端, 服务端\)](#15-02-tcp-%E7%BC%96%E7%A8%8B%E5%AE%A2%E6%88%B7%E7%AB%AF-%E6%9C%8D%E5%8A%A1%E7%AB%AF)
+	- [15-03 UDP 编程\(服务端, 客户端\)](#15-03-udp-%E7%BC%96%E7%A8%8B%E6%9C%8D%E5%8A%A1%E7%AB%AF-%E5%AE%A2%E6%88%B7%E7%AB%AF)
+	- [15-04 电子邮件原理](#15-04-%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E5%8E%9F%E7%90%86)
+	- [15-05 SMTP发送邮件\(纯文本邮件, HTML邮件, 发送附件, 加密SMTP\)](#15-05-smtp%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%BA%AF%E6%96%87%E6%9C%AC%E9%82%AE%E4%BB%B6-html%E9%82%AE%E4%BB%B6-%E5%8F%91%E9%80%81%E9%99%84%E4%BB%B6-%E5%8A%A0%E5%AF%86smtp)
+	- [15-06 POP3收取邮件](#15-06-pop3%E6%94%B6%E5%8F%96%E9%82%AE%E4%BB%B6)
 - [16 Python 数据库](#16-python-%E6%95%B0%E6%8D%AE%E5%BA%93)
 	- [16-01 使用SQLite](#16-01-%E4%BD%BF%E7%94%A8sqlite)
 	- [16-02 使用MySQL](#16-02-%E4%BD%BF%E7%94%A8mysql)
-	- [16-03 使用SQLAlchemy](#16-03-%E4%BD%BF%E7%94%A8sqlalchemy)
-		- [ORM技术（Object-Relational Mapping）](#orm%E6%8A%80%E6%9C%AF%EF%BC%88object-relational-mapping%EF%BC%89)
-		- [SQLAlchemy](#sqlalchemy)
+	- [16-03 使用SQLAlchemy\(ORM, SQLAlchemy\)](#16-03-%E4%BD%BF%E7%94%A8sqlalchemyorm-sqlalchemy)
 - [17 Python Web](#17-python-web)
-	- [17-01 HTTP协议简介](#17-01-http%E5%8D%8F%E8%AE%AE%E7%AE%80%E4%BB%8B)
-		- [HTTP请求](#http%E8%AF%B7%E6%B1%82)
-		- [HTTP格式](#http%E6%A0%BC%E5%BC%8F)
+	- [17-01 HTTP协议简介\(HTTP请求, HTTP格式\)](#17-01-http%E5%8D%8F%E8%AE%AE%E7%AE%80%E4%BB%8Bhttp%E8%AF%B7%E6%B1%82-http%E6%A0%BC%E5%BC%8F)
 	- [17-02 HTML简介](#17-02-html%E7%AE%80%E4%BB%8B)
 	- [17-03 WSGI接口](#17-03-wsgi%E6%8E%A5%E5%8F%A3)
-		- [运行WSGI服务](#%E8%BF%90%E8%A1%8Cwsgi%E6%9C%8D%E5%8A%A1)
-			- [动态内容](#%E5%8A%A8%E6%80%81%E5%86%85%E5%AE%B9)
-	- [17-04 使用Web框架](#17-04-%E4%BD%BF%E7%94%A8web%E6%A1%86%E6%9E%B6)
-		- [FLASK 框架](#flask-%E6%A1%86%E6%9E%B6)
-	- [17-05 使用模板](#17-05-%E4%BD%BF%E7%94%A8%E6%A8%A1%E6%9D%BF)
-		- [MVC模式改写FLASK框架代码](#mvc%E6%A8%A1%E5%BC%8F%E6%94%B9%E5%86%99flask%E6%A1%86%E6%9E%B6%E4%BB%A3%E7%A0%81)
+	- [17-04 使用Web框架\(FLASK\)](#17-04-%E4%BD%BF%E7%94%A8web%E6%A1%86%E6%9E%B6flask)
+	- [17-05 使用模板\(MVC\)](#17-05-%E4%BD%BF%E7%94%A8%E6%A8%A1%E6%9D%BFmvc)
 - [18 Python 异步IO](#18-python-%E5%BC%82%E6%AD%A5io)
-		- [停止响应](#%E5%81%9C%E6%AD%A2%E5%93%8D%E5%BA%94)
-		- [消息模型](#%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9E%8B)
-	- [18-01 协程（Coroutine）](#18-01-%E5%8D%8F%E7%A8%8B%EF%BC%88coroutine%EF%BC%89)
-		- [generator实现协程](#generator%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B)
+	- [18-01 协程\(Coroutine\)](#18-01-%E5%8D%8F%E7%A8%8Bcoroutine)
 	- [18-02 asyncio](#18-02-asyncio)
 	- [18-03 async/await](#18-03-asyncawait)
 	- [18-04 aiohttp](#18-04-aiohttp)
@@ -261,8 +108,6 @@
 
 # 01 Python 简介
 
->By Kevin Song
-
 ## 01-01 Python 简介
 Python应用场景
 
@@ -270,10 +115,10 @@ Python应用场景
 - 日常需要的小工具，包括系统管理员需要的脚本任务等等；
 - 把其他语言开发的程序再包装起来，方便使用。
 
-## 01-02 Python 解释器
+## 01-02 Python 解释器(CPython, IPython, PyPy, Jython, IronPython)
 Python解释器用来执行.py文件
 
-### CPython
+**CPython**
 
 - Python官方解释器
 - 由C语言开发
@@ -283,7 +128,7 @@ CPython是使用最广的Python解释器
 
 CPython用 **>>>** 作为提示符
 
-### IPython
+**IPython**
 
 - 基于CPython
 - 只是在交互方式上有所增强
@@ -291,7 +136,7 @@ CPython用 **>>>** 作为提示符
 
 Python用 **In [序号]:** 作为提示符
 
-### PyPy
+**PyPy**
 
 - 执行速度快
 - 采用JIT技术
@@ -299,12 +144,12 @@ Python用 **In [序号]:** 作为提示符
 
 绝大部分Python代码都可以在PyPy下运行，但是PyPy和CPython有一些是不同的，这就导致相同的Python代码在两种解释器下执行可能会有不同的结果。
 
-### Jython
+**Jython**
 
 - 运行在Java平台上的Python解释器
 - 可以直接把Python代码编译成Java字节码执行
 
-### IronPython
+**IronPython**
 
 - 运行在微软.Net平台上的Python解释器
 - 可以直接把Python代码编译成.Net的字节码
@@ -314,7 +159,8 @@ Python用 **In [序号]:** 作为提示符
 - 交互式环境
 - 文本编辑环境
 
-### 交互式环境
+**交互式环境**
+
 命令行下输入 **python** 进入交互式环境
 ```
 >>> 100+200
@@ -325,7 +171,9 @@ Python用 **In [序号]:** 作为提示符
 hello, world
 ```
 exit()退出Python
-### 文本编辑器
+
+**文本编辑器**
+
 hello.py
 ```
 print('hello, world')
@@ -336,7 +184,9 @@ C:\work>python hello.py
 hello, world
 ```
 ## 01-04 输入和输出
-### 输出
+
+**输出**
+
 print()会依次打印每个字符串，遇到逗号“,”会输出一个空格  
 
 下例两句输出相同
@@ -344,7 +194,9 @@ print()会依次打印每个字符串，遇到逗号“,”会输出一个空格
 >>> print('hello world')
 >>> print('hello', 'world')
 ```
-### 输入
+
+**输入**
+
 input()，可以让用户输入字符串，并存放到一个变量里
 
 交互式环境
@@ -366,15 +218,7 @@ Hello, Kevin
 ```
 # 02 Python 基础
 
-## 02-01 数据类型和变量
-
-### 数据类型（整数、浮点数、字符串、布尔值和空值）
-
-- 整数
-- 浮点数
-- 字符串
-- 布尔值
-- 空值
+## 02-01 数据类型和变量(整数, 浮点数, 字符串, 布尔值, 空值)
 
 **整数**  
 
@@ -461,7 +305,7 @@ True
 
 空值是Python里一个特殊的值，用None表示
 
-### 变量
+**变量**
 
 动态语言 Python
 
@@ -479,7 +323,7 @@ int a = 123; // a是整数类型变量
 a = "ABC"; // 错误：不能把字符串赋给整型变量
 ```
 
-## 02-02 字符串和编码
+## 02-02 字符串转换(ord(), chr())和编码(encode(), decode(), len())
 
 字符串 转 整数 ：ord()
 
@@ -499,7 +343,7 @@ a = "ABC"; // 错误：不能把字符串赋给整型变量
 '文'
 ```
 
-### bytes类型
+**bytes类型**
 
 把str变为以字节为单位的bytes  
 
@@ -511,7 +355,7 @@ x = b'ABC'
 
 **'ABC'** 和 **b'ABC'**，前者是str，后者虽然内容显示得和前者一样，但bytes的每个字符都只占用一个字节。
 
-#### encode()
+**encode()**
 
 以Unicode表示的str编码为bytes，通过encode()方法
 
@@ -526,7 +370,7 @@ Traceback (most recent call last):
 UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-1: ordinal not in range(128)
 ```
 
-#### decode()
+**decode()**
 
 bytes解码为str，通过decode()方法
 
@@ -537,7 +381,7 @@ bytes解码为str，通过decode()方法
 '中文'
 ```
 
-#### len()
+**len()**
 
 - 计算的是str的字符数
 - 计算的是bytes的字节数
@@ -553,7 +397,7 @@ bytes解码为str，通过decode()方法
 6
 ```
 
-### 格式化
+**格式化**
 
 常见占位符
 - %d	整数
@@ -571,7 +415,7 @@ bytes解码为str，通过decode()方法
 ```
 ## 02-03 list和tuple
 
-### list
+**list**
 
 Python内置的一种数据类型是列表：list
 
@@ -587,7 +431,6 @@ Python内置的一种数据类型是列表：list
 >>> len(justice)
 3
 ```
-
 常用函数：
 - cmp(list1, list2)：比较两个列表的元素
 - len(list)：列表元素个数
@@ -626,7 +469,7 @@ list元素也可以是另一个list
 >>> len(s)
 4
 ```
-### tuple
+**tuple**
 
 元组：tuple一旦初始化就不能修改
 
@@ -649,8 +492,9 @@ tuple里的list可变
 >>> t
 ('a', 'b', ['X', 'Y'])
 ```
-## 02-04 判断语句
-#### if 语句
+## 02-04 判断语句(if, if else, elif)
+
+**if 语句**
 
 - 如果if语句判断是True，就执行缩进的两行print语句
 - 否则，什么也不做
@@ -661,7 +505,7 @@ if age >= 18:
     print('your age is', age)
     print('adult')
 ```
-#### if else 语句
+**if else 语句**
 ```
 age = 3
 if age >= 18:
@@ -671,7 +515,8 @@ else:
     print('your age is', age)
     print('teenager')
 ```
-#### elif 语句
+**elif 语句**
+
 其实就是else if
 ```
 age = 3
@@ -693,11 +538,10 @@ if birth < 2000:
 else:
     print('00后')
 ```
-## 02-05 循环语句
-- for in 循环
-- while 循环
+## 02-05 循环语句(for, while)
 
-### for in 循环
+**for in 循环**
+
 ```
 names = ['Michael', 'Bob', 'Tracy']
 for name in names:
@@ -711,8 +555,10 @@ for x in range(101):
 print(sum)
 ```
 
-### while 循环
+**while 循环**
+
 计算100以内所有奇数之和
+
 ```
 sum = 0
 n = 99
@@ -722,7 +568,8 @@ while n > 0:
 print(sum)
 ```
 ## 02-06 dict和set
-### dict
+**dict**
+
 使用键值对存储数据
 ```
 >>> d = {'Kevin': 95, 'Cyborg': 75, 'Flash': 85}
@@ -756,9 +603,10 @@ list
 
 所以，dict是用空间来换取时间的一种方法
 
-**注意：** dict的key必须是不可变对象（str，int）
+> dict的key必须是不可变对象（str，int）
 
-### set
+**set**
+
 - 没有重复的key
 - 没有value
 - 需要提供一个list作为输入集合
@@ -783,7 +631,8 @@ list
 {1, 2, 3, 4}
 ```
 
-### 不可变对象
+**不可变对象**
+
 可变对象：list
 
 ```
@@ -805,8 +654,10 @@ list
 ```
 # 03 Python 函数
 
-## 03-01 调用函数
-### 内置函数
+## 03-01 调用函数(内置函数, 数据类型转换)
+
+**内置函数**
+
 [内置函数官方文档](https://docs.python.org/3/library/functions.html#abs)
 
 可以在交互式环境输入 help() 来查询内置函数的作用
@@ -817,7 +668,8 @@ Help on built-in function len in module builtins:
 len(obj, /)
     Return the number of items in a container.
 ```
-### 数据类型转换
+
+**数据类型转换**
 
 - int()
 - float()
@@ -844,7 +696,7 @@ False
 >>> a(-1) # 所以也可以通过a调用abs函数
 1
 ```
-## 03-02 定义函数
+## 03-02 定义函数(空函数, 多返回值)
 格式
 ```
 def my_abs(): 
@@ -853,14 +705,16 @@ def my_abs():
     else:
         return -x
 ```
-### 空函数
+
+**空函数**
+
 ```
 def nop():
     pass
 ```
 缺少了pass，代码运行就会有语法错误
 
-### 多返回值
+**多返回值**
 
 ```
 import math
@@ -882,8 +736,10 @@ def move(x, y, step, angle=0):
 (151.96152422706632, 70.0)
 ```
 在语法上，返回一个tuple可以省略括号，而多个变量可以同时接收一个tuple，按位置赋给对应的值
-## 03-03 函数的参数
-### 位置参数
+## 03-03 函数的参数(位置参数, 默认参数, 可变参数, 关键字参数)
+
+**位置参数**
+
 一个位置参数
 ```
 def power(x):
@@ -910,7 +766,9 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: power() missing 1 required positional argument: 'n'
 ```
-### 默认参数
+
+**默认参数**
+
 为了避免报错，使用默认参数
 ```
 def power(x, n=2):
@@ -945,7 +803,8 @@ def add_end(L=[]):
 ```
 Python函数在定义的时候，默认参数L的值就被计算出来了，即 **[ ]** ，因为默认参数L也是一个变量，它指向对象 **[ ]** ，每次调用该函数，如果改变了L的内容，则下次调用时，默认参数的内容就变了，不再是函数定义时的 **[ ]** 
 
-**牢记：** 默认参数必须指向不变对象
+> 默认参数必须指向不变对象
+
 ```
 def add_end(L=None):
     if L is None:
@@ -959,7 +818,8 @@ def add_end(L=None):
 >>> add_end()
 ['END']
 ```
-### 可变参数
+**可变参数**
+
 可变参数允许传入0个或任意个参数，这些可变参数在函数调用时自动组装为一个tuple。
 
 list或tuple参数
@@ -992,7 +852,9 @@ list或tuple调用可变参数函数
 >>> calc(*nums)
 14
 ```
-### 关键字参数
+
+**关键字参数**
+
 关键字参数允许传入0个或任意个含参数名的参数，这些关键字参数在函数内部自动组装为一个dict
 
 ```
@@ -1025,8 +887,10 @@ def person(name, age, *, city, job):
 >>> person('Jack', 24, city='Beijing', job='Engineer')
 Jack 24 Beijing Engineer
 ```
-### 参数组合
-参数定义的顺序必须是：必选参数、默认参数、可变参数、命名关键字参数和关键字参数
+
+**参数组合**
+
+参数定义的顺序**必须**是：必选参数、默认参数、可变参数、命名关键字参数和关键字参数
 ```
 def f1(a, b, c=0, *args, **kw):
     print('a =', a, 'b =', b, 'c =', c, 'args =', args, 'kw =', kw)
@@ -1093,7 +957,7 @@ def fact_iter(num, product):
 ===> fact_iter(1, 120)
 ===> 120
 ```
-# 04 Python 高级特性（切片、迭代、生成器、迭代器）
+# 04 Python 高级特性(切片, 迭代, 生成器, 迭代器)
 
 ## 04-01 切片
 取前三个元素
@@ -1105,7 +969,7 @@ def fact_iter(num, product):
 >>> [L[0], L[1], L[2]]
 ['Michael', 'Sarah', 'Tracy']
 ```
-### 切片
+**切片**
 
 **L[a:b]**：从 **a** 号位取到 **b-1** 号位，如果a为0可以省略
 
@@ -1120,7 +984,7 @@ def fact_iter(num, product):
 >>> L[-2:-1]
 ['Bob']
 ```
-### 示例：
+**示例：**
 创建一个0-99的数列
 ```
 >>> L = list(range(100))
@@ -1165,9 +1029,13 @@ def fact_iter(num, product):
 >>> 'ABCDEFG'[::2]
 'ACEG'
 ```
+
 ## 04-02 迭代
+
 for...in可以迭代任何可迭代对象
-### 迭代list和tuple
+
+**迭代list和tuple**
+
 ```
 >>> l = [1, 2, 3]
 >>> for a in l:
@@ -1184,8 +1052,7 @@ for...in可以迭代任何可迭代对象
 2
 3
 ```
-### 迭代dict
-#### 迭代key
+**迭代dict的key**
 ```
 >>> d = {'a': 1, 'b': 2, 'c': 3}
 >>> for key in d:
@@ -1195,7 +1062,7 @@ a
 c
 b
 ```
-#### 迭代value
+**迭代dict的value**
 ```
 >>> d = {'a': 1, 'b': 2, 'c': 3}
 >>> for value in d.values()
@@ -1205,14 +1072,14 @@ b
 2
 3
 ```
-#### 同时迭代key和value
+**同时迭代key和value**
 ```
 >>> d = {'a': 1, 'b': 2, 'c': 3}
 >>> for k, v in d.items()
 ...     print(key)
 ...
 ```
-### 迭代str
+**迭代str**
 ```
 >>> for ch in 'ABC':
 ...     print(ch)
@@ -1221,7 +1088,7 @@ A
 B
 C
 ```
-### 判断是可迭代对象
+**判断是可迭代对象**
 ```
 >>> from collections import Iterable
 >>> isinstance('abc', Iterable) # str是否可迭代
@@ -1249,7 +1116,7 @@ enumerate函数可以把一个list变成索引-元素对
 2 4
 3 9
 ```
-## 04-03 列表生成式（List Comprehensions）
+## 04-03 列表生成式(List Comprehensions)
 **格式：** 对 **容器** 中的 **变量** 进行 **表达式** 处理
 ```
 [表达式 for 变量 in 容器]
@@ -1281,9 +1148,9 @@ enumerate函数可以把一个list变成索引-元素对
 >>> [k + '=' + v for k, v in d.items()]
 ['y=B', 'x=A', 'z=C']
 ```
-## 04-04 生成器（generator）
+## 04-04 生成器(()实现, 函数实现)
 列表生成式一次性生成整个列表，太占内存，于是就有了一边循环一边计算的机制，生成器
-### ( )实现生成器
+**\( \)实现生成器**
 ```
 >>> L = [x * x for x in range(10)]
 >>> L
@@ -1316,7 +1183,9 @@ for循环遍历
 64
 81
 ```
-### 函数实现生成器
+
+**函数实现生成器**
+
 打印斐波拉契数列
 ```
 def fib(max):
@@ -1415,8 +1284,8 @@ while True:
 
 特点：允许把函数本身作为参数传入另一个函数，返回一个函数
 
-## 05-01 高阶函数（Higher-order function）
-### 高阶函数基础
+## 05-01 高阶函数(map(), reduce(), filter(), sorted())
+
 **变量可以指向函数**  
 
 函数调用
@@ -1453,7 +1322,8 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: 'int' object is not callable
 ```
-#### 高阶函数定义
+
+**高阶函数定义**
 
 高阶函数： 一个函数作为参数传递给另一个函数
 
@@ -1473,9 +1343,7 @@ f = abs
 f(x) + f(y) ==> abs(-5) + abs(6) ==> 11
 return 11
 ```
-### 05-01-01 map/reduce
-
-#### map() 函数
+**map() 函数**
 
 - **map()** 函数接收两个参数，一个是函数，一个是Iterable
 - map将传入的函数依次作用到序列的每个元素，并把结果作为新的惰性序列Iterator返回
@@ -1496,7 +1364,7 @@ return 11
 ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 ```
 
-#### reduce() 函数
+**reduce() 函数**
 
 - **reduce()** 函数接收两个参数，一个是接收两个参数的函数，一个是Iterable
 - reduce 把第一第二个元素的计算结果继续和序列的下一个元素做计算
@@ -1516,7 +1384,9 @@ reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)
 13579
 
 ```
-#### map()和reduce()组合
+
+**map()和reduce()组合**
+
 把str转换为int的函数
 ```
 >>> from functools import reduce
@@ -1529,7 +1399,7 @@ reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)
 >>> reduce(fn, map(char2num, '13579'))
 13579
 ```
-### 05-01-02 filter
+**filter()函数**
 
 - **filter()** 函数接收两个参数，一个是函数，一个是Iterable
 - map将传入的函数依次作用到序列的每个元素，并把结果作为新的惰性序列Iterator返回
@@ -1552,7 +1422,7 @@ list(filter(not_empty, ['A', '', 'B', None, 'C', '  ']))
 # 结果: ['A', 'B', 'C']
 ```
 
-### 05-01-03 sorted
+**sorted()函数**
 
 sorted()函数也是一个高阶函数
 
@@ -1582,7 +1452,9 @@ sorted()函数也是一个高阶函数
 ['Zoo', 'Credit', 'bob', 'about']
 ```
 ## 05-02 返回函数
-### 函数作为返回值
+
+**函数作为返回值**
+
 可变参数的求和：返回和
 ```
 def calc_sum(*args):
@@ -1605,6 +1477,7 @@ def lazy_sum(*args):
         return ax
     return sum
 ```
+
 ```
 >>> f = lazy_sum(1, 3, 5, 7, 9)
 >>> f
@@ -1612,7 +1485,9 @@ def lazy_sum(*args):
 >>> f()
 25
 ```
+
 ## 05-03 匿名函数
+
 **计算f(x)=x^2**
 
 函数
@@ -1654,15 +1529,19 @@ def f(x):
 >>> f(5)
 25
 ```
+
 - 匿名函数可以作为返回值返回
+
 ```
 def build(x, y):
     return lambda: x * x + y * y
 ```
-## 05-04 装饰器（Decorator）
+
+## 05-04 装饰器(Decorator)
+
 作用：增强函数的功能
 
-### 示例：在函数调用前打印函数名
+**示例：在函数调用前打印函数名**
 定义装饰器
 ```
 def log(func):
@@ -1687,7 +1566,7 @@ now():
 ```
 now = log(now)
 ```
-## 05-05 偏函数（Partial function）
+## 05-05 偏函数(Partial function)
 int()可以把字符串转换成整数
 ```
 >>> int('12345')
@@ -1782,7 +1661,7 @@ Hello, world!
     - 运行python3 hello.py Michael获得的sys.argv就是['hello.py', 'Michael]
 6. **if \_\_name__=='\_\_main__':**：运行hello模块文件时，Python解释器把一个特殊变量__name__置为__main__，而如果在其他地方导入该hello模块时，if判断将失败，因此，这种if测试可以让一个模块通过命令行运行时执行一些额外的代码，最常见的就是运行测试
 
-### 权限
+**权限**
 
 - 公开变量&函数（public）：什么也不加
     - abc，x123，PI
@@ -1807,6 +1686,7 @@ def greeting(name):
 ```
 
 ## 06-02 安装第三方模块
+
 包管理工具pip安装第三方模块
 
 命令行安装第三方模块
@@ -1823,7 +1703,8 @@ PNG (400, 300) RGB
 >>> im.save('thumb.jpg', 'JPEG')
 ```
 
-### 模块搜索路径
+**模块搜索路径**
+
 试图加载一个模块时，Python会在指定的路径下搜索对应的.py文件，如果找不到，就会报错
 
 ```
@@ -1853,7 +1734,7 @@ Python解释器会搜索当前目录、所有已安装的内置模块和第三�
 **面向对象** 的程序设计把计算机程序视为一组对象的集合，而每个对象都可以接收其他对象发过来的消息，并处理这些消息，计算机程序的执行就是一系列消息在各个对象之间传递
 
 
-## 07-01 类（Class）和实例（Instance）
+## 07-01 类(Class)和实例(Instance)
 Python定义类（Class）
 ```
 class Student(object):
@@ -1871,7 +1752,8 @@ kevin = Student('Kevin', 86)
 kevin.print_score1()
 ```
 
-### 数据封装
+**数据封装**
+
 函数内部方法，除了第一个参数是self外，其他和普通函数一样。要调用一个方法，只需要在实例变量上直接调用，除了self不用传递，其他参数正常传入
 ```
 class Student(object):
@@ -1990,7 +1872,7 @@ Cat is running...
 
 对修改封闭：不需要修改依赖Animal类型的run_twice()等函数。
 
-### 静态语言 vs 动态语言
+**静态语言 vs 动态语言**
 
 静态语言（Java）：如果需要传入Animal类型，则传入的对象必须是Animal类型或者它的子类，否则，将无法调用run()方法
 
@@ -2004,7 +1886,7 @@ class Timer(object):
 ```
 这就是动态语言的“鸭子类型”，它并不要求严格的继承体系，一个对象只要“看起来像鸭子，走起路来像鸭子”，那它就可以被看做是鸭子
 
-## 07-04 获取对象信息
+## 07-04 获取对象信息(type(), isinstance(), dir())
 
 - type()
     - 返回对应Class类型
@@ -2013,7 +1895,8 @@ class Timer(object):
 - dir()
     - 返回包含字符串的list
 
-### 使用type()
+**使用type()**
+
 判断对象类型
 ```
 >>> type(123)
@@ -2046,7 +1929,9 @@ True
 >>> type('abc')==type(123)
 False
 ```
-### 使用isinstance()
+
+**使用isinstance()**
+
 ```
 >>> a = Animal()
 >>> d = Dog()
@@ -2065,7 +1950,8 @@ True
 >>> isinstance((1, 2, 3), (list, tuple))
 True
 ```
-### 使用dir()
+
+**使用dir()**
 
 ```
 >>> dir('ABC')
@@ -2081,7 +1967,8 @@ True
 3
 
 ```
-### 直接操作对象状态
+
+**直接操作对象状态**
 
 - getattr(对象,'属性')
 - setattr(对象,'属性')
@@ -2112,7 +1999,9 @@ True
 >>> obj.y # 获取属性'y'
 19
 ```
-**注意：**
+
+**注意**
+
 如果可以直接写
 ```
 sum = obj.x + obj.y
@@ -2171,12 +2060,11 @@ Student
 
 不要把实例属性和类属性使用相同的名字，因为相同名称的实例属性将屏蔽掉类属性，但是当删除实例属性后，再使用相同的名称，访问到的将是类属性
 
-# 08 Python 面向对象高级编程（OOP Advanced Features）
-
+# 08 Python 面向对象高级编程(OOP Advanced Features)
 
 ## 08-01 \_\_slots__
 
-### 给对象绑定属性和方法
+**给对象绑定属性和方法**
 
 ```
 class Student(object):
@@ -2222,8 +2110,9 @@ AttributeError: 'Student' object has no attribute 'set_age'
 99
 ```
 
-### 限制给对象绑定属性和方法
-定义class的时候，定义一个特殊的 **\_\_slots__** 变量，来限制该class实例能添加的属性
+**限制给对象绑定属性和方法**
+
+定义class的时候，定义一个特殊的 **\_\_slots\_\_** 变量，来限制该class实例能添加的属性
 ```
 class Student(object):
     __slots__ = ('name', 'age') # 用tuple定义允许绑定的属性名称
@@ -2365,15 +2254,18 @@ class Dog(Mammal, Runnable):
 class Bat(Mammal, Flyable):
     pass
 ```
-### MixIn
+
+**MixIn**
+
 为了更好地看出继承关系：**Runnable** 和 **Flyable** 改为 **RunnableMixIn** 和 **FlyableMixIn**
 ```
 class Dog(Mammal, RunnableMixIn, CarnivorousMixIn):
     pass
 ```
-## 08-04 定制类
-### 输出自定义信息：\_\_str__ 和 \_\_repr__()
-#### 打印自定义信息：\_\_str__
+## 08-04 定制类(str, repr, iter, getattr, call)
+
+**打印自定义信息：\_\_str\_\_**
+
 定义Student类，打印实例
 ```
 >>> class Student(object):
@@ -2383,6 +2275,7 @@ class Dog(Mammal, RunnableMixIn, CarnivorousMixIn):
 >>> print(Student('Michael'))
 <__main__.Student object at 0x109afb190>
 ```
+
 用 **\_\_str__** 打印自定义实例信息
 
 ```
@@ -2395,7 +2288,9 @@ class Dog(Mammal, RunnableMixIn, CarnivorousMixIn):
 >>> print(Student('Michael'))
 Student object (name: Michael)
 ```
-#### 直接显示变量自定义信息：\_\_repr__()
+
+**直接显示变量自定义信息：\_\_repr__()**
+
 ```
 >>> class Student(object):
 ...     def __init__(self, name):
@@ -2408,7 +2303,7 @@ Student object (name: Michael)
 >>> s
 Student object (name: Michael)
 ```
-### \_\_iter__
+**\_\_iter\_\_**
 
 如果一个类想被用于for ... in循环，类似list或tuple那样，就必须实现一个__iter__()方法，该方法返回一个迭代对象  
 
@@ -2427,7 +2322,9 @@ class Fib(object):
             raise StopIteration()
         return self.a # 返回下一个值
 ```
-### \_\_getattr__
+
+**\_\_getattr\_\_**
+
 调用类的方法或属性时，如果不存在，就会报错
 ```
 class Student(object):
@@ -2466,7 +2363,7 @@ class Student(object):
 >>> s.score
 99
 ```
-**注意：** 只有在没有找到属性的情况下，才调用__getattr__，已有的属性，比如name，不会在__getattr__中查找
+> 只有在没有找到属性的情况下，才调用__getattr__，已有的属性，比如name，不会在__getattr__中查找
 
 返回函数也完全可以
 
@@ -2483,7 +2380,8 @@ class Student(object):
 ```
 
 
-### \_\_call__
+**\_\_call\_\_**
+
 直接对实例进行调用
 
 ```
@@ -2602,8 +2500,7 @@ Fri => Weekday.Fri
 Sat => Weekday.Sat
 ```
 ## 08-06 元类
-### type()
-**作用一：** 查看一个类型或变量的类型
+**type() 作用一：** 查看一个类型或变量的类型
 
 定义一个Hello的class
 ```
@@ -2625,7 +2522,7 @@ Hello, world.
 - Hello是一个class，它的类型就是type
 - h是一个实例，它的类型就是class Hello
 
-**作用二：** 创建一个class对象
+**type() 作用二：** 创建一个class对象
 
 - type()函数依次传入3个参数
     1. class的名称
@@ -2646,13 +2543,14 @@ Hello, world.
 <class '__main__.Hello'>
 ```
 
-### 元类（metaclass）
+**元类（metaclass）**
+
 定义：类的类（类看做元类的实例）
 作用：控制类的创建行为
 
 # 09 Python 错误调试测试
 
-## 09-01 错误处理
+## 09-01 错误处理(不同类型错误, 调用堆栈, 记录错误, 抛出错误)
 **try...except...finally...**
 ```
 try:
@@ -2676,8 +2574,10 @@ END
 - 执行except
 - 执行finally
 
-### 多种类型的错误
+**多种类型的错误**
+
 多个except捕获不同类型的错误
+
 ```
 try:
     print('try...')
@@ -2739,7 +2639,8 @@ def main():
         print('finally...')
 ```
 
-### 调用堆栈
+**调用堆栈**
+
 如果错误没有被捕获，它就会一直往上抛，最后被Python解释器捕获，打印一个错误信息，然后程序退出
 
 ```
@@ -2769,7 +2670,8 @@ Traceback (most recent call last):
 ZeroDivisionError: division by zero
 ```
 
-### 记录错误
+**记录错误**
+
 Python内置的logging模块可以非常容易地记录错误信息
 
 ```
@@ -2806,7 +2708,7 @@ Traceback (most recent call last):
 ZeroDivisionError: division by zero
 END
 ```
-### 抛出错误
+**抛出错误**
 
 - 定义错误的class
 - 选择继承关系
@@ -2847,7 +2749,7 @@ def bar():
 bar()
 ```
 
-**注意：** raise语句如果不带参数，就会把当前错误原样抛出
+> raise语句如果不带参数，就会把当前错误原样抛出
 
 在except中raise一个Error，可以把一种类型的错误转化成另一种类型
 
@@ -2860,9 +2762,9 @@ except ZeroDivisionError:
 
 注意：转换必须合理，不应该把一个IOError转换成毫不相干的ValueError
 
-## 09-02 调试
+## 09-02 调试(直接打印, 断言assert, logging, pdb, )
 
-**调试方法一**：直接打印
+**调试方法一：直接打印**
 
 ```
 def foo(s):
@@ -2884,7 +2786,7 @@ ZeroDivisionError: integer division or modulo by zero
 ```
 缺点：调试完毕需要手动删除print
 
-**调试方法二**：断言（assert）
+**调试方法二：断言（assert）**
 
 格式：assert 表达式1, 表达式2
 
@@ -2910,7 +2812,7 @@ AssertionError: n is zero!
 ```
 启动Python解释器时可以用-O参数来关闭assert，关闭后，所有的assert相当于pass
 
-**调试方法三**：logging
+**调试方法三：logging**
 
 和assert比，logging不会抛出错误，而且可以输出到文件
 
@@ -2930,7 +2832,7 @@ print(10 / n)
 - warning
 - error
 
-**调试方法三**：pdb
+**调试方法四：pdb**
 
 作用：让程序以单步方式运行，可以随时查看运行状态
 
@@ -2978,7 +2880,7 @@ $ python3 -m pdb err.py
 ```
 (Pdb) q
 ```
-**调试方法四**：pdb.set_trace()
+**调试方法五：pdb.set_trace()**
 
 不需要单步执行的pdb
 
@@ -3080,7 +2982,9 @@ with self.assertRaises(KeyError):
 with self.assertRaises(AttributeError):
     value = d.empty
 ```
-### 运行单元测试
+
+**运行单元测试**
+
 **方法一：** 在mydict_test.py的最后加上两行代码：
 ```
 if __name__ == '__main__':
@@ -3099,7 +3003,8 @@ Ran 5 tests in 0.000s
 OK
 
 ```
-### setUp与tearDown
+**setUp与tearDown**
+
 setUp与tearDown这两个方法会分别在每调用一个测试方法的前后分别被执行
 
 示例：测试需要启动一个数据库，这时，就可以在setUp()方法中连接数据库，在tearDown()方法中关闭数据库，这样，不必在每个测试方法中重复相同的代码：
@@ -3216,7 +3121,7 @@ Input
 
 ## 10-01 文件读写
 
-### 读文件
+**读文件**
 
 格式
 ```
@@ -3274,17 +3179,17 @@ with open('/path/to/file', 'r') as f:
 for line in f.readlines():
     print(line.strip()) # 把末尾的'\n'删掉
 ```
-### file-like Object
-file-like Object：有read()方法的对象（file，内存的字节流，网络流，自定义流等等）
 
-### 写文件
+> file-like Object：有read()方法的对象（file，内存的字节流，网络流，自定义流等等）
+
+**写文件**
 写文件和读文件是一样的，唯一区别是调用open()函数时，传入标识符'w'或者'wb'表示写文本文件或写二进制文件
 ```
 >>> f = open('/Users/michael/test.txt', 'w')
 >>> f.write('Hello, world!')
 >>> f.close()
 ```
-**注意：** 调用write()时不会立刻把数据写入磁盘，而是存放在内存中，只有调用close()方法时才会全部写入磁盘。
+> 调用write()时不会立刻把数据写入磁盘，而是存放在内存中，只有调用close()方法时才会全部写入磁盘。
 
 用with语句保险
 
@@ -3296,7 +3201,7 @@ with open('/Users/michael/test.txt', 'w') as f:
 
 ## 10-02 StringIO和BytesIO
 
-### StringIO
+**StringIO**
 
 在内存中读写str
 ```
@@ -3328,7 +3233,8 @@ Hi!
 Goodbye!
 ```
 
-### BytesIO
+**BytesIO**
+
 在内存中读写二进制数据
 ```
 >>> from io import BytesIO
@@ -3345,7 +3251,9 @@ b'\xe4\xb8\xad\xe6\x96\x87'
 >>> f.read()
 b'\xe4\xb8\xad\xe6\x96\x87'
 ```
+
 ## 10-03 操作文件和目录
+
 os模块可以直接调用操作系统提供的接口函数
 
 ```
@@ -3374,9 +3282,7 @@ os.environ.get('key')：获取某个环境变量的值
 >>> os.environ.get('x', 'default')
 'default'
 ```
-### 操作文件和目录
-
-#### 操作目录
+**操作目录**
 
 - 查看目录
     - 当前目录绝对路径：os.path.abspath('.')
@@ -3402,7 +3308,9 @@ os.environ.get('key')：获取某个环境变量的值
 >>> os.path.split('/Users/michael/testdir/file.txt')
 ('/Users/michael/testdir', 'file.txt')
 ```
-#### 操作文件
+
+**操作文件**
+
 拆分扩展名：os.path.splitext('文件名')
 ```
 >>> os.path.splitext('/path/to/file.txt')
@@ -3418,7 +3326,8 @@ os.environ.get('key')：获取某个环境变量的值
 ```
 os模块没有复制文件的函数。但是shutil函数有 **copyfile()** 函数
 
-### 过滤文件
+**过滤文件**
+
 列出当前目录下的所有目录
 ```
 >>> [x for x in os.listdir('.') if os.path.isdir(x)]
@@ -3429,7 +3338,9 @@ os模块没有复制文件的函数。但是shutil函数有 **copyfile()** 函�
 >>> [x for x in os.listdir('.') if os.path.isfile(x) and os.path.splitext(x)[1]=='.py']
 ['apis.py', 'config.py', 'models.py', 'pymonitor.py', 'test_db.py', 'urls.py', 'wsgiapp.py']
 ```
-## 10-04 序列化（pickling）
+## 10-04 序列化(pickling)和JSON
+
+**序列化**
 
 - 序列化：内存写入磁盘
 - 反序列化：磁盘读取到内存
@@ -3464,7 +3375,9 @@ pickle模块实现**反序列化**
 >>> d
 {'age': 20, 'score': 88, 'name': 'Bob'}
 ```
-### JSON
+
+**JSON**
+
 JSON和Python内置的数据类型对应
 
 JSON类型 | Python类型
@@ -3496,8 +3409,6 @@ null | None
 
 - loads()：方法把JSON的字符串反序列化
 - load()：从file-like Object中读取字符串并反序列化
-
-### JSON进阶
 
 **自定义对象转换成JSON**
 
@@ -3555,9 +3466,9 @@ Python执行多任务解决方案
 - 多进程：同一个变量，各自有一份拷贝存在于每个进程中，互不影响
 - 多线程：所有变量都由所有线程共享，任何一个变量都可以被任何一个线程修改
 
-## 11-01 多进程（Multiprocessing）
+## 11-01 多进程(Multiprocessing)
 
-### Unix/Linux
+**Unix/Linux**
 
 Unix/Linux操作系统提供了一个 **fork()** 系统调用，fork()调用一次，返回两次，操作系统自动把当前进程（**父进程**）复制了一份（**子进程**），然后，分别在父进程和子进程内返回
 
@@ -3581,7 +3492,9 @@ I (876) just created a child process (877).
 I am child process (877) and my parent is 876.
 
 ```
-### Windows
+
+**Windows**
+
 multiprocessing模块提供了一个Process类来代表一个进程对象
 ```
 from multiprocessing import Process
@@ -3613,7 +3526,8 @@ Process end.
 3. start()启动
 4. join()方法可以等待子进程结束后再继续往下运行，通常用于进程间的同步
 
-#### Pool：批量创建子进程
+**Pool：批量创建子进程**
+
 用进程池批量创建子进程：
 ```
 from multiprocessing import Pool
@@ -3653,7 +3567,7 @@ All subprocesses done.
 ```
 对Pool对象调用join()方法会等待所有子进程执行完毕，调用join()之前必须先调用close()，调用close()之后就不能继续添加新的Process了
 
-### 子进程
+**子进程**
 
 用subprocess模块 **启动** 并且 **控制** 子进程的 **输入** 和 **输出**
 
@@ -3704,7 +3618,7 @@ mail.python.org    has AAAA address 2001:888:2000:d::a6
 
 Exit code: 0
 ```
-### 进程间通信
+**进程间通信**
 
 multiprocessing模块包装了底层的机制，提供了Queue、Pipes等多种方式来交换数据
 
@@ -3760,7 +3674,7 @@ Get C from queue.
 
 Python的标准库提供了两个模块
 
-- _thread（低级模块）
+- \_thread（低级模块）
 - threading（高级模块）：对_thread进行了封装
 
 启动一个线程就是把一个函数传入并创建Thread实例，然后调用start()开始执行：
@@ -3809,7 +3723,7 @@ thread MainThread ended.
     - threading.current_thread()：返回当前线程实例
         - threading.current_thread().name：返回当前线程实例的name
 
-### Lock
+**Lock**
 不加Lock的多线程在操作同一数据时会把数据改乱
 
 ```
@@ -3881,7 +3795,7 @@ def run_thread(n):
 - lock.acquire()获取锁
 - 用try-finally确保锁一定可以释放，否则造成死锁
 
-### 多核CPU
+**多核CPU**
 
 - 多核CPU中，一个死循环线程会导致100%占用一个CPU
 - 两个死循环线程，在多核CPU中，可以监控到会占用200%的CPU
@@ -3992,7 +3906,7 @@ Master-Worker模式
     - 缺点：稳定性差
         - 一个线程挂掉都可能直接造成整个进程崩溃
 
-### 线程切换
+**线程切换**
 
 单任务模型（批处理任务模型）
 
@@ -4015,7 +3929,7 @@ Master-Worker模式
 - ...
 
 切换过程虽然很快，但需要耗费时间。如果有几千个任务同时进行，操作系统可能就主要忙着切换任务，根本没有多少时间去执行任务，这种情况最常见的就是硬盘狂响，点窗口无反应，系统处于假死状态
-### 计算密集型 vs. IO密集型
+
 **计算密集型任务**
 
 - 进行大量的计算，消耗CPU资源，比如计算圆周率、对视频进行高清解码等等，全靠CPU的运算能力
@@ -4030,7 +3944,7 @@ Master-Worker模式
 
 IO密集型任务执行期间，99%的时间都花在IO上，花在CPU上的时间很少，因此，用运行速度极快的C语言替换用Python这样运行速度极低的脚本语言，完全无法提升运行效率。对于IO密集型任务，最合适的语言就是开发效率最高（代码量最少）的语言，脚本语言是首选，C语言最差。
 
-### 异步IO
+**异步IO**
 
 多进程模型或者多线程模型来支持多任务并发执行
 
@@ -4202,8 +4116,8 @@ authkey有什么用？这是为了保证两台机器正常通信，不被其他�
 
 - **[0-9a-zA-Z\\_]** 可以匹配一个数字、字母或者下划线；
 - **[0-9a-zA-Z\\_]+** 可以匹配至少由一个数字、字母或者下划线组成的字符串，比如'a100'，'0_Z'，'Py3000'等等；
-- **[a-zA-Z\\_][0-9a-zA-Z\\\_]\*** 可以匹配由字母或下划线开头，后接任意个由一个数字、字母或者下划线组成的字符串，也就是Python合法的变量；
-- **[a-zA-Z\\_][0-9a-zA-Z\\\_]{0, 19}** 更精确地限制了变量的长度是1-20个字符（前面1个字符+后面最多19个字符）
+- **[a-zA-Z\\_][0-9a-zA-Z\\_]*\** 可以匹配由字母或下划线开头，后接任意个由一个数字、字母或者下划线组成的字符串，也就是Python合法的变量；
+- **[a-zA-Z\\_][0-9a-zA-Z\\_]{0, 19}**更精确地限制了变量的长度是1-20个字符（前面1个字符+后面最多19个字符）
 
 或
 
@@ -4234,9 +4148,10 @@ if re.match(r'正则表达式', test):
 else:
     print('failed')
 ```
-## 12-03 正则进阶
 
-### 切分字符串
+## 12-03 正则进阶(切分字符串, 分组, 贪婪匹配, 编译)
+
+**切分字符串**
 
 正常用**空格**切分
 ```
@@ -4258,7 +4173,8 @@ else:
 >>> re.split(r'[\s\,\;]+', 'a,b;; c  d')
 ['a', 'b', 'c', 'd']
 ```
-### 分组（Group）
+
+**分组（Group）**
 
 ^(\d{3})-(\d{3,8})$分别定义了两个组，可以直接从匹配的字符串中提取出区号和本地号码：
 ```
@@ -4272,7 +4188,8 @@ else:
 >>> m.group(2)
 '12345'
 ```
-### 贪婪匹配
+
+**贪婪匹配**
 
 正则匹配默认**贪婪匹配**
 
@@ -4288,7 +4205,9 @@ else:
 >>> re.match(r'^(\d+?)(0*)$', '102300').groups()
 ('1023', '00')
 ```
-### 编译
+
+**编译**
+
 Python中使用正则表达式时，re模块内部会干两件事情：
 
 - 编译正则表达式，如果正则表达式的字符串本身不合法，会报错；
@@ -4307,7 +4226,7 @@ Python中使用正则表达式时，re模块内部会干两件事情：
 ```
 # 13 Python 常用内建模块
 
-## 13-01 datetime
+## 13-01 datetime(timestamp转换, str转换, datetime加减, 时区转换)
 datetime是Python处理日期和时间的标准库
 
 **获取当前日期和时间**
@@ -4328,7 +4247,7 @@ datetime.now()返回当前日期和时间，其类型是datetime
 >>> print(dt)
 2015-04-19 12:20:00
 ```
-### datetime & timestamp 
+**datetime & timestamp**
 ```
 timestamp = 0 = 1970-1-1 00:00:00 UTC+0:00
 ```
@@ -4336,7 +4255,8 @@ timestamp = 0 = 1970-1-1 00:00:00 UTC+0:00
 ```
 timestamp = 0 = 1970-1-1 08:00:00 UTC+8:00
 ```
-#### datetime转换为timestamp
+**datetime转换为timestamp**
+
 调用 **timestamp()** 方法：
 ```
 >>> from datetime import datetime
@@ -4344,7 +4264,8 @@ timestamp = 0 = 1970-1-1 08:00:00 UTC+8:00
 >>> dt.timestamp() # 把datetime转换为timestamp
 1429417200.0
 ```
-#### timestamp转换为datetime
+**timestamp转换为datetime**
+
 调用 **fromtimestamp()** 方法：
 ```
 >>> from datetime import datetime
@@ -4354,8 +4275,8 @@ timestamp = 0 = 1970-1-1 08:00:00 UTC+8:00
 >>> print(datetime.utcfromtimestamp(t)) # UTC时间
 2015-04-19 04:20:00
 ```
-### datetime & str 
-#### str转换为datetime
+**str转换为datetime**
+
 调用 **datetime.strptime()** 方法：
 ```
 >>> from datetime import datetime
@@ -4363,7 +4284,8 @@ timestamp = 0 = 1970-1-1 08:00:00 UTC+8:00
 >>> print(cday)
 2015-06-01 18:19:59
 ```
-#### datetime转换为str
+**datetime转换为str**
+
 调用 **strftime()** 方法：
 ```
 >>> from datetime import datetime
@@ -4371,7 +4293,9 @@ timestamp = 0 = 1970-1-1 08:00:00 UTC+8:00
 >>> print(now.strftime('%a, %b %d %H:%M'))
 Mon, May 05 16:28
 ```
-### datetime加减
+
+**datetime加减**
+
 ```
 >>> from datetime import datetime, timedelta
 >>> now = datetime.now()
@@ -4384,7 +4308,9 @@ datetime.datetime(2015, 5, 17, 16, 57, 3, 540997)
 >>> now + timedelta(days=2, hours=12)
 datetime.datetime(2015, 5, 21, 4, 57, 3, 540997)
 ```
-### 时区转换
+
+**时区转换**
+
 ```
 # 拿到UTC时间，并强制设置时区为UTC+0:00:
 >>> utc_dt = datetime.utcnow().replace(tzinfo=timezone.utc)
@@ -4403,9 +4329,11 @@ datetime.datetime(2015, 5, 21, 4, 57, 3, 540997)
 >>> print(tokyo_dt2)
 2015-05-18 18:05:12.377316+09:00
 ```
-## 13-02 collections
+## 13-02 collections(namedtuple, deque, defaultdict, OrderedDict, Counter)
 Python内建的一个集合模块，提供了许多有用的集合类
-### namedtuple
+
+**amedtuple**
+
 namedtuple函数：创建一个自定义的tuple对象，并且规定了tuple元素的个数，并可以用属性而不是索引来引用tuple的某个元素
 
 定义二维坐标：
@@ -4423,7 +4351,9 @@ namedtuple函数：创建一个自定义的tuple对象，并且规定了tuple元
 # namedtuple('名称', [属性list]):
 Circle = namedtuple('Circle', ['x', 'y', 'r'])
 ```
-### deque
+
+**deque**
+
 高效实现插入和删除操作的双向列表，适合用于队列和栈：
 ```
 >>> from collections import deque
@@ -4441,7 +4371,8 @@ deque(['y', 'a', 'b', 'c', 'x'])
 
 可以非常高效地往头部添加或删除元素。
 
-### defaultdict
+**defaultdict**
+
 defaultdict：key不存在时，不会抛出KeyError，返回一个默认值
 ```
 >>> from collections import defaultdict
@@ -4452,7 +4383,9 @@ defaultdict：key不存在时，不会抛出KeyError，返回一个默认值
 >>> dd['key2'] # key2不存在，返回默认值
 'N/A'
 ```
-### OrderedDict
+
+**OrderedDict**
+
 Key有顺序的dict
 
 ```
@@ -4486,7 +4419,9 @@ class LastUpdatedOrderedDict(OrderedDict):
             print('add:', (key, value))
         OrderedDict.__setitem__(self, key, value)
 ```
-### Counter
+
+**Counter**
+
 计数器，统计字符出现的个数：
 ```
 >>> from collections import Counter
@@ -4512,7 +4447,8 @@ Base64是一种用64个字符来表示任意二进制数据的方法
 
 Base64编码会把3字节的二进制数据编码为4字节的文本数据，长度增加33%，好处是编码后的文本数据可以在邮件正文、网页等直接显示
 
-**注意：** 当要编码的二进制数据不是3的倍数，最后会剩下1个或2个字节时，Base64用\x00字节在末尾补足后，再在编码的末尾加上1个或2个=号，表示补了多少字节，解码的时候，会自动去掉
+> 当要编码的二进制数据不是3的倍数，最后会剩下1个或2个字节时，Base64用\x00字节在末尾补足后，再在编码的末尾加上1个或2个=号，表示补了多少字节，解码的时候，会自动去掉
+
 ```
 >>> import base64
 >>> base64.b64encode(b'binary\x00string')
@@ -4565,11 +4501,13 @@ b'\x00\x9c@c'
 - I：4字节无符号整数
 - H：2字节无符号整数
 
-## 13-05 hashlib
+## 13-05 hashlib(MD5, SHA1, 摘要算法)
 hashlib提供了常见的摘要算法（又名哈希算法、散列算法）
 
 哈希算法：通过一个函数，把任意长度的数据转换为一个长度固定的数据串（通常用16进制的字符串表示）
-### MD5
+
+**MD5**
+
 **计算出一个字符串的MD5值：**
 ```
 import hashlib
@@ -4591,7 +4529,9 @@ md5.update('how to use md5 in '.encode('utf-8'))
 md5.update('python hashlib?'.encode('utf-8'))
 print(md5.hexdigest())
 ```
-### SHA1
+
+**SHA1**
+
 ```
 import hashlib
 
@@ -4600,7 +4540,9 @@ sha1.update('how to use sha1 in '.encode('utf-8'))
 sha1.update('python hashlib?'.encode('utf-8'))
 print(sha1.hexdigest())
 ```
-### 摘要算法应用
+
+**摘要算法应用**
+
 数据库表中存储用户登录的用户名和口令  
 
 name | password  
@@ -4618,8 +4560,10 @@ bob      | 878ef96e86145580c38c87f0410ad153
 alice    | 99b1c2188db85afee403b1536010c2c9
 
 当用户登录时，首先计算用户输入的明文口令的MD5，然后和数据库存储的MD5对比，如果一致，说明口令输入正确，如果不一致，口令肯定错误。
-## 13-06 itertools
-### count()
+## 13-06 itertools(count(), cycle(), repeat(), chain(), groupby())
+
+**count()**
+
 创建一个无限的迭代器，根本停不下来，只能Ctrl+C退出
 ```
 >>> import itertools
@@ -4635,7 +4579,9 @@ alice    | 99b1c2188db85afee403b1536010c2c9
 'C'
 ...
 ```
-### cycle()
+
+**cycle()**
+
 无限重复序列
 ```
 >>> import itertools
@@ -4651,7 +4597,9 @@ alice    | 99b1c2188db85afee403b1536010c2c9
 'C'
 ...
 ```
-### repeat()
+
+**repeat()**
+
 重复序列n次
 ```
 >>> ns = itertools.repeat('A', 3)
@@ -4662,14 +4610,18 @@ A
 A
 A
 ```
-### chain()
+
+**chain()**
+
 把一组迭代对象串联起来，形成一个更大的迭代器：
 ```
 >>> for c in itertools.chain('ABC', 'XYZ'):
 ...     print(c)
 # 迭代效果：'A' 'B' 'C' 'X' 'Y' 'Z'
 ```
-### groupby()
+
+**groupby()**
+
 把迭代器中相邻的重复元素挑出来放在一起：
 ```
 >>> for key, group in itertools.groupby('AAABBBCCAAA'):
@@ -4690,7 +4642,7 @@ B ['B', 'B', 'b']
 C ['c', 'C']
 A ['A', 'A', 'a']
 ```
-## 13-07 contextlib
+## 13-07 contextlib(@contextmanager, @closing)
 读写文件这样的资源要在使用完毕后用try...finally正确关闭它们
 ```
 try:
@@ -4731,8 +4683,9 @@ class Query(object):
 with Query('Bob') as q:
     q.query()
 ```
-### contextlib
-#### @contextmanager
+
+**@contextmanager**
+
 contextlib提供了@contextmanager这个decorator更简单
 
 ```
@@ -4784,8 +4737,10 @@ world
 2. yield调用会执行with语句内部的所有语句，因此打印出hello和world；
 3. 最后执行yield之后的语句，打印出</h1>。
 
-#### @closing
+**@closing**
+
 如果一个对象没有实现上下文，我们就不能把它用于with语句。这个时候，可以用closing()来把该对象变为上下文对象。例如，用with语句使用urlopen()：
+
 ```
 from contextlib import closing
 from urllib.request import urlopen
@@ -4910,9 +4865,11 @@ feed()方法可以多次调用，也就是不一定一次把整个HTML字符串�
 
 特殊字符有两种，一种是英文表示的\&nbsp;，一种是数字表示的\&#1234;，这两种字符都可以通过Parser解析出来
 
-## 13-10 urllib
+## 13-10 urllib(Get, Post, Handler)
 urllib提供了一系列用于操作URL的功能
-### Get
+
+**Get**
+
 urllib的request模块抓取URL内容：发送一个GET请求到指定的页面，然后返回HTTP的响应：
 ```
 from urllib import request
@@ -4958,7 +4915,8 @@ with request.urlopen(req) as f:
     <link rel="apple-touch-icon" sizes="57x57" href="http://img4.douban.com/pics/cardkit/launcher/57.png" />
 ...
 ```
-### Post
+
+**Post**
 
 把参数data以bytes形式传入
 模拟一个微博登录，先读取登录的邮箱和口令，然后按照weibo.cn的登录页的格式以username=xxx&password=xxx的编码传入：
@@ -5003,7 +4961,7 @@ Data: {"retcode":20000000,"msg":"","data":{...,"uid":"1658384301"}}
 ...
 Data: {"retcode":50011015,"msg":"\u7528\u6237\u540d\u6216\u5bc6\u7801\u9519\u8bef","data":{"username":"example@python.org","errline":536}}
 ```
-### Handler
+**Handler**
 
 如果还需要更复杂的控制，比如通过一个Proxy去访问网站，我们需要利用ProxyHandler来处理，示例代码如下：
 ```
@@ -5113,7 +5071,7 @@ app.mainloop()
 
 IP包：包含要传输的数据，源IP地址和目标IP地址，源端口和目标端口
 
-## 15-02 TCP 编程
+## 15-02 TCP 编程(客户端, 服务端)
 
 **Socket** 表示打开了一个网络链接，打开一个Socket需要知道目标计算机的IP地址和端口号，再指定协议类型
 
@@ -5122,7 +5080,7 @@ IP包：包含要传输的数据，源IP地址和目标IP地址，源端口和�
 - 主动发起连接的叫客户端
 - 被动响应连接的叫服务器
 
-### 客户端
+**客户端**
 
 ```
 # 导入socket库:
@@ -5174,7 +5132,7 @@ print(header.decode('utf-8'))
 with open('sina.html', 'wb') as f:
     f.write(html)
 ```
-### 服务器
+**服务器**
 
 - 绑定一个端口监听来自客户端的连接
 - 区分Socket连接和哪个客户端绑定（依靠服务器地址、服务器端口、客户端地址、客户端端口）
@@ -5246,7 +5204,8 @@ for data in [b'Michael', b'Tracy', b'Sarah']:
 s.send(b'exit')
 s.close()
 ```
-## 15-03 UDP 编程
+
+## 15-03 UDP 编程(服务端, 客户端)
 
 UDP：面向无连接的协议
 
@@ -5256,7 +5215,7 @@ UDP：面向无连接的协议
 - 只需要知道对方的IP地址和端口号
 - 速度快
 
-### 服务端
+**服务端**
 
 ```
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -5289,7 +5248,8 @@ while True:
     s.sendto(b'Hello, %s!' % data, addr)
 ```
 
-### 客户端
+**客户端**
+
 客户端使用UDP时，首先仍然创建基于UDP的Socket，然后，不需要调用connect()，直接通过sendto()给服务器发数据：
 ```
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -5300,7 +5260,7 @@ for data in [b'Michael', b'Tracy', b'Sarah']:
     print(s.recv(1024).decode('utf-8'))
 s.close()
 ```
-## 15-04 电子邮件
+## 15-04 电子邮件原理
 运作流程：
 
 ```
@@ -5335,12 +5295,12 @@ MDA --> 收件人MUA
 
 注意：目前大多数邮件服务商都需要手动打开SMTP发信和POP收信的功能，否则只允许在网页登录
 
-### SMTP发送邮件
+## 15-05 SMTP发送邮件(纯文本邮件, HTML邮件, 发送附件, 加密SMTP)
 
 SMTP是发送邮件的协议：可以发送纯文本邮件、HTML邮件以及带附件的邮件
 
 
-#### 纯文本邮件：
+**纯文本邮件：**
 
 - 第一个参数：邮件正文
 - 第二个参数：MIME的subtype（'plain'表示纯文本，最终的MIME就是'text/plain'）
@@ -5407,7 +5367,7 @@ server.login(from_addr, password)
 server.sendmail(from_addr, [to_addr], msg.as_string())
 server.quit()
 ```
-#### HTML邮件
+**HTML邮件**
 
 - 构造MIMEText对象时，把HTML字符串传进去
 - 第二个参数由plain变为html
@@ -5417,7 +5377,7 @@ msg = MIMEText('<html><body><h1>Hello</h1>' +
     '<p>send by <a href="http://www.python.org">Python</a>...</p>' +
     '</body></html>', 'html', 'utf-8')
 ```
-#### 发送附件
+**发送附件**
 
 - 构造一个MIMEMultipart对象代表邮件本身
 - 后往里面加上一个MIMEText作为邮件正文
@@ -5459,7 +5419,7 @@ Message
         - MIMEText
         - MIMEImage
 
-#### 加密SMTP
+**加密SMTP**
 
 使用标准的25端口连接SMTP服务器时，使用的是明文传输，发送邮件的整个过程可能会被窃听。要更安全地发送邮件，可以加密SMTP会话，实际上就是先创建SSL安全连接，然后再使用SMTP协议发送邮件。
 
@@ -5478,7 +5438,7 @@ server.set_debuglevel(1)
 ```
 只需要在创建SMTP对象后，立刻调用starttls()方法，就创建了安全连接。后面的代码和前面的发送邮件代码完全一样。
 
-### POP3收取邮件
+## 15-06 POP3收取邮件
 
 Python内置poplib模块，实现了POP3协议，可以直接用来收邮件
 
@@ -5527,7 +5487,9 @@ msg = Parser().parsestr(msg_content)
 # 关闭连接:
 server.quit()
 ```
-#### 解析邮件
+
+**解析邮件**
+
 ```
 from email.parser import Parser
 from email.header import decode_header
@@ -5735,10 +5697,12 @@ print ("Database version : %s " % v)
 cursor.close()
 conn.close()
 ```
-## 16-03 使用SQLAlchemy
+## 16-03 使用SQLAlchemy(ORM, SQLAlchemy)
 
-### ORM技术（Object-Relational Mapping）
+**ORM技术（Object-Relational Mapping）**
+
 数据库表是一个二维表
+
 - 一个list表示多行
 - list的每一个元素是tuple，表示一行记录
 ```
@@ -5763,7 +5727,9 @@ class User(object):
     User('3', 'Adam')
 ]
 ```
-### SQLAlchemy
+
+**SQLAlchemy**
+
 是一个ORM框架
 
 安装SQLAlchemy：
@@ -5852,7 +5818,6 @@ class Book(Base):
 
 # 17 Python Web
 
-
 WEB开发经历阶段
 
 1. 静态Web页面
@@ -5860,12 +5825,12 @@ WEB开发经历阶段
 3. ASP/JSP/PHP
 4. MVC
 
-## 17-01 HTTP协议简介
+## 17-01 HTTP协议简介(HTTP请求, HTTP格式)
 
 - HTML是一种用来定义网页的文本，会HTML，就可以编写网页
 - HTTP是在网络上传输HTML的协议，用于浏览器和服务器的通信
 
-### HTTP请求
+**HTTP请求**
 
 HTTP请求的流程：
 
@@ -5885,7 +5850,8 @@ HTTP请求的流程：
     - 以及其他相关的Header
 - 步骤3：如果浏览器还需要继续向服务器请求其他资源，比如图片，就再次发出HTTP请求，重复步骤1、2
 
-### HTTP格式
+**HTTP格式**
+
 每个HTTP请求和响应都遵循相同的格式，一个HTTP包含Header和Body（可选）两部分
 
 HTTP GET请求的格式：
@@ -5921,7 +5887,9 @@ Body的数据类型由Content-Type头来确定
 - 如果是图片，Body就是图片的二进制数据
 
 ## 17-02 HTML简介
-略
+
+[HTML学习笔记](https://github.com/KEVISONG/e-notebooks/blob/master/HTML/HTML%20Study%20Notes.md#html-study-notes)
+
 ## 17-03 WSGI接口
 
 Web应用的本质：
@@ -5956,7 +5924,8 @@ start_response()函数接收两个参数
     - 通常情况下应该把Content-Type头发送给浏览器
     - 其他很多常用的HTTP Header也应该发送
 
-### 运行WSGI服务
+**运行WSGI服务**
+
 编写hello.py，实现Web应用程序的WSGI处理函数：
 ```
 # hello.py
@@ -5981,7 +5950,8 @@ httpd.serve_forever()
 ```
 打开浏览器，输入http://localhost:8000/ 即可看到结果
 
-#### 动态内容
+**动态内容**
+
 在地址栏输入用户名作为URL的一部分，将返回Hello, xxx!
 ```
 # hello.py
@@ -5991,7 +5961,7 @@ def application(environ, start_response):
     body = '<h1>Hello, %s!</h1>' % (environ['PATH_INFO'][1:] or 'web')
     return [body.encode('utf-8')]
 ```
-## 17-04 使用Web框架
+## 17-04 使用Web框架(FLASK)
 **其实一个Web App，就是写一个WSGI的处理函数，针对每个HTTP请求进行响应**
 
 笨方法处理不同的URL请求（GET，POST，PUT，DELETE等）：从environ变量里取出HTTP请求的信息，然后逐个判断：
@@ -6006,7 +5976,8 @@ def application(environ, start_response):
 ```
 框架作用：用一个函数处理一个URL时，实现URL到函数的映射
 
-### FLASK 框架
+**FLASK 框架**
+
 安装 FLASK
 ```
 $ pip install flask
@@ -6058,7 +6029,7 @@ $ python app.py
 - Bottle：和Flask类似的Web框架
 - Tornado：Facebook的开源异步Web框架
 
-## 17-05 使用模板
+## 17-05 使用模板(MVC)
 
 模板：嵌入了变量和指令的特殊HTML文件
 
@@ -6093,7 +6064,8 @@ def home(name):
 ```
 （M）：传给View的数据，上例是一个dict：{ 'name': 'Michael' }
 
-### MVC模式改写FLASK框架代码
+**MVC模式改写FLASK框架代码**
+
 ```
 from flask import Flask, request, render_template
 
@@ -6188,7 +6160,6 @@ Jinja2模板
 
 # 18 Python 异步IO
 
-
 CPU运行快，IO设备龟速，导致：
 
 - 同步IO：IO设备慢慢读写，CPU等待
@@ -6212,11 +6183,11 @@ while True:
 ```
 消息循环中，主线程不断地重复“读取消息-处理消息”这一过程
 
-### 停止响应
+**停止响应**
 
 GUI程序使用消息模型：键盘、鼠标等消息都被发送到GUI程序的消息队列中，然后由GUI程序的主线程处理。GUI线程在一个消息处理的过程中遇到问题导致一次消息处理时间过长，整个GUI程序停止响应了，敲键盘、点鼠标都没有反应
 
-### 消息模型
+**消息模型**
 
 1. 代码中遇到IO操作
 2. 代码发出IO请求，
@@ -6228,7 +6199,7 @@ GUI程序使用消息模型：键盘、鼠标等消息都被发送到GUI程序�
 
 异步IO优点：一个线程就可以同时处理多个IO请求，不用切换线程，IO密集型的应用程序，使用异步IO将大大提升系统的多任务处理能力
 
-## 18-01 协程（Coroutine）
+## 18-01 协程(Coroutine)
 
 定义：执行过程中，在子程序内部可中断，然后转而执行别的子程序，在适当的时候再返回来接着执行
 
@@ -6261,7 +6232,8 @@ z
 
 发挥多核最大性能：多进程+协程（充分利用多核，又充分发挥协程的高效率）
 
-### generator实现协程
+**generator实现协程**
+
 示例：协程实现生产者-消费者模型
 ```
 生产者生产消息后，直接通过yield跳转到消费者开始执行，待消费者执行完毕后，切换回生产者继续生产，效率极高：
