@@ -51,11 +51,20 @@
 
 ## 02-01 文件系统
 每个用户有自己的目录，共享计算机资源
-- / 根目录
-    - /home 家目录
-        - /home/KEVISONG 用户家目录，**用~表示**
-            - ~/Documents 
-            - ~/Desktop
+```
+graph LR
+/-->/bin
+/-->/etc
+/-->/home
+/home-->/adu
+/home-->/ksong
+/ksong-->/Desktop
+/ksong-->/Documents
+/ksong-->/Downloads
+/home-->/kren
+/-->/lib
+/-->/usr
+```
 
 符号 | 含义
 ---|---
