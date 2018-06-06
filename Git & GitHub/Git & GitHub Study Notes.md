@@ -5,64 +5,37 @@
 - [01 Git 简介](#01-git-%E7%AE%80%E4%BB%8B)
     - [01-01 Git的诞生](#01-01-git%E7%9A%84%E8%AF%9E%E7%94%9F)
     - [01-02 集中式vs分布式](#01-02-%E9%9B%86%E4%B8%AD%E5%BC%8Fvs%E5%88%86%E5%B8%83%E5%BC%8F)
-        - [集中式版本控制系统](#%E9%9B%86%E4%B8%AD%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F)
-        - [分布式版本控制系统](#%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F)
-        - [其他收费版本控制系统](#%E5%85%B6%E4%BB%96%E6%94%B6%E8%B4%B9%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F)
 - [02 Git 安装](#02-git-%E5%AE%89%E8%A3%85)
     - [02-01 Linux](#02-01-linux)
     - [02-02 Mac OS X](#02-02-mac-os-x)
-        - [方法一](#%E6%96%B9%E6%B3%95%E4%B8%80)
-        - [方法二](#%E6%96%B9%E6%B3%95%E4%BA%8C)
     - [02-03 Windows](#02-03-windows)
 - [03 Git 创建版本库](#03-git-%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93)
-    - [03-01 创建本地版本库](#03-01-%E5%88%9B%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%89%88%E6%9C%AC%E5%BA%93)
-    - [03-02 添加文件到版本库](#03-02-%E6%B7%BB%E5%8A%A0%E6%96%87%E4%BB%B6%E5%88%B0%E7%89%88%E6%9C%AC%E5%BA%93)
-    - [03-03 删除本地版本库](#03-03-%E5%88%A0%E9%99%A4%E6%9C%AC%E5%9C%B0%E7%89%88%E6%9C%AC%E5%BA%93)
-- [04 Git 版本控制](#04-git-%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6)
-    - [04-01 版本回退](#04-01-%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80)
-        - [现在仓库有三个版本](#%E7%8E%B0%E5%9C%A8%E4%BB%93%E5%BA%93%E6%9C%89%E4%B8%89%E4%B8%AA%E7%89%88%E6%9C%AC)
+    - [03-01 创建本地版本库\(git init\)](#03-01-%E5%88%9B%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%89%88%E6%9C%AC%E5%BA%93git-init)
+    - [03-02 添加文件到版本库\(git add, git commit\)](#03-02-%E6%B7%BB%E5%8A%A0%E6%96%87%E4%BB%B6%E5%88%B0%E7%89%88%E6%9C%AC%E5%BA%93git-add-git-commit)
+    - [03-03 删除本地版本库\(rm\)](#03-03-%E5%88%A0%E9%99%A4%E6%9C%AC%E5%9C%B0%E7%89%88%E6%9C%AC%E5%BA%93rm)
+- [04 Git 版本控制\(git status, git diff\)](#04-git-%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6git-status-git-diff)
+    - [04-01 版本回退\(git log, git reset\)](#04-01-%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80git-log-git-reset)
     - [04-02 工作区和暂存区](#04-02-%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA)
-        - [示例](#%E7%A4%BA%E4%BE%8B)
     - [04-03 管理修改](#04-03-%E7%AE%A1%E7%90%86%E4%BF%AE%E6%94%B9)
-    - [04-04 撤销修改](#04-04-%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9)
-        - [add 前撤销修改： git checkout](#add-%E5%89%8D%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9%EF%BC%9A-git-checkout)
-        - [add 后撤销修改：git reset HEAD file](#add-%E5%90%8E%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9%EF%BC%9Agit-reset-head-file)
-    - [04-05 删除文件](#04-05-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6)
-        - [误删恢复](#%E8%AF%AF%E5%88%A0%E6%81%A2%E5%A4%8D)
-- [05 Git 远程仓库](#05-git-%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93)
-    - [05-01 添加远程库](#05-01-%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8B%E5%BA%93)
-        - [SSH警告](#ssh%E8%AD%A6%E5%91%8A)
+    - [04-04 撤销修改\(git checkout\)](#04-04-%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9git-checkout)
+    - [04-05 删除文件\(rm\)](#04-05-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6rm)
+- [05 Git 远程仓库\(ssh-keygen\)](#05-git-%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93ssh-keygen)
+    - [05-01 添加远程库\(git remote add\)](#05-01-%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8B%E5%BA%93git-remote-add)
     - [05-02 与远程仓库连接操作](#05-02-%E4%B8%8E%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%93%8D%E4%BD%9C)
-        - [已经建立远程仓库，从零开始新建本地仓库](#%E5%B7%B2%E7%BB%8F%E5%BB%BA%E7%AB%8B%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%EF%BC%8C%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%96%B0%E5%BB%BA%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93)
-        - [已经存在文件夹，并且未建立过远程仓库连接](#%E5%B7%B2%E7%BB%8F%E5%AD%98%E5%9C%A8%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%8C%E5%B9%B6%E4%B8%94%E6%9C%AA%E5%BB%BA%E7%AB%8B%E8%BF%87%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E8%BF%9E%E6%8E%A5)
-        - [已经存在本地仓库](#%E5%B7%B2%E7%BB%8F%E5%AD%98%E5%9C%A8%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93)
 - [06 Git 分支管理](#06-git-%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86)
-    - [06-01 创建与合并分支](#06-01-%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF)
-    - [06-02 解决冲突](#06-02-%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81)
+    - [06-01 创建与合并分支\(git branch\)](#06-01-%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AFgit-branch)
+    - [06-02 解决冲突\(git merge\)](#06-02-%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81git-merge)
     - [06-03 分支管理策略](#06-03-%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5)
-        - [禁用Fast forward模式](#%E7%A6%81%E7%94%A8fast-forward%E6%A8%A1%E5%BC%8F)
-        - [分支策略](#%E5%88%86%E6%94%AF%E7%AD%96%E7%95%A5)
-    - [06-04 存储工作区](#06-04-%E5%AD%98%E5%82%A8%E5%B7%A5%E4%BD%9C%E5%8C%BA)
+    - [06-04 存储工作区\(git stash\)](#06-04-%E5%AD%98%E5%82%A8%E5%B7%A5%E4%BD%9C%E5%8C%BAgit-stash)
     - [06-05 Feature分支](#06-05-feature%E5%88%86%E6%94%AF)
-    - [06-06 多人协作](#06-06-%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C)
-        - [推送分支](#%E6%8E%A8%E9%80%81%E5%88%86%E6%94%AF)
-        - [抓取分支](#%E6%8A%93%E5%8F%96%E5%88%86%E6%94%AF)
+    - [06-06 多人协作\(git push, git pull\)](#06-06-%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9Cgit-push-git-pull)
 - [07 Git 标签管理](#07-git-%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86)
-    - [07-01 创建标签](#07-01-%E5%88%9B%E5%BB%BA%E6%A0%87%E7%AD%BE)
-        - [07-01-01 默认标签（打在最新提交的commit上）](#07-01-01-%E9%BB%98%E8%AE%A4%E6%A0%87%E7%AD%BE%EF%BC%88%E6%89%93%E5%9C%A8%E6%9C%80%E6%96%B0%E6%8F%90%E4%BA%A4%E7%9A%84commit%E4%B8%8A%EF%BC%89)
-        - [07-01-02 指定 Commit ID 标签](#07-01-02-%E6%8C%87%E5%AE%9A-commit-id-%E6%A0%87%E7%AD%BE)
-        - [07-01-03 指定 Commit ID 和标签信息的标签](#07-01-03-%E6%8C%87%E5%AE%9A-commit-id-%E5%92%8C%E6%A0%87%E7%AD%BE%E4%BF%A1%E6%81%AF%E7%9A%84%E6%A0%87%E7%AD%BE)
-        - [07-01-04 指定 Commit ID 和 PGP签名 的标签](#07-01-04-%E6%8C%87%E5%AE%9A-commit-id-%E5%92%8C-pgp%E7%AD%BE%E5%90%8D-%E7%9A%84%E6%A0%87%E7%AD%BE)
+    - [07-01 创建标签\(git tag NAME\)](#07-01-%E5%88%9B%E5%BB%BA%E6%A0%87%E7%AD%BEgit-tag-name)
     - [07-02 操作标签](#07-02-%E6%93%8D%E4%BD%9C%E6%A0%87%E7%AD%BE)
-        - [07-02-01 删除本地标签](#07-02-01-%E5%88%A0%E9%99%A4%E6%9C%AC%E5%9C%B0%E6%A0%87%E7%AD%BE)
-        - [07-02-02 推送本地标签](#07-02-02-%E6%8E%A8%E9%80%81%E6%9C%AC%E5%9C%B0%E6%A0%87%E7%AD%BE)
-        - [07-02-03 推送全部标签](#07-02-03-%E6%8E%A8%E9%80%81%E5%85%A8%E9%83%A8%E6%A0%87%E7%AD%BE)
-        - [07-02-04 删除远程标签](#07-02-04-%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E6%A0%87%E7%AD%BE)
 - [08 Git 使用GitHub](#08-git-%E4%BD%BF%E7%94%A8github)
 - [09 Git 自定义Git](#09-git-%E8%87%AA%E5%AE%9A%E4%B9%89git)
     - [09-01 忽略特殊文件](#09-01-%E5%BF%BD%E7%95%A5%E7%89%B9%E6%AE%8A%E6%96%87%E4%BB%B6)
     - [09-02 配置别名](#09-02-%E9%85%8D%E7%BD%AE%E5%88%AB%E5%90%8D)
-        - [配置文件](#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
     - [09-03 搭建Git服务器](#09-03-%E6%90%AD%E5%BB%BAgit%E6%9C%8D%E5%8A%A1%E5%99%A8)
 
 <!-- /MarkdownTOC -->
@@ -85,7 +58,7 @@
 
 ## 01-02 集中式vs分布式
 
-### 集中式版本控制系统
+**集中式版本控制系统**
 
 **特点：** 版本库集中存放在中央服务器
 
@@ -101,7 +74,7 @@
 - 如果网速慢，提交一个10M的文件要1个小时，血崩
 - 安全性差，中央服务器挂了，所有人都干不了活
 
-### 分布式版本控制系统
+**分布式版本控制系统**
 
 **特点：** 没有中央服务器
 
@@ -116,7 +89,7 @@
 - 不需要联网就可以修改文件
 - 安全性好，每个人电脑里都有完整的版本
 
-### 其他收费版本控制系统
+**其他收费版本控制系统**
 
 - ClearCase（IBM）：安装比WINDOWS大，速度血慢
 - VSS（MicroSoft）：设计反人类，微软自己都不用
@@ -137,13 +110,13 @@ sudo apt-get install git
 ```
 ## 02-02 Mac OS X
 
-### 方法一
+**方法一**
 
 - 安装homebrew
 - 通过homebrew安装Git
 - 参考[homebrew文档](https://brew.sh/)
 
-### 方法二
+**方法二**
 
 - 安装Xcode
 - 菜单 - Xcode - Preferences - Downloads - Command Line Tools - Install
@@ -162,7 +135,7 @@ git config命令的--global参数：表示此机器上所有的Git仓库都会�
 
 # 03 Git 创建版本库
 
-## 03-01 创建本地版本库
+## 03-01 创建本地版本库(git init)
 
 **1.** 创建空目录
 
@@ -188,7 +161,7 @@ Initialized empty Git repository in D：/Git/learngit/.git/
  - 不要手动修改
  - 默认是隐藏目录，用ls -ah 命令可以看见
 
-## 03-02 添加文件到版本库
+## 03-02 添加文件到版本库(git add, git commit)
 
 版本控制系统管理文件改动：
 
@@ -229,13 +202,13 @@ git commit 命令详解
 
 可以add很多文件，一次性commit
 
-## 03-03 删除本地版本库
+## 03-03 删除本地版本库(rm)
 本地版本库目录下打开Git Bash
 
 ```
 $ rm -rf .git
 ```
-# 04 Git 版本控制
+# 04 Git 版本控制(git status, git diff)
 
 **git status：** 查看仓库有没有被修改
 
@@ -286,7 +259,7 @@ $ git commit -m "add distributed"
  1 file changed, 1 insertion(+), 1 deletion(-)
 ```
 
-## 04-01 版本回退
+## 04-01 版本回退(git log, git reset)
 
 修改readme.txt如下
 ```
@@ -301,7 +274,9 @@ $ git commit -m "append GPL"
 [master a9d0c7a] append GPL
  1 file changed, 1 insertion(+), 1 deletion(-)
 ```
-### 现在仓库有三个版本
+
+**现在仓库有三个版本**
+
 版本1：wrote a readme file
 ```
 Git is a version control system.
@@ -377,16 +352,20 @@ e6d9050 HEAD@{3}: commit: add distributed
 
 **git commit** 就是把文件从暂存区提交到分支
 
-### 示例
+**示例**
+
 1. 修改 readme.txt 
+
 ```
 Git is a distributed version control system.
 Git is free software distributed under the GPL.
 Git has a mutable index called stage.
 ```
+
 2. 新增一个 LICENSE 文件
 
 git status 查看状态
+
 ```
 $ git status
 On branch master
@@ -403,7 +382,9 @@ Untracked files:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
+
 3. 把两个文件add之后再次查看状态
+
 ```
 $ git status
 On branch master
@@ -413,7 +394,9 @@ Changes to be committed:
         new file:   LICENSE
         modified:   readme.txt
 ```
+
 4. 提交到分支
+
 ```
 $ git commit -m "understand how stage works"
 [master b012805] understand how stage works
@@ -421,6 +404,7 @@ $ git commit -m "understand how stage works"
  create mode 100644 LICENSE
 ```
 ## 04-03 管理修改
+
 Git 的优秀之处：跟踪并管理的是修改，而不是文件
 
 1. 修改 readme.txt 
@@ -482,13 +466,13 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 **结论：** commit 之前一定要 add 到暂存区
 
-## 04-04 撤销修改
+## 04-04 撤销修改(git checkout)
 - add 前撤销修改： git checkout
 - add 后撤销修改：git reset HEAD file
 - commit 后撤销修改：版本回退
 
 
-### add 前撤销修改： git checkout
+**add 前撤销修改： git checkout**
 
 把文件在工作区的修改全部撤销
 
@@ -523,7 +507,7 @@ Git tracks changes of files.
 ```
 
 
-### add 后撤销修改：git reset HEAD file
+**add 后撤销修改：git reset HEAD file**
 1. 修改文件 readme.txt 并且 add 到暂存区
 ```
 $ cat readme.txt
@@ -551,7 +535,7 @@ nothing to commit (working directory clean)
 ```
 
 
-## 04-05 删除文件
+## 04-05 删除文件(rm)
 1. 先添加一个新文件test.txt到Git并且提交：
 
 ```
@@ -574,13 +558,13 @@ $ git commit -m "remove test.txt"
  1 file changed, 1 deletion(-)
  delete mode 100644 test.txt
 ```
-### 误删恢复
+**误删恢复**
 ```
 $ git checkout -- test.txt
 ```
 git checkout 本质：用版本库里的版本替换工作区的版本
 
-# 05 Git 远程仓库
+# 05 Git 远程仓库(ssh-keygen)
 
 **早期：**
 
@@ -613,7 +597,7 @@ GitHub默认公有仓库，创建私有仓库方法
 - 方法一：GitHub付费7刀一个月
 - 方法二：搭建自己的Git服务器
 
-## 05-01 添加远程库
+## 05-01 添加远程库(git remote add)
 本地Git仓库和GitHub仓库远程同步
 
 1. 登陆GitHub - New repository
@@ -649,7 +633,8 @@ $ git push origin master
 ```
 $ git remote rm origin
 ```
-### SSH警告
+
+**SSH警告**
 
 第一次使用Git的clone或者push命令连接 GitHub 会得到一个警告：
 ```
@@ -665,7 +650,8 @@ Warning: Permanently added 'github.com' (RSA) to the list of known hosts.
 
 ## 05-02 与远程仓库连接操作
 
-### 已经建立远程仓库，从零开始新建本地仓库
+**已经建立远程仓库，从零开始新建本地仓库**
+
 先创建GitHub仓库再克隆到本地Git
 
 1. 登陆GitHub新建仓库叫gitskills
@@ -679,7 +665,8 @@ $ git add README.md
 $ git commit -m "add README"
 $ git push -u origin master
 ```
-### 已经存在文件夹，并且未建立过远程仓库连接
+
+**已经存在文件夹，并且未建立过远程仓库连接**
 
 ```
 $ cd existing_folder      #切到已存在的目录下
@@ -689,7 +676,9 @@ $ git add .               #添加文件
 $ git commit              #提交
 $ git push -u origin master   #push到远程仓库
 ```
-### 已经存在本地仓库
+
+**已经存在本地仓库**
+
 ```
 $ cd existing_repository_folder       #切到已存在的git分支的目录下
 $ rm -rf .git                         #删除该分支之前的git配置
@@ -711,9 +700,10 @@ $ git push -u origin master         #push到远程仓库
     - 随时提交
     - 开发完合并到Master Branch
 
+## 06-01 创建与合并分支(git branch)
 
-## 06-01 创建与合并分支
 ![image](https://www.liaoxuefeng.com/files/attachments/0013849087937492135fbf4bbd24dfcbc18349a8a59d36d000/0)
+
 1. 创建分支
 ```
 $ git branch dev
@@ -773,7 +763,7 @@ Deleted branch dev (was fec145a).
 ```
 ![image](https://www.liaoxuefeng.com/files/attachments/001384908867187c83ca970bf0f46efa19badad99c40235000/0)
 
-## 06-02 解决冲突
+## 06-02 解决冲突(git merge)
 两个分支的同一个文件做了不同修改导致 **冲突**
 
 feature1分支修改readme.txt
@@ -870,7 +860,7 @@ Deleted branch feature1 (was 75a857c).
 
 Fast Forward 缺点：删除分支后，会丢掉分支信息
 
-### 禁用Fast forward模式
+**禁用Fast forward模式**
 
 1. 创建并切换dev分支：
 ```
@@ -900,14 +890,15 @@ Merge made by the 'recursive' strategy.
 ```
 ![image](https://www.liaoxuefeng.com/files/attachments/001384909222841acf964ec9e6a4629a35a7a30588281bb000/0)
 
-### 分支策略
+**分支策略**
+
 ![image](https://www.liaoxuefeng.com/files/attachments/001384909239390d355eb07d9d64305b6322aaf4edac1e3000/0)
 
 - master分支：只用来发布新版本，不用来开发
     - dev分支：用来开发
         - 每个人在dev分支上开发，每个人都有自己的分支，时不时往dev分支上合并
 
-## 06-04 存储工作区
+## 06-04 存储工作区(git stash)
 git stash存储当前工作区
 ```
 $ git stash
@@ -983,7 +974,7 @@ $ git branch -D feature-vulcan
 Deleted branch feature-vulcan (was 756d4af).
 ```
 
-## 06-06 多人协作
+## 06-06 多人协作(git push, git pull)
 
 git remote 查看远程仓库信息
 ```
@@ -996,7 +987,9 @@ $ git remote -v
 origin  git@github.com:USERNAME/learngit.git (fetch)
 origin  git@github.com:USERNAME/learngit.git (push)
 ```
-### 推送分支
+
+**推送分支 git push**
+
 推送master branch
 ```
 $ git push origin master
@@ -1012,7 +1005,7 @@ $ git push origin dev
 - bug branch：只用于在本地修复bug，不需要推送
 - feature
 
-### 抓取分支
+**抓取分支 git pull**
 
 同事A克隆了仓库
 ```
@@ -1024,16 +1017,22 @@ remote: Total 46 (delta 16), reused 45 (delta 15)
 Receiving objects: 100% (46/46), 15.69 KiB | 6 KiB/s, done.
 Resolving deltas: 100% (16/16), done.
 ```
+
 同事A只能看到master branch
+
 ```
 $ git branch
 * master
 ```
+
 同事A要在dev分支上开发必须创建origin的dev分支到本地
+
 ```
 $ git checkout -b dev origin/dev
 ```
+
 同事A把dev分支push到远程：
+
 ```
 $ git commit -m "add /usr/bin/env"
 [dev 291bea8] add /usr/bin/env
@@ -1047,7 +1046,9 @@ Total 3 (delta 0), reused 0 (delta 0)
 To git@github.com:USERNAME/learngit.git
    fc38031..291bea8  dev -> dev
 ```
+
 同事B对同样的文件作了修改，并试图推送：
+
 ```
 $ git add hello.py 
 $ git commit -m "add coding: utf-8"
@@ -1061,9 +1062,11 @@ hint: Updates were rejected because the tip of your current branch is behind
 hint: its remote counterpart. Merge the remote changes (e.g. 'git pull')
 hint: before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
 ```
-推送失败，必须先
-用git pull把最新的提交从origin/dev抓下来，然后，在本地合并，解决冲突，再推送：
+
+推送失败，必须先用git pull把最新的提交从origin/dev抓下来，然后，在本地合并，解决冲突，再推送：
+
 ```
 $ git pull
 remote: Counting objects: 5, done.
@@ -1082,12 +1085,16 @@ If you wish to set tracking information for this branch you can do so with:
 
     git branch --set-upstream dev origin/<branch>
 ```
+
 git pull也失败，原因是没有指定本地dev分支与远程origin/dev分支的链接，先设置dev和origin/dev的链接：
+
 ```
 $ git branch --set-upstream dev origin/dev
 Branch dev set up to track remote branch dev from origin.
 ```
+
 再pull：
+
 
 ```
 $ git pull
@@ -1095,7 +1102,9 @@ Auto-merging hello.py
 CONFLICT (content): Merge conflict in hello.py
 Automatic merge failed; fix conflicts and then commit the result.
 ```
+
 这回git pull成功，但是合并有冲突，需要手动解决，解决的方法和分支管理中的解决冲突完全一样。解决后，提交，再push：
+
 ```
 $ git commit -m "merge & fix hello.py"
 [dev adca45d] merge & fix hello.py
@@ -1108,6 +1117,7 @@ Total 6 (delta 0), reused 0 (delta 0)
 To git@github.com:michaelliao/learngit.git
    291bea8..adca45d  dev -> dev
 ```
+
 多人协作 工作模式
 
 - 用git push origin branch-name推送自己的修改
@@ -1119,9 +1129,9 @@ To git@github.com:michaelliao/learngit.git
 
 标签（tag）：和commit绑定在一起的有意义的名字
 
-## 07-01 创建标签
+## 07-01 创建标签(git tag NAME)
 
-### 07-01-01 默认标签（打在最新提交的commit上）
+**默认标签(打在最新提交的commit上)**
 1. 切换到需要打标签的分支
 ```
 $ git branch
@@ -1139,7 +1149,9 @@ $ git tag v1.0
 $ git tag
 v1.0
 ```
-### 07-01-02 指定 Commit ID 标签
+
+**指定 Commit ID 标签**
+
 1. 找到历史提交的commit id
 ```
 $ git log --pretty=oneline --abbrev-commit
@@ -1164,24 +1176,29 @@ $ git tag
 v0.9
 v1.0
 ```
-### 07-01-03 指定 Commit ID 和标签信息的标签
+
+**指定 Commit ID 和标签信息的标签**
+
 ```
 $ git tag -a v0.1 -m "version 0.1 released" 3628164
 ```
-### 07-01-04 指定 Commit ID 和 PGP签名 的标签
+
+**指定 Commit ID 和 PGP签名 的标签**
+
 ```
 $ git tag -s v0.2 -m "signed version 0.2 released" fec145a
 ```
 ## 07-02 操作标签
 
-### 07-02-01 删除本地标签
+**删除本地标签(git tag -d NAME)**
 
 ```
 $ git tag -d v0.1
 Deleted tag 'v0.1' (was e078af9)
 ```
 
-### 07-02-02 推送本地标签
+**推送本地标签(git push origin NAME)**
+
 git push origin <tagname>：
 ```
 $ git push origin v1.0
@@ -1189,7 +1206,9 @@ Total 0 (delta 0), reused 0 (delta 0)
 To git@github.com:USERNAME/learngit.git
  * [new tag]         v1.0 -> v1.0
 ```
-### 07-02-03 推送全部标签
+
+**推送全部标签(git push origin --tags)**
+
 git push origin --tags
 ```
 $ git push origin --tags
@@ -1200,7 +1219,7 @@ To git@github.com:USERNAME/learngit.git
  * [new tag]         v0.2 -> v0.2
  * [new tag]         v0.9 -> v0.9
 ```
-### 07-02-04 删除远程标签
+**删除远程标签**
 1. 先从本地删除
 ```
 $ git tag -d v0.9
@@ -1264,7 +1283,8 @@ $ git config --global alias.ci commit
 $ git config --global alias.br branch
 ```
 
-### 配置文件
+**配置文件**
+
 Git配置文件都放在.git/config文件中：
 ```
 $ cat .git/config 
