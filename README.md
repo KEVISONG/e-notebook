@@ -20,3 +20,7 @@
 ### HTML
 
 - [HTML Study Notes](https://github.com/KEVISONG/e-notebooks/blob/master/HTML/HTML%20Study%20Notes.md#html-study-notes)
+
+### Computer Systems
+
+- [Computer Systems Study Notes](https://github.com/KEVISONG/e-notebooks/tree/master/Computer%20Systems)
