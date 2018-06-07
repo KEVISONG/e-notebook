@@ -13,6 +13,10 @@
 
 - [Java SE Study Notes](https://github.com/KEVISONG/e-notebooks/blob/master/Java/Java%20SE%20Study%20Notes.md#java-se-study-notes)
 
+### JavaScript
+
+- [JavaScript Study Notes](https://github.com/KEVISONG/e-notebooks/blob/master/JavaScript/JavaScript%20Study%20Notes.md#javascript-study-notes)
+
 ### Python
 
 - [Python Study Notes](https://github.com/KEVISONG/e-notebooks/blob/master/Python/Python%20Study%20Notes.md#python-study-notes)
