@@ -694,12 +694,547 @@ for (var x of a) {
 
 # 03 JavaScript 函数
 ## 03-01 函数定义和调用
+**定义函数方式一：**
+```
+function abs(x) {
+    if (x >= 0) {
+        return x;
+    } else {
+        return -x;
+    }
+}
+```
+
+- `function`关键字定义函数
+- `abs`函数名
+- `(x)`函数参数
+- `{...}`函数体
+
+> 没有`return`语句的函数返回`undefined`
+
+**定义函数方式二：**
+```
+var abs = function (x) {
+    if (x >= 0) {
+        return x;
+    } else {
+        return -x;
+    }
+};
+```
+`function (x) { ... }`是一个匿名函数，它没有函数名。但是，这个匿名函数赋值给了变量`abs`，所以，通过变量`abs`就可以调用该函数
+
+> 第二种方式按照完整语法需要在函数体末尾加一个`;`
+
+> 传入参数太多也没事儿
+
+```
+abs(10, 'blablabla'); // 返回10
+abs(-9, 'haha', 'hehe', null); // 返回9
+```
+> 传入参数太少也没事儿，此时abs(x)函数的参数x将收到undefined，计算结果为NaN
+
+
+```
+abs(); // 返回NaN
+```
+
+**`arguments`关键字**
+
+`arguments`可以获得调用者传入的所有参数。也就是说，即使函数不定义任何参数，还是可以拿到参数的值：
+```
+function abs() {
+    if (arguments.length === 0) {
+        return 0;
+    }
+    var x = arguments[0];
+    return x >= 0 ? x : -x;
+}
+
+abs(); // 0
+abs(10); // 10
+abs(-9); // 9
+```
+**`rest`关键字**
+
+`rest`表示剩下的参数
+
+```
+function foo(a, b, ...rest) {
+    console.log('a = ' + a);
+    console.log('b = ' + b);
+    console.log(rest);
+}
+
+foo(1, 2, 3, 4, 5);
+// 结果:
+// a = 1
+// b = 2
+// Array [ 3, 4, 5 ]
+
+foo(1);
+// 结果:
+// a = 1
+// b = undefined
+// Array []
+```
+
 ## 03-02 变量作用域和解构赋值
+
+**函数内部声明的变量作用域在函数内部**
+
+```
+function foo() {
+    var x = 1;
+    x = x + 1;
+}
+x = x + 2; // ReferenceError! 无法在函数体外引用变量x
+```
+**变量提升**
+
+JavaScript函数定义时，自动扫描函数体并且把声明的变量提升到顶部
+
+```
+function foo() {
+    var x = 'Hello, ' + y;
+    console.log(x);
+    var y = 'Bob';
+}
+foo();
+```
+相当于如下
+
+```
+function foo() {
+    var y; // 提升变量y的申明，此时y为undefined
+    var x = 'Hello, ' + y;
+    console.log(x);
+    y = 'Bob';
+}
+```
+**全局作用域**
+
+不在任何函数内定义的变量就具有**全局作用域**
+
+JavaScript默认有一个全局对象`window`，全局作用域的变量实际上被绑定到`window`的一个属性：
+
+```
+var course = 'Learn JavaScript';
+alert(course); // 'Learn JavaScript'
+alert(window.course); // 'Learn JavaScript'
+```
+由于函数定义有两种方式，以变量方式`var foo = function () {}`定义的函数实际上也是一个全局变量，因此，顶层函数的定义也被视为一个全局变量，并绑定到`window`对象：
+
+```
+function foo() {
+    alert('foo');
+}
+
+foo(); // 直接调用foo()
+window.foo(); // 通过window.foo()调用
+```
+> 同理`alert()`也是window的一个变量
+
+**名字空间**
+
+不同的JavaScript文件使用相同的全局变量会造成命名冲突
+
+解决方案：把所有变量和函数绑定到一个全局变量
+
+```
+// 唯一的全局变量MYAPP:
+var MYAPP = {};
+
+// 其他变量:
+MYAPP.name = 'myapp';
+MYAPP.version = 1.0;
+
+// 其他函数:
+MYAPP.foo = function () {
+    return 'foo';
+};
+```
+> 许多著名的JavaScript库都是这么干的：jQuery，YUI，underscore等
+
+**局部作用域**
+
+`for`循环等语句块中无法定义局部变量
+
+```
+function foo() {
+    for (var i=0; i<100; i++) {
+        //
+    }
+    i += 100; // 仍然可以引用变量i
+}
+```
+解决方案：ES6新关键字`let`，代替`var`申明一个块级作用域的变量
+
+```
+function foo() {
+    var sum = 0;
+    for (let i=0; i<100; i++) {
+        sum += i;
+    }
+    // SyntaxError:
+    i += 1;
+}
+```
+**常量**
+
+定义方式一：全大写
+
+```
+var PI = 3.14;
+```
+
+定义方式二：ES6新关键字`const`
+
+```
+const PI = 3.14;
+PI = 3; // 某些浏览器不报错，但是无效果！
+PI; // 3.14
+```
+
+**解构赋值**
+
+传统方法一个数组的元素分别赋值给几个变量：
+
+```
+var array = ['hello', 'JavaScript', 'ES6'];
+var x = array[0];
+var y = array[1];
+var z = array[2];
+```
+ES6新特性解构赋值，多个变量用`[...]`括起来
+
+```
+var [x, y, z] = ['hello', 'JavaScript', 'ES6'];
+```
+嵌套型解构赋值
+
+```
+let [x, [y, z]] = ['hello', ['JavaScript', 'ES6']];
+x; // 'hello'
+y; // 'JavaScript'
+z; // 'ES6'
+
+```
+忽略元素的解构赋值
+
+```
+let [, , z] = ['hello', 'JavaScript', 'ES6']; // 忽略前两个元素，只对z赋值第三个元素
+z; // 'ES6'
+```
+对象的解构赋值
+
+```
+var person = {
+    name: '小明',
+    age: 20,
+    gender: 'male',
+    passport: 'G-12345678',
+    school: 'No.4 middle school',
+    address: {
+        city: 'Beijing',
+        street: 'No.1 Road',
+        zipcode: '100001'
+    }
+};
+var {name, address: {city, zip}} = person;
+name; // '小明'
+city; // 'Beijing'
+zip; // undefined, 因为属性名是zipcode而不是zip
+// 注意: address不是变量，而是为了让city和zip获得嵌套的address对象的属性:
+address; // Uncaught ReferenceError: address is not defined
+```
+> 如果对应的属性不存在，变量将被赋值为`undefined`
+
+如果要使用的变量名和属性名不一致
+
+```
+var person = {
+    name: '小明',
+    age: 20,
+    gender: 'male',
+    passport: 'G-12345678',
+    school: 'No.4 middle school'
+};
+
+// 把passport属性赋值给变量id:
+let {name, passport:id} = person;
+name; // '小明'
+id; // 'G-12345678'
+// 注意: passport不是变量，而是为了让变量id获得passport属性:
+passport; // Uncaught ReferenceError: passport is not defined
+```
+**解构赋值应用**
+
+交换两个变量x和y的值
+```
+var x=1, y=2;
+[x, y] = [y, x]
+```
+
+快速获取当前页面的域名和路径
+
+```
+var {hostname:domain, pathname:path} = location;
+```
 ## 03-03 方法
+**给对象绑定方法**
+
+```
+var xiaoming = {
+    name: '小明',
+    birth: 1990,
+    age: function () {
+        var y = new Date().getFullYear();
+        return y - this.birth;
+    }
+};
+```
+> `this`指向当前对象
+
+特殊情况：函数写在方法外面并且被方法调用
+
+```
+function getAge() {
+    var y = new Date().getFullYear();
+    return y - this.birth;
+}
+
+var xiaoming = {
+    name: '小明',
+    birth: 1990,
+    age: getAge
+};
+
+xiaoming.age(); // 25, 正常结果
+getAge(); // NaN
+```
+> 此时this指向window，所以返回NaN
+
+> `strict`模式下，`this`指向`undefined`
+
+**`apply()`指定this指向**
+
+- 参数一：需要绑定的`this`变量
+- 参数二：一个数组，包含函数本身参数
+```
+function getAge() {
+    var y = new Date().getFullYear();
+    return y - this.birth;
+}
+
+var xiaoming = {
+    name: '小明',
+    birth: 1990,
+    age: getAge
+};
+
+xiaoming.age(); // 25
+getAge.apply(xiaoming, []); // 25, this指向xiaoming, 参数为空
+```
+
+`call()`和`apply()`差不多，唯一区别是：
+
+- `apply()`把参数打包成`Array`再传入；
+- `call()`把参数按顺序传入。
+
+
+```
+Math.max.apply(null, [3, 5, 4]); // 5
+Math.max.call(null, 3, 5, 4); // 5
+```
+**装饰器**
+
+统计一下代码一共调用了多少次parseInt()
+```
+var count = 0;
+var oldParseInt = parseInt; // 保存原函数
+
+window.parseInt = function () {
+    count += 1;
+    return oldParseInt.apply(null, arguments); // 调用原函数
+};
+```
 ## 03-04 高阶函数
+
+高阶函数：参数是函数的函数
+
+```
+function add(x, y, f) {
+    return f(x) + f(y);
+}
+```
+**`map()`函数**
+
+`map()`方法定义在JavaScript的`Array`中，调用Array的`map()`方法时传入一个函数，就得到了一个新的Array作为结果
+
+```
+var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+arr.map(String); // ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+```
+
+**`reduce()`函数**
+
+```
+[x1, x2, x3, x4].reduce(f) = f(f(f(x1, x2), x3), x4)
+```
+数组求和
+
+```
+var arr = [1, 3, 5, 7, 9];
+arr.reduce(function (x, y) {
+    return x + y;
+}); // 25
+```
+**`filter()`函数**
+
+用于把`Array`的某些元素根据返回值是`true`还是`false`过滤掉，然后返回剩下的元素
+
+Array中，删掉偶数，只保留奇数：
+
+```
+var arr = [1, 2, 4, 5, 6, 9, 10, 15];
+var r = arr.filter(function (x) {
+    return x % 2 !== 0;
+});
+r; // [1, 5, 9, 15]
+```
+**`sort()`函数**
+
+`String`排序
+```
+// apple排在了最后:
+['Google', 'apple', 'Microsoft'].sort(); // ['Google', 'Microsoft", 'apple']
+```
+
+`Number`排序
+```
+// 无法理解的结果:
+[10, 20, 1, 2].sort(); // [1, 10, 2, 20]
+```
+> `Array`的`sort()`方法默认把所有元素先转换为String再排序
+
+按照数字大小排序：
+
+```
+var arr = [10, 20, 1, 2];
+arr.sort(function (x, y) {
+    if (x < y) {
+        return -1;
+    }
+    if (x > y) {
+        return 1;
+    }
+    return 0;
+});
+console.log(arr); // [1, 2, 10, 20]
+```
+
 ## 03-05 闭包
+
+对Array求和的函数：
+
+```
+function sum(arr) {
+    return arr.reduce(function (x, y) {
+        return x + y;
+    });
+}
+
+sum([1, 2, 3, 4, 5]); // 15
+```
+
+不想立即求和，返回求和函数：
+
+```
+function lazy_sum(arr) {
+    var sum = function () {
+        return arr.reduce(function (x, y) {
+            return x + y;
+        });
+    }
+    return sum;
+}
+var f = lazy_sum([1, 2, 3, 4, 5]); // function sum()
+f(); // 15
+```
+闭包：当`lazy_sum()`返回函数`sum()`时，相关参数和变量都保存在返回的函数中的这种程序结构
+
 ## 03-06 箭头函数
+
+ES6新增箭头函数
+
+```
+x => x * x
+```
+相当于
+
+```
+function (x) {
+    return x * x;
+}
+```
+
+包含多条语句的箭头函数
+
+```
+x => {
+    if (x > 0) {
+        return x * x;
+    }
+    else {
+        return - x * x;
+    }
+}
+```
+包含多个参数的箭头函数
+
+```
+// 两个参数:
+(x, y) => x * x + y * y
+
+// 无参数:
+() => 3.14
+
+// 可变参数:
+(x, y, ...rest) => {
+    var i, sum = x + y;
+    for (i=0; i<rest.length; i++) {
+        sum += rest[i];
+    }
+    return sum;
+}
+```
+返回对象的箭头函数
+
+```
+// ok:
+x => ({ foo: x })
+```
+> 箭头函数类似匿名函数
+
 ## 03-07 generator
+
+ES6新增的类似Python的generator的特性
+
+由`function*`定义
+
+```
+function* foo(x) {
+    yield x + 1;
+    yield x + 2;
+    return x + 3;
+}
+var x = foo(3)
+x.next()
+x.next()
+x.next()
+```
+
 # 04 JavaScript 标准对象
 ## 04-01 Date
 ## 04-02 RegExp
