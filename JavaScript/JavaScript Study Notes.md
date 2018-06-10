@@ -1236,9 +1236,240 @@ x.next()
 ```
 
 # 04 JavaScript 标准对象
+
+`typeof`关键字判断对象类型
+
+```
+typeof 123; // 'number'
+typeof NaN; // 'number'
+typeof 'str'; // 'string'
+typeof true; // 'boolean'
+typeof undefined; // 'undefined'
+typeof Math.abs; // 'function'
+typeof null; // 'object'
+typeof []; // 'object'
+typeof {}; // 'object'
+```
+**包装对象**
+
+类似Java里`int`和`Integer`的关系，JavaScript中有
+
+```
+var n = new Number(123); // 123,生成了新的包装类型
+var b = new Boolean(true); // true,生成了新的包装类型
+var s = new String('str'); // 'str',生成了新的包装类型
+```
+> 虽然包装对象看上去和原来的值一模一样，显示出来也是一模一样，但他们的类型已经变为object
+
+包装对象和原始值用===比较会返回false：
+
+```
+typeof new Number(123); // 'object'
+new Number(123) === 123; // false
+
+typeof new Boolean(true); // 'object'
+new Boolean(true) === true; // false
+
+typeof new String('str'); // 'object'
+new String('str') === 'str'; // false
+```
 ## 04-01 Date
+
+**`Date`对象用来表示日期和时间**
+
+获取系统当前时间
+```
+var now = new Date();
+now; // Wed Jun 24 2015 19:49:22 GMT+0800 (CST)
+now.getFullYear(); // 2015, 年份
+now.getMonth(); // 5, 月份，注意月份范围是0~11，5表示六月
+now.getDate(); // 24, 表示24号
+now.getDay(); // 3, 表示星期三
+now.getHours(); // 19, 24小时制
+now.getMinutes(); // 49, 分钟
+now.getSeconds(); // 22, 秒
+now.getMilliseconds(); // 875, 毫秒数
+now.getTime(); // 1435146562875, 以number形式表示的时间戳
+```
+第一种方法：创建一个指定日期和时间的Date对象
+```
+var d = new Date(2015, 5, 19, 20, 15, 30, 123);
+d; // Fri Jun 19 2015 20:15:30 GMT+0800 (CST)
+```
+> JavaScript的Date对象月份值从0开始，0=1月，1=2月，2=3月，……，11=12月。 
+
+第二种方法：创建一个指定日期和时间的Date对象：解析一个符合ISO 8601格式的字符串
+
+```
+var d = Date.parse('2015-06-24T19:49:22.875+08:00');
+d; // 1435146562875
+```
+返回的不是Date对象，而是一个时间戳。不过有时间戳就可以很容易地把它转换为一个Date：
+```
+var d = new Date(1435146562875);
+d; // Wed Jun 24 2015 19:49:22 GMT+0800 (CST)
+d.getMonth(); // 5
+```
+**时区转换**
+
+时区
+
+
+```
+var d = new Date(1435146562875);
+d.toLocaleString(); // '2015/6/24 下午7:49:22'，本地时间（北京时区+8:00），显示的字符串与操作系统设定的格式有关
+d.toUTCString(); // 'Wed, 24 Jun 2015 11:49:22 GMT'，UTC时间，与本地时间相差8小时
+```
 ## 04-02 RegExp
+
+创建正则表达式对象方式一：
+
+```
+var re1 = /ABC\-001/;
+```
+创建正则表达式对象方式二：
+
+```
+var re2 = new RegExp('ABC\\-001');
+```
+**`test()`测试字符串是否match**
+```
+var re = /^\d{3}\-\d{3,8}$/;
+re.test('010-12345'); // true
+re.test('010-1234x'); // false
+re.test('010 12345'); // false
+```
+**`split()`切分字符串**
+
+```
+'a b   c'.split(' '); // ['a', 'b', '', '', 'c']
+```
+**`exec()`提取子串**
+
+- `exec()`匹配成功返回一个Array，第一个元素是正则表达式匹配到的整个字符串，后面的字符串表示匹配成功的子串
+- `exec()`匹配失败返回null
+
+```
+var re = /^(\d{3})-(\d{3,8})$/;
+re.exec('010-12345'); // ['010-12345', '010', '12345']
+re.exec('010 12345'); // null
+```
+
+**贪婪匹配**
+
+正则匹配默认是贪婪匹配
+
+```
+var re = /^(\d+)(0*)$/;
+re.exec('102300'); // ['102300', '102300', '']
+```
+非贪婪匹配需要加`?`
+
+```
+var re = /^(\d+?)(0*)$/;
+re.exec('102300'); // ['102300', '1023', '00']
+```
+
 ## 04-03 JSON
+
+JSON是JavaScript Object Notation的缩写，它是一种数据交换格式。
+
+JSON数据类型：
+
+- number：和JavaScript的`number`完全一致；
+- boolean：就是JavaScript的`true`或`false`；
+- string：就是JavaScript的`string`；
+- null：就是JavaScript的`null`；
+- array：就是JavaScript的Array表示方式——`[]`；
+- object：就是JavaScript的`{ ... }`表示方式。
+
+**序列化**
+
+把小明这个对象序列化成JSON格式的字符串：
+
+```
+'use strict';
+
+var xiaoming = {
+    name: '小明',
+    age: 14,
+    gender: true,
+    height: 1.65,
+    grade: null,
+    'middle-school': '\"W3C\" Middle School',
+    skills: ['JavaScript', 'Java', 'Python', 'Lisp']
+};
+JSON.stringify(xiaoming, null, '  ');
+```
+结果
+```
+{
+  "name": "小明",
+  "age": 14,
+  "gender": true,
+  "height": 1.65,
+  "grade": null,
+  "middle-school": "\"W3C\" Middle School",
+  "skills": [
+    "JavaScript",
+    "Java",
+    "Python",
+    "Lisp"
+  ]
+}
+```
+- 第一个参数：对象名
+- 第二个参数：控制删选对象的键值，以输出指定属性
+```
+JSON.stringify(xiaoming, ['name', 'skills'], '  ');
+```
+
+结果：
+
+```
+{
+  "name": "小明",
+  "skills": [
+    "JavaScript",
+    "Java",
+    "Python",
+    "Lisp"
+  ]
+}
+```
+精确控制序列化小明，可以给`xiaoming`定义一个`toJSON()`的方法，直接返回JSON应该序列化的数据：
+
+```
+var xiaoming = {
+    name: '小明',
+    age: 14,
+    gender: true,
+    height: 1.65,
+    grade: null,
+    'middle-school': '\"W3C\" Middle School',
+    skills: ['JavaScript', 'Java', 'Python', 'Lisp'],
+    toJSON: function () {
+        return { // 只输出name和age，并且改变了key：
+            'Name': this.name,
+            'Age': this.age
+        };
+    }
+};
+
+JSON.stringify(xiaoming); // '{"Name":"小明","Age":14}'
+```
+
+**反序列化**
+
+拿到一个JSON格式的字符串，我们直接用`JSON.parse()`把它变成一个JavaScript对象：
+```
+JSON.parse('[1,2,3,true]'); // [1, 2, 3, true]
+JSON.parse('{"name":"小明","age":14}'); // Object {name: '小明', age: 14}
+JSON.parse('true'); // true
+JSON.parse('123.45'); // 123.45
+
+```
+
 # 05 JavaScript 面向对象编程
 ## 05-01 创建对象
 ## 05-02 原型继承
