@@ -1471,9 +1471,250 @@ JSON.parse('123.45'); // 123.45
 ```
 
 # 05 JavaScript 面向对象编程
+
+**`__proto__`改变对象原型**
+
+```
+var Student = {
+    name: 'Robot',
+    height: 1.2,
+    run: function () {
+        console.log(this.name + ' is running...');
+    }
+};
+
+var xiaoming = {
+    name: '小明'
+};
+
+xiaoming.__proto__ = Student;
+```
+
+`xiaoming`可以`run()`
+
+```
+xiaoming.name; // '小明'
+xiaoming.run(); // 小明 is running...
+```
+新建一个鸟对象
+```
+var Bird = {
+    fly: function () {
+        console.log(this.name + ' is flying...');
+    }
+};
+
+xiaoming.__proto__ = Bird;
+```
+现在`xiaoming`已经无法`run()`了，他已经变成了一只鸟：
+
+```
+xiaoming.fly(); // 小明 is flying...
+```
 ## 05-01 创建对象
+JavaScript对每个创建的对象都会设置一个**原型**，指向它的**原型对象**。
+Array对象：
+```
+var arr = [1, 2, 3];
+```
+原型链是：
+```
+arr ----> Array.prototype ----> Object.prototype ----> null
+```
+`Array.prototype`定义了`indexOf()`、`shift()`等方法，因此可以在所有的Array对象上直接调用这些方法
+
+**构造函数**
+
+```
+function Student(name) {
+    this.name = name;
+    this.hello = function () {
+        alert('Hello, ' + this.name + '!');
+    }
+}
+```
+
+用关键字`new`来调用这个函数，并返回一个对象：
+
+```
+var xiaoming = new Student('小明');
+xiaoming.name; // '小明'
+xiaoming.hello(); // Hello, 小明!
+```
+> 如果不写`new`，这就是一个普通函数，它返回`undefined`。
+
+> 如果写了`new`，它就变成了一个构造函数，它绑定的`this`指向新创建的对象，并默认返`this`，不需要在最后写`return this`;
+
+原型链
+```
+xiaoming ↘
+xiaohong → Student.prototype ----> Object.prototype ----> null
+xiaojun  ↗
+```
+> 用`new Student()`创建的对象还从原型上获得了一个`constructor`属性，它指向函数`Student`本身
+
+![image](https://cdn.liaoxuefeng.com/cdn/files/attachments/00143529922671163eebb527bc14547ac11363bf186557d000/l)
+
+给对象的原型添加方法可以被所有对象共享
+
+```
+function Student(name) {
+    this.name = name;
+}
+
+Student.prototype.hello = function () {
+    alert('Hello, ' + this.name + '!');
+};
+```
+![image](https://cdn.liaoxuefeng.com/cdn/files/attachments/001435299854512faf32868f60348be878982909b5a5d04000/l)
+
+**防止忘记写`new`**
+
+编写一个createStudent()函数，在内部封装所有的new操作
+
+```
+function Student(props) {
+    this.name = props.name || '匿名'; // 默认值为'匿名'
+    this.grade = props.grade || 1; // 默认值为1
+}
+
+Student.prototype.hello = function () {
+    alert('Hello, ' + this.name + '!');
+};
+
+function createStudent(props) {
+    return new Student(props || {})
+}
+```
+`createStudent()`优点
+
+- 不需要`new`
+- 参数灵活，可以不传，也可以这样传
+
+```
+var xiaoming = createStudent({
+    name: '小明'
+});
+
+xiaoming.grade; // 1
+```
+
 ## 05-02 原型继承
+
+`Student`构造函数
+
+```
+function Student(props) {
+    this.name = props.name || 'Unnamed';
+}
+
+Student.prototype.hello = function () {
+    alert('Hello, ' + this.name + '!');
+}
+```
+`Student`的原型链
+
+![image](https://cdn.liaoxuefeng.com/cdn/files/attachments/001439872136313496e60e07ed143bda40a0200b12d8cc3000/l)
+
+基于`Student`扩展出`PrimaryStudent`
+
+```
+function PrimaryStudent(props) {
+    // 调用Student构造函数，绑定this变量:
+    Student.call(this, props);
+    this.grade = props.grade || 1;
+}
+```
+`PrimaryStudent`的原型链
+
+```
+new PrimaryStudent() ----> PrimaryStudent.prototype ----> Object.prototype ----> null
+```
+想办法把原型链修改为：
+```
+new PrimaryStudent() ----> PrimaryStudent.prototype ----> Student.prototype ----> Object.prototype ----> null
+```
+**原型继承`inherits()`**
+
+```
+function inherits(Child, Parent) {
+    var F = function () {};
+    F.prototype = Parent.prototype;
+    Child.prototype = new F();
+    Child.prototype.constructor = Child;
+}
+```
+原型继承实现方式：
+
+- 定义新的构造函数，并在内部用`call()`调用希望“继承”的构造函数，并绑定`this`；
+- 借助中间函数`F`实现原型链继承，最好通过封装的`inherits`函数完成；
+- 继续在新的构造函数的原型上定义新方法
+
+```
+function Student(props) {
+    this.name = props.name || 'Unnamed';
+}
+
+Student.prototype.hello = function () {
+    alert('Hello, ' + this.name + '!');
+}
+
+function PrimaryStudent(props) {
+    Student.call(this, props);
+    this.grade = props.grade || 1;
+}
+
+// 实现原型继承链:
+inherits(PrimaryStudent, Student);
+
+// 绑定其他方法到PrimaryStudent原型:
+PrimaryStudent.prototype.getGrade = function () {
+    return this.grade;
+};
+```
+
 ## 05-03 class继承
+
+**`function`定义类**
+
+```
+function Student(name) {
+    this.name = name;
+}
+
+Student.prototype.hello = function () {
+    alert('Hello, ' + this.name + '!');
+}
+```
+
+**`class`定义类**
+
+```
+class Student {
+    constructor(name) {
+        this.name = name;
+    }
+
+    hello() {
+        alert('Hello, ' + this.name + '!');
+    }
+}
+```
+**`class`继承**
+
+```
+class PrimaryStudent extends Student {
+    constructor(name, grade) {
+        super(name); // 记得用super调用父类的构造方法!
+        this.grade = grade;
+    }
+
+    myGrade() {
+        alert('I am at grade ' + this.grade);
+    }
+}
+```
+> ES6引入`class`关键字，不是所有浏览器都支持
 # 06 JavaScript 浏览器
 ## 06-01 浏览器对象
 ## 06-02 操作DOM
