@@ -51,11 +51,20 @@
 
 ## 02-01 文件系统
 每个用户有自己的目录，共享计算机资源
-- / 根目录
-    - /home 家目录
-        - /home/KEVISONG 用户家目录，**用~表示**
-            - ~/Documents 
-            - ~/Desktop
+```
+graph LR
+/-->/bin
+/-->/etc
+/-->/home
+/home-->/adu
+/home-->/ksong
+/ksong-->/Desktop
+/ksong-->/Documents
+/ksong-->/Downloads
+/home-->/kren
+/-->/lib
+/-->/usr
+```
 
 符号 | 含义
 ---|---
@@ -652,6 +661,8 @@ df -h
 ---|---
 -h | 人性化显示大小
 
+> 当本地磁盘无法写入文件，提示空间不足，在`df -h`查看到磁盘仍有空间的时候，同时需要`df -i`检查文件索引节点是否已满，常见于小文件过多的情况
+
 **du（disk usage）显示当前目录下的文件大小**
 
 ```
@@ -662,6 +673,7 @@ du -h
 ---|---
 -h | 人性化显示大小
 
+
 ## 06-03 进程查看排序终止(ps, top, kill)
 **ps 查看进程详细状况**
 
@@ -670,6 +682,9 @@ ps
  PID	TTY	    TIME	CMD
 2587	pts/18	00:00:00	bash
 7813	pts/18	00:00:00	ps
+```
+用BSD的格式来显示：`ps aux`
+```
 ps aux
 USER	PID %CPU %MEM   VSZ   RSS TTY	STAT START   TIME COMMAND
 root   1290  0.0  3.6 34464 73976 tty7  Ss+  15:22   0:15 /usr/lib/xorg/
@@ -679,6 +694,30 @@ root   1290  0.0  3.6 34464 73976 tty7  Ss+  15:22   0:15 /usr/lib/xorg/
 a | 显示通过终端启动的所有进程，包括其他用户进程
 u | 显示进程的详细状态
 x | 显示没有通过终端启动的进程
+
+用标准格式来显示：`ps -ef`
+
+```
+ps -ef
+UIP     PID PPID    C   STIME   TTY     TIME    CMD
+root      1    0    0   06:50   ?   00:00:02    /sbin/init
+```
+各列含义：
+
+```
+UID     //用户ID、但输出的是用户名
+PID     //进程的ID
+PPID    //父进程ID
+C       //进程占用CPU的百分比
+STIME   //进程启动到现在的时间
+TTY     //该进程在那个终端上运行，若与终端无关，则显示? 若为pts/0等，则表示由网络连接主机进程。
+CMD     //命令的名称和参数
+```
+进程较多时，使用`ps -ef | grep sql`查询
+
+```
+ps -ef | grep sql
+```
 
 **top 动态显示运行中的进程，并按CPU内存占用率降序排序**
 
@@ -696,6 +735,12 @@ kill -9 9118
 选项 | 含义
 ---|---
 -9 | 强行终止
+
+**tail动态显示日志文件结尾**
+
+```
+tail -f 100
+```
 
 # 07 Linux 其他命令
 
