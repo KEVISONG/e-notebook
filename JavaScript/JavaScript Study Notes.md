@@ -1715,14 +1715,455 @@ class PrimaryStudent extends Student {
 }
 ```
 > ES6引入`class`关键字，不是所有浏览器都支持
+
 # 06 JavaScript 浏览器
 ## 06-01 浏览器对象
+
+**`window`对象**
+
+`window`对象不但充当**全局作用域**，而且表示**浏览器窗口**
+
+`window`对象属性：
+
+- `innerWidth`和`innerHeight`获取浏览器窗口的内部宽高（除去菜单栏、工具栏、边框等）
+- `outerWidth`和`outerHeight`获取浏览器窗口整个宽高
+
+
+```
+var a = window.innerWidth;
+var b = window.innerHeight;
+var c = window.outerWidth;
+var d = window.outerHeight;
+```
+
+**`navigator`对象**
+
+`navigator`对象表示浏览器的信息
+
+`navigator`对象属性：
+
+- `navigator.appName`: 浏览器名称
+- `navigator.appVersion`: 浏览器版本
+- `navigator.language`: 浏览器设置的语言
+- `navigator.platform`: 操作系统类型
+- `navigator.userAgent`: 浏览器谁当的`User-Agent`字符串
+
+> navigator的信息可以很容易地被用户修改，所以JavaScript读取的值不一定正确
+
+**`screen`对象**
+
+`screen`对象表示屏幕的信息
+
+`screen`对象的属性：
+
+- `screen.width`：屏幕宽度，以像素为单位
+- `screen.height`：屏幕高度，以像素为单位
+- `screen.colorDepth`：返回颜色位数
+
+**`location`对象**
+
+`location`对象表示当前页面的URL信息
+
+
+```
+location.href; //http://www.example.com:8080/path/index.html?a=1&b=2#TOP
+location.protocol; // 'http'
+location.host; // 'www.example.com'
+location.port; // '8080'
+location.pathname; // '/path/index.html'
+location.search; // '?a=1&b=2'
+location.hash; // 'TOP'
+```
+
+- `location.assign()`：加载新页面
+- `location.reload()`：重新加载当前页面
+
+**`document`对象**
+
+`document`对象表示当前页面
+
+- `title`属性从`<title>xxx</title>`读取，而且可以动态改变
+
+```
+document.title = '努力学习JavaScript!';
+```
+
+> HTML在浏览器中以DOM形式表示为树形结构，`document`对象就是整个DOM树的根节点
+
+- `document.getElementById()`：按ID获得一个DOM节点
+- `document.getElementByTagName()`：按Tag名获得一组DOM节点
+
+```
+<dl id="drink-menu" style="border:solid 1px #ccc;padding:6px;">
+    <dt>摩卡</dt>
+    <dd>热摩卡咖啡</dd>
+    <dt>酸奶</dt>
+    <dd>北京老酸奶</dd>
+    <dt>果汁</dt>
+    <dd>鲜榨苹果汁</dd>
+</dl>
+```
+```
+var menu = document.getElementById('drink-menu');
+menu.tagName; // 'DL'
+
+var drinks = document.getElementsByTagName('dt');
+s = '提供的饮料有:';
+for (i=0; i<drinks.length; i++) {
+    s = s + drinks[i].innerHTML + ',';
+}
+```
+
+- `document.cookie`获得当前页面Cookie
+
+```
+document.cookie; // 'v=123; remember=true; prefer=zh'
+```
+
+> Cookie是由服务器发送的key-value标示符。因为HTTP协议是无状态的，但是服务器要区分到底是哪个用户发过来的请求，就可以用Cookie来区分。当一个用户成功登录后，服务器发送一个Cookie给浏览器，例如user=ABC123XYZ(加密的字符串)...，此后，浏览器访问该网站时，会在请求头附上这个Cookie，服务器根据Cookie即可区分出用户
+
+Cookie的安全隐患：
+
+- JavaScript可以读取到包含用户登陆信息的Cookie
+- 设置Cookie时坚持使用`httpOnly`
+- 设置了`httpOnly`的Cookie不能被JavaScript读取
+
+**`history`对象**
+
+`history`对象保存了浏览器的历史记录
+
+- history.back()：后退
+- history.forward()：前进
+
+> 现代页面含有大量AJAX和交互，不应该使用`history`
+
 ## 06-02 操作DOM
+
+DOM节点操作类型：
+
+- 更新：更新该DOM节点内容，相当于更新该节点表示的HTML内容
+- 遍历：遍历该DOM节点下的子节点
+- 添加：在该DOM节点下新增一个子节点，相当于动态增加了一个HTML节点
+- 删除：将该节点从HTML中删除，相当于删掉了该DOM节点以及所有子节点
+
+**获取DOM节点方法一**：
+
+- `document.getElementById()`：按ID获取一个DOM节点
+- `document.getElementByTagName()`：按Tag名获取一组DOM节点
+- `document.getElementsByClassName()`：按CSS选择器获取一组DOM节点
+
+```
+// 返回ID为'test'的节点：
+var test = document.getElementById('test');
+
+// 先定位ID为'test-table'的节点，再返回其内部所有tr节点：
+var trs = document.getElementById('test-table').getElementsByTagName('tr');
+
+// 先定位ID为'test-div'的节点，再返回其内部所有class包含red的节点：
+var reds = document.getElementById('test-div').getElementsByClassName('red');
+
+// 获取节点test下的所有直属子节点:
+var cs = test.children;
+
+// 获取节点test下第一个、最后一个子节点：
+var first = test.firstElementChild;
+var last = test.lastElementChild;
+```
+**获取节点方法二**：
+
+- `querySelector()`
+- `querySelectorAll()`
+
+```
+// 通过querySelector获取ID为q1的节点：
+var q1 = document.querySelector('#q1');
+
+// 通过querySelectorAll获取q1节点内的符合条件的所有节点：
+var ps = q1.querySelectorAll('div.highlighted > p');
+```
+> 这里的DOM节点是指`Element`，但是DOM节点实际上是`Node`，在HTML中，`Node`包括`Element`、`Comment`、`CDATA_SECTION`等很多种，以及根节点`Document`类型，但是只用关心`Element`，也就是实际控制页面结构的`Node`，其他类型的`Node`忽略即可
+
+**更新DOM**
+
+修改节点文本方法一：`innerHTML`
+
+```
+// 获取<p id="p-id">...</p>
+var p = document.getElementById('p-id');
+// 设置文本为abc:
+p.innerHTML = 'ABC'; // <p id="p-id">ABC</p>
+// 设置HTML:
+p.innerHTML = 'ABC <span style="color:red">RED</span> XYZ';
+// <p>...</p>的内部结构已修改
+```
+修改节点文本方法二：`innerText`和`textContent`
+
+```
+// 获取<p id="p-id">...</p>
+var p = document.getElementById('p-id');
+// 设置文本:
+p.innerText = '<script>alert("Hi")</script>';
+// HTML被自动编码，无法设置一个<script>节点:
+// <p id="p-id">&lt;script&gt;alert("Hi")&lt;/script&gt;</p>
+```
+> 区别在于读取属性时，`innerText`不返回隐藏元素的文本，而`textContent`返回所有文本。IE<9不支持`textContent`
+
+修改CSS
+
+```
+// 获取<p id="p-id">...</p>
+var p = document.getElementById('p-id');
+// 设置CSS:
+p.style.color = '#ff0000';
+p.style.fontSize = '20px';
+p.style.paddingTop = '2em';
+```
+
+**插入DOM**
+
+如果DOM节点是空的：直接用`innerHTML`
+
+如果DOM节点不是空的：用`innerHTML`会替换掉原来的所有子节点。应该用`appendChild`
+
+```
+<!-- HTML结构 -->
+<p id="js">JavaScript</p>
+<div id="list">
+    <p id="java">Java</p>
+    <p id="python">Python</p>
+    <p id="scheme">Scheme</p>
+</div>
+```
+把`<p id="js">JavaScript</p>`添加到`<div id="list">`的最后一项：
+
+```
+var
+    js = document.getElementById('js'),
+    list = document.getElementById('list');
+list.appendChild(js);
+```
+先创建新节点再插入
+
+```
+var
+    list = document.getElementById('list'),
+    haskell = document.createElement('p');
+haskell.id = 'haskell';
+haskell.innerText = 'Haskell';
+list.appendChild(haskell);
+```
+insertBefore
+
+把子节点插入到指定的位置用`parentElement.insertBefore(newElement, referenceElement);`，子节点会插入到`referenceElement`之前。
+
+
+```
+<!-- HTML结构 -->
+<div id="list">
+    <p id="java">Java</p>
+    <p id="python">Python</p>
+    <p id="scheme">Scheme</p>
+</div>
+```
+
+可以这么写：
+
+```
+var
+    list = document.getElementById('list'),
+    ref = document.getElementById('python'),
+    haskell = document.createElement('p');
+haskell.id = 'haskell';
+haskell.innerText = 'Haskell';
+list.insertBefore(haskell, ref);
+```
+新的HTML结构如下：
+
+```
+<!-- HTML结构 -->
+<div id="list">
+    <p id="java">Java</p>
+    <p id="haskell">Haskell</p>
+    <p id="python">Python</p>
+    <p id="scheme">Scheme</p>
+</div>
+```
+**删除DOM**
+
+要删除一个节点，首先要获得该节点本身以及它的父节点，然后，调用父节点的`removeChild`把自己删掉：
+
+```
+// 拿到待删除节点:
+var self = document.getElementById('to-be-removed');
+// 拿到父节点:
+var parent = self.parentElement;
+// 删除:
+var removed = parent.removeChild(self);
+removed === self; // true
+```
+
+
 ## 06-03 操作表单
+
+表单输入控件：
+
+- 文本框，`<input type="text">`，用于输入文本
+- 口令框，`<input type="password">`，用于输入口令
+- 单选框，`<input type="radio">`，用于选择一项
+- 复选框，`<input type="checkbox">`，用于选择多项
+- 下拉框，`<select>`，用于选择一项
+- 隐藏文本，`<input type="hidden">`，用户不可见，但是表单提交时会发送到服务器
+
+**获取值**
+
+`value`属性获取`text`, `password`, `hidden`, `select`值
+
+```
+// <input type="text" id="email">
+var input = document.getElementById('email');
+input.value; // '用户输入的值'
+```
+
+`checked`属性获取`radio`和`checkbox`的值
+
+```
+// <label><input type="radio" name="weekday" id="monday" value="1"> Monday</label>
+// <label><input type="radio" name="weekday" id="tuesday" value="2"> Tuesday</label>
+var mon = document.getElementById('monday');
+var tue = document.getElementById('tuesday');
+mon.value; // '1'
+tue.value; // '2'
+mon.checked; // true或者false
+tue.checked; // true或者false
+```
+
+**设置值**
+
+`value`属性设置`text`, `password`, `hidden`, `select`值
+
+```
+// <input type="text" id="email">
+var input = document.getElementById('email');
+input.value = 'test@example.com'; // 文本框的内容已更新
+```
+`checked`属性设置`radio`和`checkbox`的值
+
+**HTML5**
+
+HTML5针对`<input>`标签增加了`date`, `datetime`, `datetime-local`, `color`等
+
+```
+<input type="date" value="2015-07-01">
+```
+```
+<input type="color" value="#ff0000">
+```
+
+**提交表单**
+
+方式一：通过`<form>`元素的`submit()`方法提交表单
+
+```
+<!-- HTML -->
+<form id="test-form">
+    <input type="text" name="test">
+    <button type="button" onclick="doSubmitForm()">Submit</button>
+</form>
+
+<script>
+function doSubmitForm() {
+    var form = document.getElementById('test-form');
+    // 可以在此修改form的input...
+    // 提交form:
+    form.submit();
+}
+</script>
+```
+> 缺点：扰乱了浏览器对`form`的正常提交。浏览器默认点击`<button type="submit">`时提交表单，或者用户在最后一个输入框按回车键
+
+方式二：响应`<form>`本身的`onsubmit`事件
+
+```
+<!-- HTML -->
+<form id="test-form" onsubmit="return checkForm()">
+    <input type="text" name="test">
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+function checkForm() {
+    var form = document.getElementById('test-form');
+    // 可以在此修改form的input...
+    // 继续下一步:
+    return true;
+}
+</script>
+```
+
+> `return true`来告诉浏览器继续提交，如果`return false`，浏览器将不会继续提交form
+
+MD5提交口令
+
+```
+<!-- HTML -->
+<form id="login-form" method="post" onsubmit="return checkForm()">
+    <input type="text" id="username" name="username">
+    <input type="password" id="password" name="password">
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+function checkForm() {
+    var pwd = document.getElementById('password');
+    // 把用户输入的明文变为MD5:
+    pwd.value = toMD5(pwd.value);
+    // 继续下一步:
+    return true;
+}
+</script>
+```
+> 潜在问题：输入口令提交时，口令框的显示会突然从几个`*`变成32个`*`（因为MD5有32个字符）
+
+利用`<input type="hidden">`实现优化表单提交
+
+```
+<!-- HTML -->
+<form id="login-form" method="post" onsubmit="return checkForm()">
+    <input type="text" id="username" name="username">
+    <input type="password" id="input-password">//接收用户输入，不会被提交
+    <input type="hidden" id="md5-password" name="password">//获取上面的用户输入并且转化成md5后提交
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+function checkForm() {
+    var input_pwd = document.getElementById('input-password');
+    var md5_pwd = document.getElementById('md5-password');
+    // 把用户输入的明文变为MD5:
+    md5_pwd.value = toMD5(input_pwd.value);
+    // 继续下一步:
+    return true;
+}
+</script>
+```
+> 没有`name`属性的`<input>`的数据不会被提交
+
 ## 06-04 操作文件
+
+
+
 ## 06-05 AJAX
+
+
+
 ## 06-06 Promise
+
+
+
 ## 06-07 Canvas
+
+
+
 # 07 JavaScript jQuery
 ## 07-01 选择器
 ## 07-02 操作DOM
