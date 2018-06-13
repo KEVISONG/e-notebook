@@ -2150,19 +2150,362 @@ function checkForm() {
 
 ## 06-04 操作文件
 
+`<input type="file">`上传文件
 
+> 当表单包含`<input type="file">`时，表单的`enctype`必须指定为`multipart/form-data`，`method`必须指定为`post`，浏览器才能正确编码并以`multipart/form-data`格式发送表单的数据
+
+出于安全考虑，浏览器只允许用户点击`<input type="file">`来选择本地文件，用JavaScript对`<input type="file">`的`value`赋值没有任何效果的。
+
+当用户选择了上传某个文件后，JavaScript也无法获得该文件的真实路径
+
+在提交表单时对文件扩展名做检查
+
+```
+var f = document.getElementById('test-file-upload');
+var filename = f.value; // 'C:\fakepath\test.png'
+if (!filename || !(filename.endsWith('.jpg') || filename.endsWith('.png') || filename.endsWith('.gif'))) {
+    alert('Can only upload image file.');
+    return false;
+}
+```
+
+**File API**
+
+HTML5新增的File API允许JavaScript读取文件内容
+
+File API提供两个主要对象
+
+- `File`获得文件信息
+- `FileReader`读取文件
+
+读取用户选取的图片文件，并在一个`<div>`中预览图像：
+
+```
+var
+    fileInput = document.getElementById('test-image-file'),
+    info = document.getElementById('test-file-info'),
+    preview = document.getElementById('test-image-preview');
+// 监听change事件:
+fileInput.addEventListener('change', function () {
+    // 清除背景图片:
+    preview.style.backgroundImage = '';
+    // 检查文件是否选择:
+    if (!fileInput.value) {
+        info.innerHTML = '没有选择文件';
+        return;
+    }
+    // 获取File引用:
+    var file = fileInput.files[0];
+    // 获取File信息:
+    info.innerHTML = '文件: ' + file.name + '<br>' +
+                     '大小: ' + file.size + '<br>' +
+                     '修改: ' + file.lastModifiedDate;
+    if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
+        alert('不是有效的图片文件!');
+        return;
+    }
+    // 读取文件:
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        var
+            data = e.target.result; // 'data:image/jpeg;base64,/9j/4AAQSk...(base64编码)...'            
+        preview.style.backgroundImage = 'url(' + data + ')';
+    };
+    // 以DataURL的形式读取文件:
+    reader.readAsDataURL(file);
+});
+```
 
 ## 06-05 AJAX
 
+Asynchronous JavaScript and XML
 
+**传统Web原理**：一次HTTP请求对应一个页面
+
+**AJAX作用原理**：
+
+- 用户停留在页面中
+- JavaScript发送新请求并且接受服务端数据
+- JavaScript动态更新页面内容
+- 用户不用刷新页面就可以更新页面
+
+```
+function success(text) {
+    var textarea = document.getElementById('test-response-text');
+    textarea.value = text;
+}
+
+function fail(code) {
+    var textarea = document.getElementById('test-response-text');
+    textarea.value = 'Error code: ' + code;
+}
+
+var request = new XMLHttpRequest(); // 新建XMLHttpRequest对象
+
+request.onreadystatechange = function () { // 状态发生变化时，函数被回调
+    if (request.readyState === 4) { // 成功完成
+        // 判断响应结果:
+        if (request.status === 200) {
+            // 成功，通过responseText拿到响应的文本:
+            return success(request.responseText);
+        } else {
+            // 失败，根据响应码判断失败原因:
+            return fail(request.status);
+        }
+    } else {
+        // HTTP请求还在继续...
+    }
+}
+
+// 发送请求:
+request.open('GET', '/api/categories');//open()方法有3个参数，第一个参数指定是GET还是POST，第二个参数指定URL地址，第三个参数指定是否使用异步，默认是true
+request.send();
+
+alert('请求已发送，请等待响应...');
+```
+
+第一步：创建`XMLHttpRequest`对象后先设置`onreadystatechange`的回调函数
+
+- 在回调函数中通过`readyState === 4`判断请求是否完成
+    - 如果完成，根据`status === 200`判断是否是一个成功的响应
+
+第二步：`XMLHttpRequest`对象的`open()`方法有3个参数
+
+ - 第一个参数指定是`GET`还是`POST`
+ - 第二个参数指定URL地址
+ - 第三个参数指定是否使用异步，默认是true
+
+> 千万不要把第三个参数指定为`false`，否则浏览器将停止响应，直到AJAX请求完成
+
+第三步：`send()`方法才真正发送请求。`GET`请求不需要参数，`POST`请求需要把body部分以字符串或者`FormData`对象传进去
+
+**安全限制**
+
+`open()`的URL使用的是**相对路径**：默认情况下，JavaScript在发送AJAX请求时，URL的域名必须和当前页面完全一致
+
+完全一致：
+
+- 域名要相同（`www.example.com`和`example.com`不同）
+- 协议要相同（`http`和`https`不同）
+- 端口号要相同
+
+**用JavaSCript请求其他网站的URL**
+
+方法一：通过Flash插件发送HTTP请求，这种方式可以绕过浏览器的安全限制，但必须安装Flash，并且跟Flash交互。不过Flash用起来麻烦
+
+方法二：通过在同源域名下架设一个代理服务器来转发，JavaScript负责把请求发送到代理服务器：
+```
+'/proxy?url=http://www.sina.com.cn'
+```
+方法三：JSONP，有个限制，只能用GET请求，并且要求返回JavaScript。这种方式跨域实际上是利用了浏览器允许跨域引用JavaScript资源：
+
+```
+<html>
+<head>
+    <script src="http://example.com/abc.js"></script>
+    ...
+</head>
+<body>
+...
+</body>
+</html>
+```
+
+JSONP通常以函数调用的形式返回，例如，返回JavaScript内容如下：
+
+```
+foo('data');
+```
+这样一来，我们如果在页面中先准备好`foo()`然后给页面动态加一个`<script>`节点，相当于动态读取外域的JavaScript资源，最后就等着接收回调了
+
+**CORS（Cross-Origin Resource Sharing）**
+
+- Origin：本域向外域发起请求
+- 外域检查`Access-Control-Allow-Origin`是否包含本域
+    - 包含：跨域请求成功
+    - 不包含：跨域请求失败，无法获取响应数据
+
+![image](https://cdn.liaoxuefeng.com/cdn/files/attachments/00143640805071744d58164a40e42ef92b9973824451595000/l)
+
+PUT、DELETE以及其他类型如`application/json`的POST请求，在发送AJAX请求之前，浏览器会先发送一个OPTIONS请求（称为preflighted请求）到这个URL上，询问目标服务器是否接受：
+
+```
+OPTIONS /path/to/resource HTTP/1.1
+Host: bar.com
+Origin: http://my.com
+Access-Control-Request-Method: POST
+```
+
+服务器必须响应并明确指出允许的Method：
+
+```
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: http://my.com
+Access-Control-Allow-Methods: POST, GET, PUT, OPTIONS
+Access-Control-Max-Age: 86400
+```
+
+[W3C文档](https://www.w3.org/TR/cors/)
 
 ## 06-06 Promise
 
+JavaScript不支持多线程，只能通过回调函数实现异步
 
+```
+function callback() {
+    console.log('Done');
+}
+console.log('before setTimeout()');
+setTimeout(callback, 1000); // 1秒钟后调用callback函数
+console.log('after setTimeout()');
+```
+输出：
+```
+before setTimeout()
+after setTimeout()
+(等待1秒后)
+Done
+```
+**Promise对象**：承诺将来会执行的对象
+
+```
+function test(resolve, reject) {
+    var timeOut = Math.random() * 2;
+    log('set timeout to: ' + timeOut + ' seconds.');
+    setTimeout(function () {
+        if (timeOut < 1) {
+            log('call resolve()...');
+            resolve('200 OK');
+        }
+        else {
+            log('call reject()...');
+            reject('timeout in ' + timeOut + ' seconds.');
+        }
+    }, timeOut * 1000);
+}
+```
+`test()`函数有两个参数，这两个参数都是函数，如果执行成功将调用`resolve('200 OK')`，如果执行失败将调用`reject('timeout in ' + timeOut + ' seconds.')`
+
+`test()`函数只关心自身的逻辑，并不关心具体的`resolve`和`reject`将如何处理结果
+
+```
+var p1 = new Promise(test);
+// 如果成功，执行这个函数：
+var p2 = p1.then(function (result) {
+    console.log('成功：' + result);
+});
+// 如果失败，执行这个函数：
+var p3 = p2.catch(function (reason) {
+    console.log('失败：' + reason);
+});
+```
+代码可以简化为：
+
+```
+new Promise(test).then(function (result) {
+    console.log('成功：' + result);
+}).catch(function (reason) {
+    console.log('失败：' + reason);
+});
+```
+Promise异步执行
+```
+new Promise(function (resolve, reject) {
+    log('start new Promise...');
+    var timeOut = Math.random() * 2;
+    log('set timeout to: ' + timeOut + ' seconds.');
+    setTimeout(function () {
+        if (timeOut < 1) {
+            log('call resolve()...');
+            resolve('200 OK');
+        }
+        else {
+            log('call reject()...');
+            reject('timeout in ' + timeOut + ' seconds.');
+        }
+    }, timeOut * 1000);
+}).then(function (r) {
+    log('Done: ' + r);
+}).catch(function (reason) {
+    log('Failed: ' + reason);
+});
+```
+![image](https://cdn.liaoxuefeng.com/cdn/files/attachments/001436512391628944d5da9a5654a35b0ace38246f30b9c000/l)
+
+Promise简化异步处理
+
+```
+// ajax函数将返回Promise对象:
+function ajax(method, url, data) {
+    var request = new XMLHttpRequest();
+    return new Promise(function (resolve, reject) {
+        request.onreadystatechange = function () {
+            if (request.readyState === 4) {
+                if (request.status === 200) {
+                    resolve(request.responseText);
+                } else {
+                    reject(request.status);
+                }
+            }
+        };
+        request.open(method, url);
+        request.send(data);
+    });
+}
+var log = document.getElementById('test-promise-ajax-result');
+var p = ajax('GET', '/api/categories');
+p.then(function (text) { // 如果AJAX成功，获得响应内容
+    log.innerText = text;
+}).catch(function (status) { // 如果AJAX失败，获得响应代码
+    log.innerText = 'ERROR: ' + status;
+});
+```
 
 ## 06-07 Canvas
 
+HTML5新增组件，JS无需与Flash交互就可以进行绘制
 
+
+```
+<canvas id="test-canvas" width="300" height="200"></canvas>
+```
+`getContext('2d')`方法获取一个`CanvasRenderingContext2D`对象，所有的绘图操作都需要通过这个对象完成
+
+```
+var ctx = canvas.getContext('2d');
+```
+> 绘制3D图形：`gl = canvas.getContext("webgl");`
+
+
+```
+ctx.clearRect(0, 0, 200, 200); // 擦除(0,0)位置大小为200x200的矩形，擦除的意思是把该区域变为透明
+ctx.fillStyle = '#dddddd'; // 设置颜色
+ctx.fillRect(10, 10, 130, 130); // 把(10,10)位置大小为130x130的矩形涂色
+// 利用Path绘制复杂路径:
+var path=new Path2D();
+path.arc(75, 75, 50, 0, Math.PI*2, true);
+path.moveTo(110,75);
+path.arc(75, 75, 35, 0, Math.PI, false);
+path.moveTo(65, 65);
+path.arc(60, 65, 5, 0, Math.PI*2, true);
+path.moveTo(95, 65);
+path.arc(90, 65, 5, 0, Math.PI*2, true);
+ctx.strokeStyle = '#0000ff';
+ctx.stroke(path);
+```
+
+**绘制文本**
+
+```
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+ctx.shadowOffsetX = 2;
+ctx.shadowOffsetY = 2;
+ctx.shadowBlur = 2;
+ctx.shadowColor = '#666666';
+ctx.font = '24px Arial';
+ctx.fillStyle = '#333333';
+ctx.fillText('带阴影的文字', 20, 40);
+```
 
 # 07 JavaScript jQuery
 ## 07-01 选择器
