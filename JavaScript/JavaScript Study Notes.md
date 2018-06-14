@@ -2508,11 +2508,287 @@ ctx.fillText('带阴影的文字', 20, 40);
 ```
 
 # 07 JavaScript jQuery
+
+使用jQuery：在`<head>`引入jQuery文件
+
+```
+<html>
+<head>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    ...
+</head>
+<body>
+    ...
+</body>
+</html>
+```
+
+jQuery符号$：jQuery把所有功能全部封装在一个全局变量`jQuery`中，而$也是一个合法的变量名，是变量jQuery的别名
+
+$本质上就是一个函数
+
 ## 07-01 选择器
+
+### 基本选择器
+JavaScript选择节点：**返回DOM对象**
+```
+// 按ID查找：
+var a = document.getElementById('dom-id');
+
+// 按tag查找：
+var divs = document.getElementsByTagName('div');
+
+// 查找<p class="red">：
+var ps = document.getElementsByTagName('p');
+// 过滤出class="red":
+// TODO:
+
+// 查找<table class="green">里面的所有<tr>：
+var table = ...
+for (var i=0; i<table.children; i++) {
+    // TODO: 过滤出<tr>
+}
+```
+jQuery选择节点：**返回jQuery对象**（一个数组）
+
+**按ID查找`$('#ID')`**
+
+```
+// 查找<div id="abc">:
+var div = $('#abc');
+```
+如果`id`为`abc`的`<div>`存在，返回jQuery对象
+
+```
+[<div id="abc">...</div>]
+```
+
+如果`id`为`abc`的`<div>`不存在
+
+```
+[]
+```
+
+jQuery对象和DOM对象转换
+
+```
+var div = $('#abc'); // jQuery对象
+var divDom = div.get(0); // 假设存在div，获取第1个DOM元素
+var another = $(divDom); // 重新把DOM包装为jQuery对象
+```
+
+**按tag查找`$('TAGNAME')`**
+
+```
+var ps = $('p'); // 返回所有<p>节点
+ps.length; // 数一数页面有多少个<p>节点
+```
+**按class查找`$('.CLASS')`**
+
+```
+var a = $('.red'); // 所有节点包含`class="red"`都将返回
+// 例如:
+// <div class="red">...</div>
+// <p class="green red">...</p>
+```
+
+有的节点有多个class，查找同时包含`red`和`green`的节点：
+
+```
+var a = $('.red.green'); // 注意没有空格！
+// 符合条件的节点：
+// <div class="red green">...</div>
+// <div class="blue green red">...</div>
+```
+
+**按属性查找`$('属性名=属性值')`**
+
+```
+var email = $('[name=email]'); // 找出<xxx name="email">
+var passwordInput = $('[type=password]'); // 找出<xxx type="password">
+var a = $('[items="A B"]'); // 找出<xxx items="A B">
+```
+前缀查找
+```
+var icons = $('[name^=icon]'); // 找出所有name属性值以icon开头的DOM
+// 例如: name="icon-1", name="icon-2"
+```
+后缀查找
+```
+var names = $('[name$=with]'); // 找出所有name属性值以with结尾的DOM
+// 例如: name="startswith", name="endswith"
+```
+class也是一种属性，可以class属性查找
+```
+var icons = $('[class^="icon-"]'); // 找出所有class包含至少一个以`icon-`开头的DOM
+// 例如: class="icon-clock", class="abc icon-home"
+```
+**标签和属性组合查找`$('标签名[属性名=属性值]')`**
+
+```
+var emailInput = $('input[name=email]'); // 不会找出<div name="email">
+```
+
+**标签和类组合查找`$('标签名.CLASS]')`**
+
+```
+var tr = $('tr.red'); // 找出<tr class="red ...">...</tr>
+```
+
+**多项选择器：`,`隔开**
+
+```
+$('p,div'); // 把<p>和<div>都选出来
+$('p.red,p.green'); // 把<p class="red">和<p class="green">都选出来
+```
+
+### 层级选择器（Descendant Selector）
+
+**层级选择器`$('ancestor descendant')`**
+
+```
+<!-- HTML结构 -->
+<div class="testing">
+    <ul class="lang">
+        <li class="lang-javascript">JavaScript</li>
+        <li class="lang-python">Python</li>
+        <li class="lang-lua">Lua</li>
+    </ul>
+</div>
+```
+
+```
+$('ul.lang li.lang-javascript'); // [<li class="lang-javascript">JavaScript</li>]
+$('div.testing li.lang-javascript'); // [<li class="lang-javascript">JavaScript</li>]
+```
+> 优点：缩小了选择范围，首先要定位父节点，再选择相应的子节点，避免了页面其他不相关的元素
+
+**子选择器`$('parent>child')`**
+
+限定了层级关系必须是父子关系，`<child>`节点必须是`<parent>`节点的直属子节点
+
+```
+$('ul.lang>li.lang-javascript'); // 可以选出[<li class="lang-javascript">JavaScript</li>]
+$('div.testing>li.lang-javascript'); // [], 无法选出，因为<div>和<li>不构成父子关系
+```
+
+**过滤器`：`**
+
+附加在选择器上使用
+```
+$('ul.lang li'); // 选出JavaScript、Python和Lua 3个节点
+
+$('ul.lang li:first-child'); // 仅选出JavaScript
+$('ul.lang li:last-child'); // 仅选出Lua
+$('ul.lang li:nth-child(2)'); // 选出第N个元素，N从1开始
+$('ul.lang li:nth-child(even)'); // 选出序号为偶数的元素
+$('ul.lang li:nth-child(odd)'); // 选出序号为奇数的元素
+```
+
+表单相关特殊的选择器：
+
+- `:input`：可以选择`<input>`，`<textarea>`，`<select>`和`<button>`；
+- `:file`：可以选择`<input type="file">`，和`input[type=file]`一样；
+- `:checkbox`：可以选择复选框，和`input[type=checkbox]`一样；
+- `:radio`：可以选择单选框，和`input[type=radio]`一样；
+- `:focus`：可以选择当前输入焦点的元素，例如把光标放到一个`<input>`上，用`$('input:focus')`就可以选出；
+- `:checked`：选择当前勾上的单选框和复选框，用这个选择器可以立刻获得用户选择的项目，如`$('input[type=radio]:checked')`；
+- `:enabled`：可以选择可以正常输入的`<input>`、`<select>`等，也就是没有灰掉的输入；
+- `:disabled`：和`:enabled`正好相反，选择那些不能输入的。
+
+
+选出可见的或隐藏的元素：
+
+```
+$('div:visible'); // 所有可见的div
+$('div:hidden'); // 所有隐藏的div
+```
+### 查找和过滤
+
+**`find()`查找**
+
+```
+<!-- HTML结构 -->
+<ul class="lang">
+    <li class="js dy">JavaScript</li>
+    <li class="dy">Python</li>
+    <li id="swift">Swift</li>
+    <li class="dy">Scheme</li>
+    <li name="haskell">Haskell</li>
+</ul>
+```
+
+`find()`查找：
+
+```
+var ul = $('ul.lang'); // 获得<ul>
+var dy = ul.find('.dy'); // 获得JavaScript, Python, Scheme
+var swf = ul.find('#swift'); // 获得Swift
+var hsk = ul.find('[name=haskell]'); // 获得Haskell
+```
+
+`parent()`从当前节点开始向上查找
+
+```
+var swf = $('#swift'); // 获得Swift
+var parent = swf.parent(); // 获得Swift的上层节点<ul>
+var a = swf.parent('.red'); // 获得Swift的上层节点<ul>，同时传入过滤条件。如果ul不符合条件，返回空jQuery对象
+```
+
+`next()`和`prev()`方法获取同一层级的节点
+
+```
+var swift = $('#swift');
+
+swift.next(); // Scheme
+swift.next('[name=haskell]'); // 空的jQuery对象，因为Swift的下一个元素Scheme不符合条件[name=haskell]
+
+swift.prev(); // Python
+swift.prev('.dy'); // Python，因为Python同时符合过滤器条件.dy
+```
+
+**filter()过滤**
+
+```
+var langs = $('ul.lang li'); // 拿到JavaScript, Python, Swift, Scheme和Haskell
+var a = langs.filter('.dy'); // 拿到JavaScript, Python, Scheme
+```
+传入一个函数
+
+```
+var langs = $('ul.lang li'); // 拿到JavaScript, Python, Swift, Scheme和Haskell
+langs.filter(function () {
+    return this.innerHTML.indexOf('S') === 0; // 返回S开头的节点
+}); // 拿到Swift, Scheme
+```
+
+**`map()`方法** 把一个jQuery对象包含的若干DOM节点转化为其他对象：
+
+```
+var langs = $('ul.lang li'); // 拿到JavaScript, Python, Swift, Scheme和Haskell
+var arr = langs.map(function () {
+    return this.innerHTML;
+}).get(); // 用get()拿到包含string的Array：['JavaScript', 'Python', 'Swift', 'Scheme', 'Haskell']
+```
+
+
+
 ## 07-02 操作DOM
+
+
+
 ## 07-03 事件
+
+
+
 ## 07-04 动画
+
+
+
 ## 07-05 AJAX
+
+
+
 ## 07-06 扩展
 # 08 JavaScript 错误处理
 ## 08-01 错误传播
