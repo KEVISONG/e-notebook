@@ -2771,11 +2771,156 @@ var arr = langs.map(function () {
 }).get(); // 用get()拿到包含string的Array：['JavaScript', 'Python', 'Swift', 'Scheme', 'Haskell']
 ```
 
-
-
 ## 07-02 操作DOM
 
+**修改Text和HTML**
 
+`text()`无参获取节点文本  
+`html()`无参获取原始HTML文本
+
+```
+<!-- HTML结构 -->
+<ul id="test-ul">
+    <li class="js">JavaScript</li>
+    <li name="book">Java &amp; JavaScript</li>
+</ul>
+```
+分别获取文本和HTML：
+```
+$('#test-ul li[name=book]').text(); // 'Java & JavaScript'
+$('#test-ul li[name=book]').html(); // 'Java &amp; JavaScript'
+```
+
+`text()`无参获取节点文本  
+`html()`无参获取原始HTML文本
+
+```
+var j1 = $('#test-ul li.js');
+var j2 = $('#test-ul li[name=book]');
+j1.html('<span style="color: red">JavaScript</span>');
+j2.text('JavaScript & ECMAScript');
+```
+
+**`css('name', 'value')`修改CSS**
+
+```
+<!-- HTML结构 -->
+<ul id="test-css">
+    <li class="lang dy"><span>JavaScript</span></li>
+    <li class="lang"><span>Java</span></li>
+    <li class="lang dy"><span>Python</span></li>
+    <li class="lang"><span>Swift</span></li>
+    <li class="lang dy"><span>Scheme</span></li>
+</ul>
+```
+链式调用
+```
+$('#test-css li.dy>span').css('background-color', '#ffd351').css('color', 'red');
+```
+`css()`用法：
+
+```
+var div = $('#test-div');
+div.css('color'); // '#000033', 获取CSS属性
+div.css('color', '#336699'); // 设置CSS属性
+div.css('color', ''); // 清除CSS属性
+```
+修改`class`属性
+
+```
+var div = $('#test-div');
+div.hasClass('highlight'); // false， class是否包含highlight
+div.addClass('highlight'); // 添加highlight这个class
+div.removeClass('highlight'); // 删除highlight这个class
+```
+**`show()`显示和`hide()`隐藏DOM**
+
+```
+var a = $('a[target=_blank]');
+a.hide(); // 隐藏
+a.show(); // 显示
+```
+> 隐藏DOM节点并未改变DOM树的结构，它只影响DOM节点的显示。和删除DOM节点不同
+
+**`width()`和`height()`获取设置宽高**
+
+```
+// 浏览器可视窗口大小:
+$(window).width(); // 800
+$(window).height(); // 600
+
+// HTML文档大小:
+$(document).width(); // 800
+$(document).height(); // 3500
+
+// 某个div的大小:
+var div = $('#test-div');
+div.width(); // 600
+div.height(); // 300
+div.width(400); // 设置CSS属性 width: 400px，是否生效要看CSS是否有效
+div.height('200px'); // 设置CSS属性 height: 200px，是否生效要看CSS是否有效
+```
+**`attr()`和`removeAttr()`操作DOM节点的属性**
+
+```
+// <div id="test-div" name="Test" start="1">...</div>
+var div = $('#test-div');
+div.attr('data'); // undefined, 属性不存在
+div.attr('name'); // 'Test'
+div.attr('name', 'Hello'); // div的name属性变为'Hello'
+div.removeAttr('name'); // 删除name属性
+div.attr('name'); // undefined
+```
+`val()`方法获取和设置表单中对应的value属性
+
+```
+/*
+    <input id="test-input" name="email" value="">
+    <select id="test-select" name="city">
+        <option value="BJ" selected>Beijing</option>
+        <option value="SH">Shanghai</option>
+        <option value="SZ">Shenzhen</option>
+    </select>
+    <textarea id="test-textarea">Hello</textarea>
+*/
+var
+    input = $('#test-input'),
+    select = $('#test-select'),
+    textarea = $('#test-textarea');
+
+input.val(); // 'test'
+input.val('abc@example.com'); // 文本框的内容已变为abc@example.com
+
+select.val(); // 'BJ'
+select.val('SH'); // 选择框已变为Shanghai
+
+textarea.val(); // 'Hello'
+textarea.val('Hi'); // 文本区域已更新为'Hi'
+```
+**`append()`添加DOM到最后**
+
+```
+<div id="test-div">
+    <ul>
+        <li><span>JavaScript</span></li>
+        <li><span>Python</span></li>
+        <li><span>Swift</span></li>
+    </ul>
+</div>
+```
+
+```
+var ul = $('#test-div>ul');
+ul.append('<li><span>Haskell</span></li>');
+```
+**`prepend()`添加到DOM开头**
+
+**`remove()`移除DOM节点**
+
+```
+var li = $('#test-div>ul>li');
+li.remove(); // 所有<li>全被删除
+```
 
 ## 07-03 事件
 
