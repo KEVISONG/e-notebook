@@ -2924,6 +2924,190 @@ li.remove(); // 所有<li>全被删除
 
 ## 07-03 事件
 
+因为JavaScript在浏览器中以单线程运行，所以页面加载完所有的JavaScript代码并且执行后，只能依赖**触发事件**来执行JavaScript代码
+
+> jQuery屏蔽了不同浏览器的差异，写一种代码，所有浏览器都能支持
+
+**触发事件方法一：`on(事件名, 处理函数)`方法绑定事件**
+
+```
+/* HTML:
+ *
+ * <a id="test-link" href="#0">点我试试</a>
+ *
+ */
+
+// 获取超链接的jQuery对象:
+var a = $('#test-link');
+a.on('click', function () {
+    alert('Hello!');
+});
+```
+**触发事件方法二：直接调用`click()`方法**
+
+```
+a.click(function () {
+    alert('Hello!');
+});
+```
+> 两者完全等价，第二种常用
+
+**事件大全：**
+
+- 鼠标事件
+    - `click`：鼠标单击触发
+    - `dblclick`：鼠标双击触发
+    - `mouseenter`：鼠标进入时触发
+    - `mouseleave`：鼠标移出时触发
+    - `mousemove`：鼠标在DOM内部移动时触发
+    - `hover`：鼠标进入和退出时触发两个函数，相当于`mouseenter`加上`mouseleave`
+- 键盘事件
+    - `keydown`：键盘按下时触发
+    - `keyup`：键盘松开时触发
+    - `keypress`：按一次键后触发
+- 其他事件
+    - `focus`：当DOM获得焦点时触发
+    - `blur`：当DOM失去焦点时触发
+    - `change`：当`<input>`、`<select>`或`<textarea>`的内容改变时触发
+    - `submit`：当`<form>`提交时触发
+    - `ready`：当页面被载入并且DOM树完成初始化后触发
+
+> `ready`仅作用于`document`对象
+
+> `ready`事件在DOM完成初始化后触发，且只触发一次，非常适合用来写其他的初始化代码
+
+给`<form>`表单绑定`submit`事件：错误演示
+
+```
+<html>
+<head>
+    <script>
+        // 代码有误:
+        $('#testForm).on('submit', function () {
+            alert('submit!');
+        });
+    </script>
+</head>
+<body>
+    <form id="testForm">
+        ...
+    </form>
+</body>
+```
+> JavaScript在此执行的时候，`<form>`尚未载入浏览器，所以`$('#testForm)`返回`[]`，并没有绑定事件到任何DOM上
+
+给`<form>`表单绑定`submit`事件：正确方法，加载完再绑定方法
+
+```
+<html>
+<head>
+    <script>
+        $(document).on('ready', function () {
+            $('#testForm).on('submit', function () {
+                alert('submit!');
+            });
+        });
+    </script>
+</head>
+<body>
+    <form id="testForm">
+        ...
+    </form>
+</body>
+```
+可以这样简化：
+```
+$(document).ready(function () {
+    // on('submit', function)也可以简化:
+    $('#testForm).submit(function () {
+        alert('submit!');
+    });
+});
+```
+再简化：
+```
+$(function () {
+    // init...
+});
+```
+> 最为常见的形式：`$(function () {...})`，牢记这是`document`对象的`ready`事件处理函数
+
+可以反复绑定事件处理函数，它们会依次执行：
+```
+$(function () {
+    console.log('init A...');
+});
+$(function () {
+    console.log('init B...');
+});
+$(function () {
+    console.log('init C...');
+});
+```
+**事件参数**
+
+事件如`mousemove`和`keypress`，需要获取鼠标位置和按键的值，所有事件都会传入`Event`对象作为参数，可以从`Event`对象上获取到更多的信息：
+
+```
+$(function () {
+    $('#testMouseMoveDiv').mousemove(function (e) {
+        $('#testMouseMoveSpan').text('pageX = ' + e.pageX + ', pageY = ' + e.pageY);
+    });
+});
+```
+**`off(事件名, 处理函数)`方法取消绑定事件**
+
+```
+function hello() {
+    alert('hello!');
+}
+
+a.click(hello); // 绑定事件
+
+// 10秒钟后解除绑定:
+setTimeout(function () {
+    a.off('click', hello);
+}, 10000);
+```
+**事件触发条件**
+
+一个需要注意的问题是，事件的触发总是由用户操作引发的。例如，我们监控文本框的内容改动：
+
+```
+var input = $('#test-input');
+input.change(function () {
+    console.log('changed...');
+});
+```
+
+当用户在文本框中输入时，就会触发`change`事件。但是，如果用JavaScript代码去改动文本框的值，将不会触发`change`事件：
+
+```
+var input = $('#test-input');
+input.val('change it!'); // 无法触发change事件
+```
+
+有些时候，我们希望用代码触发change事件，可以直接调用无参数的`change()`方法来触发该事件：
+
+```
+var input = $('#test-input');
+input.val('change it!');
+input.change(); // 触发change事件
+```
+
+
+`input.change()`相当于`input.trigger('change')`，是`trigger()`方法的简写。
+
+**浏览器安全限制**
+
+在浏览器中，有些JavaScript代码只有在用户触发下才能执行，例如，`window.open()`函数：
+
+```
+// 无法弹出新窗口，将被浏览器屏蔽:
+$(function () {
+    window.open('/');
+});
+```
 
 
 ## 07-04 动画
