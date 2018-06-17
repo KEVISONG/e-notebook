@@ -2,9 +2,9 @@
 计算机相关学习笔记
 ### Git & GitHub
 
-[Git & GitHub Study Notes](https://github.com/KEVISONG/e-notebooks/blob/master/Git%20%26%20GitHub/Git%20%26%20GitHub%20Study%20Notes.md#git--github-study-notes)
-
+[Git & GitHub Study Notes](https://github.com/KEVISONG/e-notebooks/blob/master/Git%20%26%20GitHub/Git%20%26%20GitHub%20Study%20Notes.md#git--github-study-notes)  
 > 参考[廖老师的Git教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)  
+
 [Git Cheatsheet](https://github.com/KEVISONG/e-notebooks/blob/master/Git%20%26%20GitHub/Git%20Cheatsheet.pdf)
 
 ### Linux
