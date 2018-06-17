@@ -3112,7 +3112,93 @@ $(function () {
 
 ## 07-04 动画
 
+JavaScript实现动画原理：以固定的时间间隔（例如，0.1秒），每次把DOM元素的CSS样式修改一点（例如，高宽各增加10%）
 
+jQuery内置动画样式
+
+- `show()`/`hide()`
+- `slideUp()`/`slideDown()`
+- `fadeIn()`/`fadeOut()`
+- `animate()`
+
+**`show()`/`hide()`**
+
+无参调用：显示和隐藏DOM元素
+
+有参调用：动态显示和隐藏DOM元素
+
+```
+var div = $('#test-show-hide');
+div.hide(3000); // 在3秒钟内逐渐消失
+```
+
+> `toggle()`方法则根据当前状态决定是`show()`还是`hide()`
+
+**`slideUp()`/`slideDown()`**
+
+`slideUp()`和`slideDown()`则是在垂直方向逐渐展开或收缩
+
+```
+var div = $('#test-slide');
+div.slideUp(3000); // 在3秒钟内逐渐向上消失
+```
+
+> `slideToggle()`则根据元素是否可见来决定下一步动作
+
+**`fadeIn()`/`fadeOut()` 淡入淡出**
+
+> 设置DOM元素的opacity属性来实现
+
+```
+var div = $('#test-fade');
+div.fadeOut('slow'); // 在0.6秒内淡出
+```
+> `fadeToggle()`则根据元素是否可见来决定下一步动作
+
+**`animate()`自定义动画**
+
+参数就是DOM元素最终的CSS状态和时间，jQuery在时间段内不断调整CSS直到达到我们设定的值
+```
+var div = $('#test-animate');
+div.animate({
+    opacity: 0.25,
+    width: '256px',
+    height: '256px'
+}, 3000); // 在3秒钟内CSS过渡到设定值
+```
+`animate()`还可以再传入一个函数，当动画结束时，该函数将被调用：
+
+```
+var div = $('#test-animate');
+div.animate({
+    opacity: 0.25,
+    width: '256px',
+    height: '256px'
+}, 3000, function () {
+    console.log('动画已结束');
+    // 恢复至初始状态:
+    $(this).css('opacity', '1.0').css('width', '128px').css('height', '128px');
+});
+```
+**`delay()`串行动画**
+
+
+```
+var div = $('#test-animates');
+// 动画效果：slideDown - 暂停 - 放大 - 暂停 - 缩小
+div.slideDown(2000)
+   .delay(1000)
+   .animate({
+       width: '256px',
+       height: '256px'
+   }, 2000)
+   .delay(1000)
+   .animate({
+       width: '128px',
+       height: '128px'
+   }, 2000);
+}
+```
 
 ## 07-05 AJAX
 
