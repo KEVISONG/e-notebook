@@ -34,3 +34,9 @@
 
 [Computer Systems Study Notes](https://github.com/KEVISONG/e-notebooks/tree/master/Computer%20Systems)  
 > 参考[深入理解计算机系统（原书第3版）](https://book.douban.com/subject/26912767/)
+
+### Computer Networks
+
+[Computer Networks Study Notes](https://github.com/KEVISONG/e-notebooks/tree/master/Computer%20Networks)
+
+> 参考[计算机网络：自顶向下方法（原书第6版）](https://book.douban.com/subject/26176870/)
