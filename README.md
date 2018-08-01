@@ -37,15 +37,15 @@
 
 - [Python Study Notes](https://github.com/KEVISONG/e-notebooks/blob/master/Python/Python%20Study%20Notes.md#python-study-notes)
 
-### Java
-
-- [Java SE Study Notes](https://github.com/KEVISONG/e-notebooks/blob/master/Java/Java%20SE%20Study%20Notes.md#java-se-study-notes)
-
 ### JavaScript
 
 > 参考[廖老师的JavaScript教程](https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000)
 
 - [JavaScript Study Notes](https://github.com/KEVISONG/e-notebooks/blob/master/JavaScript/JavaScript%20Study%20Notes.md#javascript-study-notes)  
+
+### Java
+
+- [Java SE Study Notes](https://github.com/KEVISONG/e-notebooks/blob/master/Java/Java%20SE%20Study%20Notes.md#java-se-study-notes)
 
 ### HTML
 
