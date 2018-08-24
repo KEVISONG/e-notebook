@@ -1,6 +1,6 @@
 # e-Notebooks
 
-计算机相关内容学习笔记
+计算机相关学习笔记
 
 ### Computer Networks
 
