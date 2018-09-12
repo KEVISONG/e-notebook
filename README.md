@@ -38,6 +38,12 @@
 
 - [Python Study Notes](https://github.com/KEVISONG/e-notebooks/blob/master/Python/Python%20Study%20Notes.md#python-study-notes)
 
+### Django
+
+> 参考[Django Documentation](https://docs.djangoproject.com/en/2.1/intro/)
+
+- [Django Study Notes](https://github.com/KEVISONG/e-notebooks/blob/master/Python/Django%20Study%20Notes.md#django-study-notes)
+
 ### Java
 
 - [Java SE Study Notes](https://github.com/KEVISONG/e-notebooks/blob/master/Java/Java%20SE%20Study%20Notes.md#java-se-study-notes)
