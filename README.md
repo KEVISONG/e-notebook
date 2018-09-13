@@ -58,7 +58,7 @@
 
 - [HTML Study Notes](https://github.com/KEVISONG/e-notebooks/blob/master/HTML/HTML%20Study%20Notes.md#html-study-notes)
 
+### Algorithms
 
-
-
+- [八大排序](https://github.com/KEVISONG/e-notebooks/blob/master/Algorithms/%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F.md#%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F)
 
