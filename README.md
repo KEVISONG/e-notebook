@@ -67,3 +67,4 @@
 > 参考[白帽子讲Web安全](https://book.douban.com/subject/10546925/)
 
 - [第一章 Web安全概述](https://github.com/KEVISONG/e-notebooks/blob/master/Security/%E7%AC%AC%E4%B8%80%E7%AB%A0%20Web%E5%AE%89%E5%85%A8%E6%A6%82%E8%BF%B0.pdf)
+- [第二章 客户端脚本安全](https://github.com/KEVISONG/e-notebooks/blob/master/Security/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%84%9A%E6%9C%AC%E5%AE%89%E5%85%A8.pdf)
